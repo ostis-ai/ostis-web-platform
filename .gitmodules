@@ -1,0 +1,9 @@
+[submodule "tools/kbe"]
+	path = tools/kbe
+	url = git@github.com:deniskoronchik/kbe.git
+[submodule "sc-machine"]
+	path = sc-machine
+	url = git@github.com:deniskoronchik/sc-machine.git
+[submodule "sc-web"]
+	path = sc-web
+	url = git@github.com:deniskoronchik/sc-web.git
