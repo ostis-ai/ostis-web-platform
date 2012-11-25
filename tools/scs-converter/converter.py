@@ -191,16 +191,6 @@ class Converter:
 			
 		return res
 	
-	def process_arc_connector(self, connector):
-		assert connector != "="
-		global arc_id
-		
-		# todo fixme
-		res = "sc_arc_common#%d" % arc_id
-		arc_id += 1
-		
-		return res
-	
 	def resolve_identifier(self, group):
 		"""Resolves identifiers for different groups
 		"""
@@ -254,14 +244,15 @@ class Converter:
 	def processIdtfWithIntGroup(self, group):
 		"""Process identifier with internal sentence group
 		"""
-		subject_idtf = self.resolve_identifier(group.idtf)
 		self.parse_tree(group.idtf)
+		subject_idtf = self.resolve_identifier(group.idtf)
 		
 		internal_list = group.internal
 		if internal_list is not None:
 			for sentence in internal_list.sentences:
 				
 				for obj in sentence.object:
+					self.parse_tree(obj)
 					object_idtf = self.resolve_identifier(obj)
 					attributes = sentence.attrs
 					arc_idtf = self.generate_arc_idtf(sentence.predicate)
@@ -315,6 +306,8 @@ class Converter:
 			self.oset_count = converter.oset_count
 			self.arc_count = converter.arc_count
 			self.link_count = converter.link_count
+			
+			# todo add arcs into contour elements
 		
 		
 		link_idtf = self.generate_link_idtf()
