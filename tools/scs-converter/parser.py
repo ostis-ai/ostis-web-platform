@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 -----------------------------------------------------------------------------
 This source file is part of OSTIS (Open Semantic Technology for Intelligent Systems)
@@ -362,8 +364,8 @@ def syntax():
         
     syntax = None
     
-    name = Word(srange(u"[a-zA-Z0-9_#]"), srange(u"[a-zA-Z0-9_#]")).setParseAction(SimpleIdentifierGroup)
-    url = QuotedString(quoteChar='"', unquoteResults=False).setParseAction(UrlGroup)
+    name = Word(srange(u"[a-zA-Z0-9_#]"), srange(u"[a-zA-Z0-9_#]")).setParseAction(SimpleIdentifierGroup).setName("Name")
+    url = QuotedString(quoteChar='"', unquoteResults=False).setParseAction(UrlGroup).setName("Url")
     simpleIdtf = name ^ url
     
     tripleSep = Literal(u'|').suppress()
@@ -388,7 +390,7 @@ def syntax():
     comment = comment_keyword
     
     # level 1 sentence
-    sentence_lv1 = Group(simpleIdtf + tripleSep + simpleIdtf + tripleSep + simpleIdtf).setParseAction(SimpleSentenceGroup)
+    sentence_lv1 = Group(simpleIdtf + tripleSep + simpleIdtf + tripleSep + simpleIdtf).setParseAction(SimpleSentenceGroup).setName("SimpleSentence")
     
     
     # other levels sentence
@@ -406,26 +408,26 @@ def syntax():
     attrsList = Group(ZeroOrMore(simpleIdtf + attrSep))
     
     # internal sentence
-    idtfWithInt = Group(idtf + Optional(internal)).setParseAction(IdtfWithIntGroup)
+    idtfWithInt = Group(idtf + Optional(internal)).setParseAction(IdtfWithIntGroup).setName("IdtfWithIntGroup")
     objectList = Group(idtfWithInt + ZeroOrMore(objSep + idtfWithInt))
-    intSentence = Group(connector + Optional(attrsList) + objectList).setParseAction(InternalGroup)
+    intSentence = Group(connector + Optional(attrsList) + objectList).setParseAction(InternalGroup).setName("InternalSentence")
     
-    intSentenceList = Group(lpar_int + OneOrMore(intSentence + sentSep) + rpar_int).setParseAction(InternalListGroup)
+    intSentenceList = Group(lpar_int + OneOrMore(intSentence + sentSep) + rpar_int).setParseAction(InternalListGroup).setName("InternalSentenceGroup")
     
     internal << intSentenceList
     
-    content = QuotedString(quoteChar=u'[', endQuoteChar=u']', unquoteResults=True, multiline=True, escChar=u'\\').setParseAction(ContentGroup)
-    triple = Group(lpar + idtf + connector + idtf + rpar).setParseAction(TripleGroup)
-    alias = Group(aliasNoName).setParseAction(AliasGroup)
+    content = QuotedString(quoteChar=u'[', endQuoteChar=u']', unquoteResults=True, multiline=True, escChar=u'\\').setParseAction(ContentGroup).setName("Content")
+    triple = Group(lpar + idtf + connector + idtf + rpar).setParseAction(TripleGroup).setName("Triple")
+    alias = Group(aliasNoName).setParseAction(AliasGroup).setName("Alias")
     
-    setIdtf = Group(lpar_set + ZeroOrMore(Group(Optional(attrsList) + idtfWithInt) + objSep) + Group(Optional(attrsList) + idtfWithInt) + rpar_set).setParseAction(SetGroup)
-    osetIdtf = Group(lpar_oset + ZeroOrMore(Group(Optional(attrsList) + idtfWithInt) + objSep) + Group(Optional(attrsList) + idtfWithInt) + rpar_oset).setParseAction(OSetGroup)
+    setIdtf = Group(lpar_set + ZeroOrMore(Group(Optional(attrsList) + idtfWithInt) + objSep) + Group(Optional(attrsList) + idtfWithInt) + rpar_set).setParseAction(SetGroup).setName("Set")
+    osetIdtf = Group(lpar_oset + ZeroOrMore(Group(Optional(attrsList) + idtfWithInt) + objSep) + Group(Optional(attrsList) + idtfWithInt) + rpar_oset).setParseAction(OSetGroup).setName("OSet")
     
     anyIdtf = simpleIdtf ^ content ^ triple ^ setIdtf ^ osetIdtf ^ alias
     idtf << anyIdtf
     
 #    sentence_synonym = Group(idtf + synSep + idtf).setParseAction(SynonymGroup)
-    sentence_lv23456 = Group(idtf + connector + Optional(attrsList) + objectList).setParseAction(SentenceGroup)
+    sentence_lv23456 = Group(idtf + connector + Optional(attrsList) + objectList).setParseAction(SentenceGroup).setName("Sentence")
     
     sentence = (sentence_lv1 ^ sentence_lv23456)# ^ sentence_synonym)
     syntax = ZeroOrMore(Group(sentence + sentSep) ^ comment)

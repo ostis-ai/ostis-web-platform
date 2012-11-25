@@ -99,8 +99,8 @@ arc_keynodes = {
 				u'_<=>': "sc_edge_var",
 				u'=>': "sc_arc_common_const",
 				u'<=': "sc_arc_common_const",
-				u'=>': "sc_arc_common_var",
-				u'<=': "sc_arc_common_var",
+				u'_=>': "sc_arc_common_var",
+				u'_<=': "sc_arc_common_var",
 				u'_->': "sc_arc_access_var_pos_perm",
 				u'_<-': "sc_arc_access_var_pos_perm",
 				u'-|>': "sc_arc_access_const_neg_perm",
@@ -125,18 +125,9 @@ arc_keynodes = {
 				u'_</~': "sc_arc_access_var_fuz_temp",
 			}
 
+
+
 class Converter:
-	triples = []
-	contents = {}
-	
-	# synonyms map. For each key in this map we contains list of all synonym elements
-	synonyms = {}
-	# aliases map
-	aliases = {}
-	
-	set_count = 0
-	oset_count = 0
-	arc_count = 0
 	
 	def __init__(self):
 		self.group_processors = {
@@ -155,25 +146,45 @@ class Converter:
 						parser.InternalGroup: self.processInternalGroup,
 						parser.InternalListGroup: self.processInternalListGroup
 						}
+		
+		self.comments = {}
+		self.triples = []
+	
+		# list of contents, that need to be written
+		self.link_contents = {}
+	
+		# synonyms map. For each key in this map we contains list of all synonym elements
+		self.synonyms = {}
+		# aliases map
+		self.aliases = {}
+	
+		self.set_count = 0
+		self.oset_count = 0
+		self.arc_count = 0
+		self.link_count = 0
 	
 	def generate_set_idtf(self):
-		Converter.set_count += 1
-		return ".set_%d" % Converter.set_count
+		self.set_count += 1
+		return ".set_%d" % self.set_count
 	
 	def generate_oset_idtf(self):
-		Converter.oset_count += 1
-		return ".oset_%d" % Converter.oset_count
+		self.oset_count += 1
+		return ".oset_%d" % self.oset_count
+	
+	def generate_link_idtf(self):
+		self.link_count += 1
+		return 'data/link_%d' % self.link_count
 	
 	def generate_arc_idtf(self, type = None, include_into_set = True):
-		Converter.arc_count += 1
+		self.arc_count += 1
 		
 		res = None
 		if type is not None:
 			if arc_types.has_key(type):
-				res = arc_types[type] + "#" + str(Converter.arc_count)
+				res = arc_types[type] + "#" + str(self.arc_count)
 		
 		if res is None:
-			res = ".arc_%d" % Converter.arc_count
+			res = ".arc_%d" % self.arc_count
 			
 		if include_into_set and arc_keynodes.has_key(type):
 			self.append_sentence(arc_keynodes[type], self.generate_arc_idtf('->', False), res, False)
@@ -233,7 +244,7 @@ class Converter:
 		pass
 		
 	def processKeywordGroup(self, group):
-		pass
+		return group
 		
 	def processSimpleSentenceGroup(self, group):
 		"""Process scs-level 1 sentences
@@ -264,13 +275,13 @@ class Converter:
 				
 				
 	def processInternalGroup(self, group):
-		pass
+		return group
 		
 	def processInternalListGroup(self, group):
-		pass
+		return group
 		
 	def processTripleGroup(self, group):
-		pass
+		return group
 		
 	def processAliasGroup(self, group):
 		"""Just resolve identifier for alias
@@ -278,7 +289,39 @@ class Converter:
 		return self.resolve_identifier(group)
 		
 	def processContentGroup(self, group):
-		pass
+		"""Store link content for saving
+		"""
+		if len(group.value) > 1 and group.value[0] == u'*' and group.value[-1] == u'*':
+			data = group.value[1:-1]
+			
+			# create new converter and build data
+			converter = Converter()
+			converter.link_contents = self.link_contents
+			converter.synonyms = self.synonyms
+			converter.triples = self.triples
+			converter.aliases = self.aliases
+			converter.set_count = self.set_count
+			converter.oset_count = self.oset_count
+			converter.arc_count = self.arc_count
+			converter.link_count = self.link_count
+			
+			converter.parse_string(data)
+			
+			self.link_contents = converter.link_contents
+			self.synonyms = converter.synonyms
+			self.triples = converter.triples
+			self.aliases = converter.aliases
+			self.set_count = converter.set_count
+			self.oset_count = converter.oset_count
+			self.arc_count = converter.arc_count
+			self.link_count = converter.link_count
+		
+		
+		link_idtf = self.generate_link_idtf()
+		self.link_contents[link_idtf] = group.value
+		group.value = '"file://%s"' % link_idtf
+		
+		return link_idtf
 		
 	def processSetGroup(self, group):
 		"""Process set
@@ -370,7 +413,18 @@ class Converter:
 		else:
 			self.group_processors[tree.__class__](tree)
 		
-		
+	
+	def parse_string(self, data):
+		"""Parse specified string
+		"""
+		try:
+			result = parser.syntax().parseString(data.decode('utf-8'), parseAll = True)
+			self.parse_tree(result)
+		except ParseException, err:
+			print err.line
+			print " "*(err.column-1) + "^"
+			print err
+	
 	def parse_directory(self, path):
 		"""Parse specified directory
 		"""
@@ -385,19 +439,13 @@ class Converter:
 				
 				file_path = os.path.join(root, f)
 				
-				self.triples.append('/* ------' + file_path + ' ----- */')
+				self.comments[len(self.triples)] = file_path
 				
 				# parse file
-				try:
-					print "Parse %s" % file_path
-					fh = open(file_path, 'r')
-					result = parser.syntax().parseFile(fh)
-					self.parse_tree(result)
-					fh.close()
-				except ParseException, err:
-					print err.line
-					print " "*(err.column-1) + "^"
-					print err
+				print "Parse %s" % file_path
+				fh = open(file_path, 'r')
+				self.parse_string(fh.read())
+				fh.close()
 				
 	def write_to_fs(self, path):
 		"""Writes converted data into specified directory
@@ -407,19 +455,21 @@ class Converter:
 			
 		os.makedirs(path)
 		
+		count = 0
 		with codecs.open(os.path.join(path, "data.scs"), "w", "utf-8") as output:
-			for t in Converter.triples:
-				if isinstance(t, str) or isinstance(t, unicode):
-					output.write(t + '\n')
-				else:
-					output.write("%s | %s | %s;;\n" % t)
+			for t in self.triples:
+				
+				if self.comments.has_key(count):
+					output.write('\n/* --- %s --- */\n' % self.comments[count])
+				
+				output.write("%s | %s | %s;;\n" % t)
+				count += 1
 			output.close()
 				
 		# write contents
-		contents_dir = os.path.join(path, "contents")
-		os.makedirs(contents_dir)
-		for num, data in Converter.contents.items():
-			f = open(os.path.join(contents_dir, str(num)), "w")
+		os.makedirs(os.path.join(path, "data"))
+		for num, data in self.link_contents.items():
+			f = open(os.path.join(path, str(num)), "w")
 			f.write(data)
 			f.close()
 
