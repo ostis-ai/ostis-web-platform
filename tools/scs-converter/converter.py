@@ -32,6 +32,12 @@ from sre_parse import parse_template
 
 ParserElement.enablePackrat()
 
+encoding = "utf-8" 
+reload(sys)
+sys.setdefaultencoding(encoding)
+sys.stdout = codecs.getwriter(encoding)(sys.stdout, errors = "replace")
+sys.stderr = codecs.getwriter(encoding)(sys.stderr, errors = "replace")
+
 reKeyword = r'/!\*\s*keyword:\s*([a-zA-Z0-9_]+)\s*\*/'
 
 arc_id = 0
@@ -57,72 +63,72 @@ mirror_connectors = [
 				]
 				
 arc_types = {
-			u">" : "sc_arc_common",
-			u"<" : "sc_arc_common",
-			u"->": "sc_arc_main",
-			u"<-": "sc_arc_main",
-			u"<>": "sc_edge",
-			u"..>": "sc_arc_access",
-			u"<..": "sc_arc_access",
-			u'<=>': "sc_edge",
-			u'_<=>': "sc_edge",
-			u'=>': "sc_arc_common",
-			u'<=': "sc_arc_common",
-			u'=>': "sc_arc_common",
-			u'<=': "sc_arc_common",
-			u'_->': "sc_arc_access",
-			u'_<-': "sc_arc_access",
-			u'-|>': "sc_arc_access",
-			u'_-|>': "sc_arc_access",
-			u'<|-': "sc_arc_access",
-			u'_<|-': "sc_arc_access",
-			u'-/>': "sc_arc_access",
-			u'_-/>': "sc_arc_access",
-			u'</-': "sc_arc_access",
-			u'_</-': "sc_arc_access",
-			u'~>': "sc_arc_access",
-			u'_~>': "sc_arc_access",
-			u'<~': "sc_arc_access",
-			u'_<~': "sc_arc_access",
-			u'~|>': "sc_arc_access",
-			u'_~|>': "sc_arc_access",
-			u'<|~': "sc_arc_access",
-			u'_<|~': "sc_arc_access",
-			u'~/>': "sc_arc_access",
-			u'_~/>': "sc_arc_access",
-			u'</~': "sc_arc_access",
-			u'_</~': "sc_arc_access",
+			u">" : u"sc_arc_common",
+			u"<" : u"sc_arc_common",
+			u"->": u"sc_arc_main",
+			u"<-": u"sc_arc_main",
+			u"<>": u"sc_edge",
+			u"..>": u"sc_arc_access",
+			u"<..": u"sc_arc_access",
+			u'<=>': u"sc_edge",
+			u'_<=>': u"sc_edge",
+			u'=>': u"sc_arc_common",
+			u'<=': u"sc_arc_common",
+			u'=>': u"sc_arc_common",
+			u'<=': u"sc_arc_common",
+			u'_->': u"sc_arc_access",
+			u'_<-': u"sc_arc_access",
+			u'-|>': u"sc_arc_access",
+			u'_-|>': u"sc_arc_access",
+			u'<|-': u"sc_arc_access",
+			u'_<|-': u"sc_arc_access",
+			u'-/>': u"sc_arc_access",
+			u'_-/>': u"sc_arc_access",
+			u'</-': u"sc_arc_access",
+			u'_</-': u"sc_arc_access",
+			u'~>': u"sc_arc_access",
+			u'_~>': u"sc_arc_access",
+			u'<~': u"sc_arc_access",
+			u'_<~': u"sc_arc_access",
+			u'~|>': u"sc_arc_access",
+			u'_~|>': u"sc_arc_access",
+			u'<|~': u"sc_arc_access",
+			u'_<|~': u"sc_arc_access",
+			u'~/>': u"sc_arc_access",
+			u'_~/>': u"sc_arc_access",
+			u'</~': u"sc_arc_access",
+			u'_</~': u"sc_arc_access",
 			}
 
 arc_keynodes = {
-				u'<=>': "sc_edge_const",
-				u'_<=>': "sc_edge_var",
-				u'=>': "sc_arc_common_const",
-				u'<=': "sc_arc_common_const",
-				u'_=>': "sc_arc_common_var",
-				u'_<=': "sc_arc_common_var",
-				u'_->': "sc_arc_access_var_pos_perm",
-				u'_<-': "sc_arc_access_var_pos_perm",
-				u'-|>': "sc_arc_access_const_neg_perm",
-				u'_-|>': "sc_arc_access_var_neg_perm",
-				u'<|-': "sc_arc_access_const_neg_perm",
-				u'_<|-': "sc_arc_access_var_neg_perm",
-				u'-/>': "sc_arc_access_const_fuz_perm",
-				u'_-/>': "sc_arc_access_var_fuz_perm",
-				u'</-': "sc_arc_access_const_fuz_perm",
-				u'_</-': "sc_arc_access_var_fuz_perm",
-				u'~>': "sc_arc_access_const_pos_temp",
-				u'_~>': "sc_arc_access_var_pos_temp",
-				u'<~': "sc_arc_access_const_pos_temp",
-				u'_<~': "sc_arc_access_var_pos_temp",
-				u'~|>': "sc_arc_access_const_neg_temp",
-				u'_~|>': "sc_arc_access_var_neg_temp",
-				u'<|~': "sc_arc_access_const_neg_temp",
-				u'_<|~': "sc_arc_access_var_neg_temp",
-				u'~/>': "sc_arc_access_const_fuz_temp",
-				u'_~/>': "sc_arc_access_var_fuz_temp",
-				u'</~': "sc_arc_access_const_fuz_temp",
-				u'_</~': "sc_arc_access_var_fuz_temp",
+				u'<=>': u"sc_edge_const",
+				u'_<=>': u"sc_edge_var",
+				u'=>': u"sc_arc_common_const",
+				u'<=': u"sc_arc_common_const",
+				u'_=>': u"sc_arc_common_var",
+				u'_<=': u"sc_arc_common_var",
+				u'_->': u"sc_arc_access_var_pos_perm",
+				u'_<-': u"sc_arc_access_var_pos_perm",
+				u'-|>': u"sc_arc_access_const_neg_perm",
+				u'_-|>': u"sc_arc_access_var_neg_perm",
+				u'<|-': u"sc_arc_access_const_neg_perm",
+				u'_<|-': u"sc_arc_access_var_neg_perm",
+				u'-/>': u"sc_arc_access_const_fuz_perm",
+				u'_-/>': u"sc_arc_access_var_fuz_perm",
+				u'</-': u"sc_arc_access_const_fuz_perm",
+				u'_</-': u"sc_arc_access_var_fuz_perm",
+				u'~>': u"sc_arc_access_const_pos_temp",
+				u'_~>': u"sc_arc_access_var_pos_temp",
+				u'<~': u"sc_arc_access_const_pos_temp",
+				u'_<~': u"sc_arc_access_var_pos_temp",
+				u'~|>': u"sc_arc_access_const_neg_temp",
+				u'_~|>': u"sc_arc_access_var_neg_temp",
+				u'<|~': u"sc_arc_access_const_neg_temp",
+				u'_<|~': u"sc_arc_access_var_neg_temp",
+				u'~/>': u"sc_arc_access_const_fuz_temp",
+				u'_~/>': u"sc_arc_access_var_fuz_temp",
+				u'</~': u"sc_arc_access_const_fuz_temp",
+				u'_</~': u"sc_arc_access_var_fuz_temp",
 			}
 
 
@@ -181,10 +187,10 @@ class Converter:
 		res = None
 		if type is not None:
 			if arc_types.has_key(type):
-				res = arc_types[type] + "#" + str(self.arc_count)
+				res = arc_types[type] + "#." + str(self.arc_count)
 		
 		if res is None:
-			res = ".arc_%d" % self.arc_count
+			res = "sc_arc_common#.arc_%d" % self.arc_count
 			
 		if include_into_set and arc_keynodes.has_key(type):
 			self.append_sentence(arc_keynodes[type], self.generate_arc_idtf('->', False), res, False)
@@ -221,6 +227,10 @@ class Converter:
 	def append_sentence(self, subject, predicate, object, isMirrored):
 		"""Appends new scs-level 1 sentence into list
 		"""
+		assert isinstance(subject, str) or isinstance(subject, unicode)
+		assert isinstance(object, str) or isinstance(object, unicode)
+		assert isinstance(predicate, str) or isinstance(predicate, unicode)
+		
 		if not isMirrored:
 			self.triples.append((subject, predicate, object))
 		else:
@@ -228,7 +238,7 @@ class Converter:
 	
 	# ---------------------------------------
 	def processSimpleIdentifierGroup(self, group):
-		return self.resolve_identifier(group)
+		self.resolve_identifier(group)
 		
 	def processUrlGroup(self, group):
 		pass
@@ -239,7 +249,11 @@ class Converter:
 	def processSimpleSentenceGroup(self, group):
 		"""Process scs-level 1 sentences
 		"""
-		self.append_sentence(group.subject, group.predicate, group.object, False);
+		subject_idtf = self.resolve_identifier(group.subject)
+		object_idtf = self.resolve_identifier(group.object)
+		arc_idtf = group.predicate.value
+		
+		self.append_sentence(subject_idtf, arc_idtf, object_idtf, False);
 	
 	def processIdtfWithIntGroup(self, group):
 		"""Process identifier with internal sentence group
@@ -343,15 +357,16 @@ class Converter:
 			object = item[1]
 			item_count += 1
 			
+			object_idtf = self.resolve_identifier(object)
 			self.parse_tree(object)
 			arc_idtf = self.generate_arc_idtf('->')
-			self.append_sentence(idtf, arc_idtf, self.resolve_identifier(object), False)
+			self.append_sentence(idtf, arc_idtf, object_idtf, False)
 			# add order attribute
 			self.append_sentence("%d_" % item_count, self.generate_arc_idtf('->'), arc_idtf, False)
 			
 			for attr in attributes:
 				attr_idtf = self.resolve_identifier(attr)
-				self.append_sentence(attr_idtf, self.generate_arc_idtf('->'), object, False)
+				self.append_sentence(attr_idtf, self.generate_arc_idtf('->'), object_idtf, False)
 		
 	def processSentenceGroup(self, group):
 		"""Process sentence for scs-levels 2-6
@@ -362,6 +377,7 @@ class Converter:
 		objects = group.object
 		
 		self.parse_tree(subject)
+		subject_idtf = self.resolve_identifier(subject)
 		for obj in objects:
 			# process object
 			self.parse_tree(obj)
@@ -370,7 +386,7 @@ class Converter:
 			
 			# connect subject with object
 			arc_idtf = self.generate_arc_idtf(predicate)
-			self.append_sentence(subject, arc_idtf, obj_idtf, self.check_predicate_mirror(predicate))
+			self.append_sentence(subject_idtf, arc_idtf, obj_idtf, self.check_predicate_mirror(predicate))
 			
 			# connect attributes
 			for attr in attributes:
@@ -436,9 +452,9 @@ class Converter:
 				
 				# parse file
 				print "Parse %s" % file_path
-				fh = open(file_path, 'r')
-				self.parse_string(fh.read())
-				fh.close()
+				input = open(file_path, "r")
+				self.parse_string(input.read().decode("utf-8"))
+				input.close()
 				
 	def write_to_fs(self, path):
 		"""Writes converted data into specified directory
@@ -467,6 +483,8 @@ class Converter:
 			f.close()
 
 if __name__ == "__main__":
+
+	print "Default encoding: %s" % sys.getdefaultencoding()
 
 	if len(sys.argv) < 3:
 		print "Usage: python converter.py <input dir> <output dir>"
