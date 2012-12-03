@@ -24,7 +24,9 @@ along with OSTIS. If not, see <http://www.gnu.org/licenses/>.
 import os, sys, shutil
 import codecs
 import converter
-from sc_memory import *
+import ctypes
+from pysc import *
+from pysc import _sc_addr
 
 encoding = "utf-8" 
 reload(sys)
@@ -41,7 +43,7 @@ arcPrefixToType = {
 			}
 
 # mapping of set identifiers into sc-types
-arcIdtfToType = {
+idtfToType = {
 			u"sc_edge_const": sc_type_edge_common | sc_type_const,
 			u"sc_edge_var": sc_type_edge_common | sc_type_var,
 			u"sc_arc_common_const": sc_type_arc_common | sc_type_const,
@@ -59,6 +61,9 @@ arcIdtfToType = {
 			u"sc_arc_access_var_neg_temp": sc_type_arc_access | sc_type_var | sc_type_arc_neg | sc_type_arc_temp,
 			u"sc_arc_access_const_fuz_temp": sc_type_arc_access | sc_type_const | sc_type_arc_fuz | sc_type_arc_temp,
 			u"sc_arc_access_var_fuz_temp": sc_type_arc_access | sc_type_var | sc_type_arc_fuz | sc_type_arc_temp,
+			
+			# nodes
+			u"sc_node_const_norole": sc_type_node | sc_type_const | sc_type_node_norole,
 			}
 
 # mapping identifiers into sc-addrs
@@ -235,7 +240,13 @@ def generateSystemIdentifier(el_addr, idtf):
 	
 	idtf_data = str(idtf)
 	stream = sc_stream_memory_new(idtf_data, len(idtf_data), SC_STREAM_READ, False)
+	
 	assert stream is not None
+	
+	results_list = None
+	results_count = None
+	idtf_link = None
+	
 	idtf_link = sc_memory_link_new()
 	sc_memory_set_link_content(idtf_link, stream)
 	sc_stream_free(stream)
@@ -255,6 +266,7 @@ def generateIdentifiers():
 	nrel_idtf_str = u'nrel_system_identifier'
 	nrel_idtf_data = str(nrel_idtf_str)
 	
+	sc_helper_init()
 	
 	try:
 		nrel_idtf_addr = sc_addrs[nrel_idtf_str]
@@ -264,7 +276,7 @@ def generateIdentifiers():
 	assert nrel_idtf_addr is not None
 	
 	for idtf, addr in sc_addrs.items():
-		
+			
 		# extract object identifier
 		system_idtf = idtf
 		if checkIdtfWithPrefix(system_idtf):
@@ -273,12 +285,22 @@ def generateIdentifiers():
 		if system_idtf.startswith('.') or (system_idtf.startswith('"') and system_idtf.endswith('"')):
 			continue
 		
+		# todo check if identifier doesn't exist
+		addr = _sc_addr()
+		addr.offset = 0
+		addr.seg = 0
+		
+		# temporary hack
+		if system_idtf == nrel_idtf_str:
+			continue
+		
 		print "\tSetup for %s" % idtf
 		
 		assert addr is not None
 		# generate identifier relation
 		generateSystemIdentifier(addr, system_idtf)
 	
+	sc_helper_shutdown()
 	
 # ------------------------------------------------
 
@@ -295,6 +317,9 @@ if __name__ == "__main__":
 	
 	input_path = sys.argv[1]
 	output_path = sys.argv[2]
+	
+	if os.path.exists(output_path):
+		shutil.rmtree(output_path)
 	
 	sc_memory_initialize(output_path)
 	
@@ -315,6 +340,13 @@ if __name__ == "__main__":
 		subject = triple[0]
 		object = triple[2]
 		predicate = triple[1]
+		
+		# if first element in triple is an element type set, then change type of sc-element
+		if idtfToType.has_key(subject):
+			# todo add types conflict checking
+			sc_types[object] = idtfToType[subject]
+			resolveScAddr(object)
+			continue
 		
 		resolveScAddr(subject)
 		resolveScAddr(object)
@@ -374,8 +406,7 @@ if __name__ == "__main__":
 	for idtf in sc_arcs.iterkeys():
 		print "Arc %s wasn't created" % idtf
 		
-
-		
+			
 	all_count = created_links + created_nodes + created_arcs
 	print "Statistics:"
 	print "\tCreated nodes: %d (%.03f%%)" % (created_nodes, float(created_nodes) / all_count * 100)
