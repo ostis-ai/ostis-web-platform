@@ -194,18 +194,20 @@ def createNodeOrLink(elIdtf, elType):
 		
 		# setup link data
 		path = elIdtf[1:-1]
-		path = path.replace("file://", "")
+		path = unicode(path.replace("file://", ""))
 		if conv.link_contents.has_key(path):
 			data = str(conv.link_contents[path])
 			stream = sc_stream_memory_new(data, len(data), SC_STREAM_READ, False)
-		else:
-			path = resolveLinkPath(elIdtf)
-			stream = sc_stream_file_new(path, SC_STREAM_READ)
+		elif conv.link_copy_contents.has_key(path):
+			cont_path = str(conv.link_copy_contents[path])
+			stream = sc_stream_file_new(cont_path, SC_STREAM_READ)
 		
 		if stream is None:
 			print "Can't setup content from path %s" % path
 		else:
-			sc_memory_set_link_content(addr, stream)
+			res = sc_memory_set_link_content(addr, stream)
+			if res != SC_OK:
+				print "Can't setup link data for %s" % (str(elIdtf))
 			sc_stream_free(stream)
 
 	elif elType & sc_type_node:
@@ -285,10 +287,6 @@ def generateIdentifiers():
 		if system_idtf.startswith('.') or (system_idtf.startswith('"') and system_idtf.endswith('"')):
 			continue
 		
-		# todo check if identifier doesn't exist
-		addr = _sc_addr()
-		addr.offset = 0
-		addr.seg = 0
 		
 		# temporary hack
 		if system_idtf == nrel_idtf_str:

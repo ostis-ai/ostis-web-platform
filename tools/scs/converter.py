@@ -156,8 +156,10 @@ class Converter:
 		self.comments = {}
 		self.triples = []
 	
-		# list of contents, that need to be written
+		# map of contents, that need to be written
 		self.link_contents = {}
+		# map of contents, that need to be copied
+		self.link_copy_contents = {}
 	
 		# synonyms map. For each key in this map we contains list of all synonym elements
 		self.synonyms = {}
@@ -168,6 +170,9 @@ class Converter:
 		self.oset_count = 0
 		self.arc_count = 0
 		self.link_count = 0
+		
+		self.process_file = None
+		self.process_dir = None
 	
 	def generate_set_idtf(self):
 		self.set_count += 1
@@ -241,7 +246,16 @@ class Converter:
 		self.resolve_identifier(group)
 		
 	def processUrlGroup(self, group):
-		pass
+		"""Process url to link content data
+		"""
+		data_path = group.value[1:-1]
+		if data_path.startswith(u"file://"):
+			data_path = data_path.replace(u"file://", u"")
+			
+		link_idtf = self.generate_link_idtf()
+		path, tail = os.path.split(self.process_file)	
+		self.link_copy_contents[link_idtf] = os.path.join(path, data_path)
+		group.value = '"file://%s"' % link_idtf
 		
 	def processKeywordGroup(self, group):
 		return group
@@ -437,6 +451,7 @@ class Converter:
 	def parse_directory(self, path):
 		"""Parse specified directory
 		"""
+		self.process_dir = path
 		for root, dirs, files in os.walk(path):
 			print root
 			for f in files:
@@ -447,6 +462,7 @@ class Converter:
 					continue
 				
 				file_path = os.path.join(root, f)
+				self.process_file = file_path
 				
 				self.comments[len(self.triples)] = file_path
 				
@@ -481,6 +497,14 @@ class Converter:
 			f = open(os.path.join(path, str(num)), "w")
 			f.write(data)
 			f.close()
+			
+		# copy contents
+		for num, src_path in self.link_copy_contents.items():
+			src = open(src_path, "r")
+			dst = open(os.path.join(path, str(num)), "w")
+			dst.write(src.read())
+			src.close()
+			dst.close()
 
 if __name__ == "__main__":
 
