@@ -155,6 +155,8 @@ def determineElementType(idtf, isPredicate):
 	except:
 		pass
 	
+	isVariable = idtf.startswith(u"_")
+	
 	newType = None
 	if checkIdtfIsLink(idtf):
 		newType = sc_type_link
@@ -167,6 +169,11 @@ def determineElementType(idtf, isPredicate):
 			newType = sc_type_arc_common
 		else:
 			newType = sc_type_node
+	
+	if isVariable:
+		newType = newType | sc_type_var
+	else:
+		newType = newType | sc_type_const
 	
 	if oldType is not None:
 		# determine if new element type more common then old type
