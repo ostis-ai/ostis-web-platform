@@ -63,7 +63,9 @@ idtfToType = {
 			u"sc_arc_access_var_fuz_temp": sc_type_arc_access | sc_type_var | sc_type_arc_fuz | sc_type_arc_temp,
 			
 			# nodes
-			u"sc_node_const_norole": sc_type_node | sc_type_const | sc_type_node_norole,
+			u"sc_const": sc_type_const,
+			u"sc_var": sc_type_var,
+			u"sc_node_norole_relation": sc_type_node | sc_type_node_norole,
 			}
 
 # mapping identifiers into sc-addrs
@@ -213,7 +215,7 @@ def createNodeOrLink(elIdtf, elType):
 			print "Can't setup content from path %s" % path
 		else:
 			res = sc_memory_set_link_content(addr, stream)
-			if res != SC_OK:
+			if res != SC_RESULT_OK:
 				print "Can't setup link data for %s" % (str(elIdtf))
 			sc_stream_free(stream)
 
@@ -326,7 +328,7 @@ if __name__ == "__main__":
 	if os.path.exists(output_path):
 		shutil.rmtree(output_path)
 	
-	sc_memory_initialize(output_path)
+	sc_memory_initialize(output_path, "")
 	
 	conv = converter.Converter()
 	conv.parse_directory(input_path)
@@ -349,7 +351,7 @@ if __name__ == "__main__":
 		# if first element in triple is an element type set, then change type of sc-element
 		if idtfToType.has_key(subject):
 			# todo add types conflict checking
-			sc_types[object] = idtfToType[subject]
+			sc_types[object] = sc_types[object] | idtfToType[subject]
 			resolveScAddr(object)
 			continue
 		
