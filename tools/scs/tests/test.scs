@@ -10,4 +10,11 @@ el1 _<=> el2;;
 
 file => nrel_system_identifier: ["file"] (* <- string; russian;; <~ opened;;*);;
 
+_contour -> [*
 
+	a -> b;;
+	v -> c (* <- d;; *);;
+
+*];;
+
+"file://image.png" <- format_png;;

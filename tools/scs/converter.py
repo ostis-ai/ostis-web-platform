@@ -160,6 +160,7 @@ class Converter:
 		self.link_contents = {}
 		# map of contents, that need to be copied
 		self.link_copy_contents = {}
+		self.contents_copy_link = {}
 	
 		# synonyms map. For each key in this map we contains list of all synonym elements
 		self.synonyms = {}
@@ -167,6 +168,7 @@ class Converter:
 		self.aliases = {}
 	
 		self.set_count = 0
+		self.contour_count = 0
 		self.oset_count = 0
 		self.arc_count = 0
 		self.link_count = 0
@@ -177,6 +179,10 @@ class Converter:
 	def generate_set_idtf(self):
 		self.set_count += 1
 		return ".set_%d" % self.set_count
+	
+	def generate_contour_idtf(self):
+		self.contour_count += 1
+		return ".contour_%d" % self.contour_count
 	
 	def generate_oset_idtf(self):
 		self.oset_count += 1
@@ -251,11 +257,16 @@ class Converter:
 		data_path = group.value[1:-1]
 		if data_path.startswith(u"file://"):
 			data_path = data_path.replace(u"file://", u"")
-			
-		link_idtf = self.generate_link_idtf()
-		path, tail = os.path.split(self.process_file)	
-		self.link_copy_contents[link_idtf] = os.path.join(path, data_path)
-		group.value = '"file://%s"' % link_idtf
+		
+		path, tail = os.path.split(self.process_file)
+		abs_path = os.path.join(path, data_path)	
+		if self.contents_copy_link.has_key(abs_path):
+			group.value = '"file://%s"' % self.contents_copy_link[abs_path]
+		else:
+			link_idtf = self.generate_link_idtf()
+			self.link_copy_contents[link_idtf] = abs_path
+			self.contents_copy_link[abs_path] = link_idtf
+			group.value = '"file://%s"' % link_idtf
 		
 	def processKeywordGroup(self, group):
 		return group
@@ -310,6 +321,7 @@ class Converter:
 	def processContentGroup(self, group):
 		"""Store link content for saving
 		"""
+		result = None
 		if len(group.value) > 1 and group.value[0] == u'*' and group.value[-1] == u'*':
 			data = group.value[1:-1]
 			
@@ -317,7 +329,7 @@ class Converter:
 			converter = Converter()
 			converter.link_contents = self.link_contents
 			converter.synonyms = self.synonyms
-			converter.triples = self.triples
+			#converter.triples = self.triples
 			converter.aliases = self.aliases
 			converter.set_count = self.set_count
 			converter.oset_count = self.oset_count
@@ -328,21 +340,33 @@ class Converter:
 			
 			self.link_contents = converter.link_contents
 			self.synonyms = converter.synonyms
-			self.triples = converter.triples
+			self.triples.extend(converter.triples)
 			self.aliases = converter.aliases
 			self.set_count = converter.set_count
 			self.oset_count = converter.oset_count
 			self.arc_count = converter.arc_count
 			self.link_count = converter.link_count
+						
+			# collect all created sc-elements to append them into contour
+			objects = []
+			for triple in converter.triples:
+				for idx in xrange(len(triple)):
+					if not triple[idx] in objects:
+						objects.append(triple[idx])
 			
-			# todo add arcs into contour elements
+			contour = self.generate_contour_idtf()
+			for obj in objects:
+				self.append_sentence(contour, self.generate_arc_idtf('->', False), obj, False)
+			
+			group.value = contour
+			result = contour
+		else:
+			link_idtf = self.generate_link_idtf()
+			self.link_contents[link_idtf] = group.value
+			group.value = '"file://%s"' % link_idtf
+			result = link_idtf
 		
-		
-		link_idtf = self.generate_link_idtf()
-		self.link_contents[link_idtf] = group.value
-		group.value = '"file://%s"' % link_idtf
-		
-		return link_idtf
+		return result
 		
 	def processSetGroup(self, group):
 		"""Process set
@@ -453,7 +477,7 @@ class Converter:
 		"""
 		self.process_dir = path
 		for root, dirs, files in os.walk(path):
-			print root
+			#print root
 			for f in files:
 				
 				# skip none scs files
