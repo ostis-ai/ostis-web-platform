@@ -364,7 +364,7 @@ def syntax():
         
     syntax = None
     
-    name = Word(srange(u"[a-zA-Z0-9_#]"), srange(u"[a-zA-Z0-9_#]")).setParseAction(SimpleIdentifierGroup).setName("Name")
+    name = Word(srange(u"[\.a-zA-Z0-9_#]"), srange(u"[\.a-zA-Z0-9_#]")).setParseAction(SimpleIdentifierGroup).setName("Name")
     url = QuotedString(quoteChar='"', unquoteResults=False).setParseAction(UrlGroup).setName("Url")
     simpleIdtf = name ^ url
     

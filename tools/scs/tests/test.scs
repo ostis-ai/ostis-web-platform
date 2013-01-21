@@ -14,7 +14,7 @@ _contour -> [*
 
 	a -> b;;
 	v -> c (* <- d;; *);;
-
+	.cnt -> g;;
 *];;
 
 "file://image.png" <- format_png;;

@@ -350,6 +350,8 @@ class Converter:
 			# collect all created sc-elements to append them into contour
 			objects = []
 			for triple in converter.triples:
+				if triple[0] in arc_types.values() or triple[0] in arc_keynodes.values():
+					continue
 				for idx in xrange(len(triple)):
 					if not triple[idx] in objects:
 						objects.append(triple[idx])

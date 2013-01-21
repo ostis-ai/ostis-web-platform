@@ -393,7 +393,7 @@ if __name__ == "__main__":
 			addr = sc_memory_arc_new(arc.type, begin_addr, end_addr)
 			sc_addrs[idtf] = addr
 			created_list.append(idtf)
-			
+						
 			global created_arcs
 			created_arcs += 1
 			
@@ -410,9 +410,13 @@ if __name__ == "__main__":
 	sc_memory_shutdown()
 	
 	# write list of arcs, that wasn't created
-	for idtf in sc_arcs.iterkeys():
+	for idtf, arc in sc_arcs.items():
 		print "Arc %s wasn't created" % idtf
-		
+		try:
+			print "Begin: %s" % str(sc_addrs[arc.begin])
+			print "End: %s" % str(sc_addrs[arc.end])
+		except:
+			continue
 			
 	all_count = created_links + created_nodes + created_arcs
 	print "Statistics:"
