@@ -293,7 +293,7 @@ def generateIdentifiers():
 		if checkIdtfWithPrefix(system_idtf):
 			system_idtf = splitIdtf(system_idtf)[1]
 			
-		if system_idtf.startswith('.') or (system_idtf.startswith('"') and system_idtf.endswith('"')):
+		if system_idtf.startswith('.') or (system_idtf.startswith('"') and system_idtf.endswith('"')) or system_idtf.startswith('_.'):
 			continue
 		
 		
@@ -350,8 +350,14 @@ if __name__ == "__main__":
 		
 		# if first element in triple is an element type set, then change type of sc-element
 		if idtfToType.has_key(subject):
+			
+			idtf_type = idtfToType[subject]
+			new_type = sc_types[object] | idtf_type
 			# todo add types conflict checking
-			sc_types[object] = sc_types[object] | idtfToType[subject]
+			if (idtf_type & sc_type_constancy_mask != 0):
+				new_type = (idtf_type & sc_type_constancy_mask) | (new_type & ~sc_type_constancy_mask) 
+			sc_types[object] = new_type
+			
 			resolveScAddr(object)
 			continue
 		
@@ -389,6 +395,8 @@ if __name__ == "__main__":
 			except:
 				continue
 			
+			if (arc.type & sc_type_const and arc.type & sc_type_var):
+				print "Invalid type %s" % idtf
 			# create new arc
 			addr = sc_memory_arc_new(arc.type, begin_addr, end_addr)
 			sc_addrs[idtf] = addr
