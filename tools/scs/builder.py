@@ -277,7 +277,7 @@ def generateIdentifiers():
 	nrel_idtf_str = u'nrel_system_identifier'
 	nrel_idtf_data = str(nrel_idtf_str)
 	
-	sc_helper_init()
+	#sc_helper_init()
 	
 	try:
 		nrel_idtf_addr = sc_addrs[nrel_idtf_str]
@@ -307,7 +307,7 @@ def generateIdentifiers():
 		# generate identifier relation
 		generateSystemIdentifier(addr, system_idtf)
 	
-	sc_helper_shutdown()
+	#sc_helper_shutdown()
 	
 # ------------------------------------------------
 
