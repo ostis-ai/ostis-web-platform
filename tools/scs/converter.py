@@ -333,6 +333,20 @@ class Converter:
 		result = None
 		if len(group.value) > 1 and group.value[0] == u'*' and group.value[-1] == u'*':
 			data = group.value[1:-1]
+			data_str = data
+			
+			if data.startswith(u'^'):
+				data = data[2:-1]
+				if data.startswith(u"file://"):
+					data = data.replace(u"file://", u"")
+			
+				path, tail = os.path.split(self.process_file)
+				abs_path = os.path.join(path, data)
+				f = open(abs_path, "r")
+				data_str = f.read()
+				f.close()
+			
+			
 			
 			# create new converter and build data
 			converter = Converter()
@@ -345,7 +359,7 @@ class Converter:
 			converter.arc_count = self.arc_count
 			converter.link_count = self.link_count
 			
-			converter.parse_string(data)
+			converter.parse_string(data_str)
 			
 			self.link_contents = converter.link_contents
 			self.synonyms = converter.synonyms
