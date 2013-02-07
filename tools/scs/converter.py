@@ -27,7 +27,7 @@ import codecs
 import re, sys, traceback
 from pyparsing import Word, Literal, Forward, Regex, Group, ZeroOrMore, SkipTo, ParserElement
 from pyparsing import OneOrMore, srange, Keyword, QuotedString, ParseResults, Optional, cStyleComment, ParseException
-import parser
+import scs_parser
 from sre_parse import parse_template
 
 ParserElement.enablePackrat()
@@ -137,20 +137,20 @@ class Converter:
 	
 	def __init__(self):
 		self.group_processors = {
-						parser.AliasGroup: self.processAliasGroup,
-						parser.KeywordGroup: self.processKeywordGroup,
-						parser.SimpleIdentifierGroup: self.processSimpleIdentifierGroup,
-						parser.UrlGroup: self.processUrlGroup,
-						parser.ContentGroup: self.processContentGroup,
-						parser.SetGroup: self.processSetGroup,
-						parser.OSetGroup: self.processOSetGroup,
-						parser.TripleGroup: self.processTripleGroup,
-						parser.SimpleSentenceGroup: self.processSimpleSentenceGroup,
-						parser.SynonymGroup: self.processSynonymGroup,
-						parser.SentenceGroup: self.processSentenceGroup,
-						parser.IdtfWithIntGroup: self.processIdtfWithIntGroup,
-						parser.InternalGroup: self.processInternalGroup,
-						parser.InternalListGroup: self.processInternalListGroup
+						scs_parser.AliasGroup: self.processAliasGroup,
+						scs_parser.KeywordGroup: self.processKeywordGroup,
+						scs_parser.SimpleIdentifierGroup: self.processSimpleIdentifierGroup,
+						scs_parser.UrlGroup: self.processUrlGroup,
+						scs_parser.ContentGroup: self.processContentGroup,
+						scs_parser.SetGroup: self.processSetGroup,
+						scs_parser.OSetGroup: self.processOSetGroup,
+						scs_parser.TripleGroup: self.processTripleGroup,
+						scs_parser.SimpleSentenceGroup: self.processSimpleSentenceGroup,
+						#scs_parser.SynonymGroup: self.processSynonymGroup,
+						scs_parser.SentenceGroup: self.processSentenceGroup,
+						scs_parser.IdtfWithIntGroup: self.processIdtfWithIntGroup,
+						scs_parser.InternalGroup: self.processInternalGroup,
+						scs_parser.InternalListGroup: self.processInternalListGroup
 						}
 		
 		self.comments = {}
@@ -217,9 +217,9 @@ class Converter:
 			return self.aliases[key]
 		
 		alias = str(group)
-		if isinstance(group, parser.OSetGroup):
+		if isinstance(group, scs_parser.OSetGroup):
 			alias = self.generate_oset_idtf()
-		elif isinstance(group, parser.SetGroup):
+		elif isinstance(group, scs_parser.SetGroup):
 			alias = self.generate_set_idtf()
 			
 		self.aliases[key] = alias
@@ -229,7 +229,16 @@ class Converter:
 	def append_synonyms(self, idtf1, idtf2):
 		"""Appends two identifiers as synonyms into map
 		"""
-		pass
+		if self.synonyms.has_key(idtf1):
+			return
+		
+		self.synonyms[idtf1] = idtf2
+		
+	def resolve_synonym(self, idtf):
+		if self.synonyms.has_key(idtf):
+			return self.resolve_synonym(self.synonyms[idtf])
+		
+		return idtf
 	
 	def check_predicate_mirror(self, predicate):
 		
@@ -423,16 +432,20 @@ class Converter:
 			self.parse_tree(obj)
 			# resolve object identifier
 			obj_idtf = self.resolve_identifier(obj)
-			
-			# connect subject with object
-			arc_idtf = self.generate_arc_idtf(predicate)
-			self.append_sentence(subject_idtf, arc_idtf, obj_idtf, self.check_predicate_mirror(predicate))
-			
-			# connect attributes
-			for attr in attributes:
-				self.parse_tree(attr)
-				attr_idtf = self.resolve_identifier(attr)
-				self.append_sentence(attr_idtf, self.generate_arc_idtf('->'), arc_idtf, False)
+	
+	
+			if predicate == u'=':
+				self.append_synonyms(obj_idtf, subject_idtf)
+			else:
+				# connect subject with object
+				arc_idtf = self.generate_arc_idtf(predicate)
+				self.append_sentence(subject_idtf, arc_idtf, obj_idtf, self.check_predicate_mirror(predicate))
+				
+				# connect attributes
+				for attr in attributes:
+					self.parse_tree(attr)
+					attr_idtf = self.resolve_identifier(attr)
+					self.append_sentence(attr_idtf, self.generate_arc_idtf('->'), arc_idtf, False)
 	
 	def processSynonymGroup(self, group):
 		pass
@@ -467,8 +480,16 @@ class Converter:
 		"""Parse specified string
 		"""
 		try:
-			result = parser.syntax().parseString(data.decode('utf-8'), parseAll = True)
+			result = scs_parser.syntax().parseString(data.decode('utf-8'), parseAll = True)
 			self.parse_tree(result)
+			
+			# process synonyms
+			new_triples = []
+			for subj, predicate, obj in self.triples:
+				new_triples.append((self.resolve_synonym(subj), predicate, self.resolve_synonym(obj)))
+				self.triples = new_triples
+				
+			
 		except ParseException, err:
 			print err.line
 			print " "*(err.column-1) + "^"

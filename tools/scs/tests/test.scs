@@ -18,3 +18,24 @@ _contour -> [*
 *];;
 
 "file://image.png" <- format_png;;
+
+contour = [* test -> y;; *] (* <- x;; *);;
+contour <- y;;
+
+
+
+
+Partition_SCs_code <= nrel_decomposition: 
+ {
+  Partition_SCs_code_1_level;
+  Partition_SCs_code_2_level;
+  Partition_SCs_code_3_level;
+  Partition_SCs_code_4_level;
+  Partition_SCs_code_5_level;
+  Partition_SCs_code_6_level;
+  Partition_SCs_code_7_level;
+  Partition_scs_divider
+ };;
+ 
+ Partition_SCs_code_1_level = 
+ [* x -> y;; *];;

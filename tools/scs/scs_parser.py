@@ -55,7 +55,8 @@ connectors = [u'<>',
               u'<|~',
               u'~/>',
               u'</~',
-              u'=']
+              u'=', # synonym
+              ]
 
 # ---------------------- Helpers -----------------
 class BaseGroup:
@@ -426,7 +427,7 @@ def syntax():
     anyIdtf = simpleIdtf ^ content ^ triple ^ setIdtf ^ osetIdtf ^ alias
     idtf << anyIdtf
     
-#    sentence_synonym = Group(idtf + synSep + idtf).setParseAction(SynonymGroup)
+    #sentence_synonym = Group(idtf + synSep + idtf).setParseAction(SynonymGroup)
     sentence_lv23456 = Group(idtf + connector + Optional(attrsList) + objectList).setParseAction(SentenceGroup).setName("Sentence")
     
     sentence = (sentence_lv1 ^ sentence_lv23456)# ^ sentence_synonym)
