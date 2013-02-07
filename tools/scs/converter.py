@@ -547,11 +547,7 @@ class Converter:
 			
 		# copy contents
 		for num, src_path in self.link_copy_contents.items():
-			src = open(src_path, "r")
-			dst = open(os.path.join(path, str(num)), "w")
-			dst.write(src.read())
-			src.close()
-			dst.close()
+			shutil.copyfile(src_path, os.path.join(path, str(num)))
 
 if __name__ == "__main__":
 

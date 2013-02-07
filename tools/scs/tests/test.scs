@@ -8,7 +8,7 @@ set ~> < attr1: 1; attr2: 2; attr3: 3>;;
 
 el1 _<=> el2;;
 
-file => nrel_system_identifier: ["file"] (* <- string; russian;; <~ opened;;*);;
+file => nrel_system_identifier: ["fs_file"] (* <- string; russian;; <~ opened;;*);;
 
 _contour -> [*
 
@@ -37,5 +37,10 @@ Partition_SCs_code <= nrel_decomposition:
   Partition_scs_divider
  };;
  
+ "file://image.png" = y;;
+ 
  Partition_SCs_code_1_level = 
  [* x -> y;; *];;
+ 
+ 
+ y -> h;;
