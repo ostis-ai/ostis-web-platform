@@ -201,15 +201,24 @@ def createNodeOrLink(elIdtf, elType):
 		global created_links
 		created_links += 1
 		
+		
 		# setup link data
 		path = elIdtf[1:-1]
 		path = unicode(path.replace("file://", ""))
-		if conv.link_contents.has_key(path):
-			data = str(conv.link_contents[path])
-			stream = sc_stream_memory_new(data, len(data), SC_STREAM_READ, False)
-		elif conv.link_copy_contents.has_key(path):
+		
+		#print path, addr.seg, addr.offset
+		stream = None
+		if path == u'data/link_75':
+			pass
+		if conv.link_copy_contents.has_key(path):
 			cont_path = str(conv.link_copy_contents[path])
-			stream = sc_stream_file_new(cont_path, SC_STREAM_READ)
+			if os.path.exists(cont_path):
+				stream = sc_stream_file_new(cont_path, SC_STREAM_READ)
+			else:
+				print "File doesn't exist '%s'" % cont_path
+		elif conv.link_contents.has_key(path):
+			data = str(conv.link_contents[path])
+			stream = sc_stream_memory_new(data, len(data), SC_STREAM_READ, False) 
 		
 		if stream is None:
 			print "Can't setup content from path %s" % path
@@ -301,7 +310,7 @@ def generateIdentifiers():
 		if system_idtf == nrel_idtf_str:
 			continue
 		
-		print "\tSetup for %s" % idtf
+		#print "\tSetup for %s" % idtf
 		
 		assert addr is not None
 		# generate identifier relation
