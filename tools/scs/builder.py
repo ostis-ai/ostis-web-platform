@@ -208,8 +208,6 @@ def createNodeOrLink(elIdtf, elType):
 		
 		#print path, addr.seg, addr.offset
 		stream = None
-		if path == u'data/link_75':
-			pass
 		if conv.link_copy_contents.has_key(path):
 			cont_path = str(conv.link_copy_contents[path])
 			if os.path.exists(cont_path):
@@ -283,7 +281,7 @@ def generateIdentifiers():
 	global nrel_idtf_addr
 	
 	# create 'nrel_system_identifier' keynode if it doesn't exist
-	nrel_idtf_str = u'nrel_system_identifier'
+	nrel_idtf_str = u'hypermedia_nrel_system_identifier'
 	nrel_idtf_data = str(nrel_idtf_str)
 	
 	#sc_helper_init()
