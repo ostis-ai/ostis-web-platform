@@ -358,6 +358,8 @@ class Converter:
 			converter.oset_count = self.oset_count
 			converter.arc_count = self.arc_count
 			converter.link_count = self.link_count
+			converter.process_file = self.process_file
+			converter.process_dir = self.process_dir
 			
 			converter.parse_string(data_str)
 			
