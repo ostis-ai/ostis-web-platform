@@ -334,15 +334,17 @@ class Converter:
 		if len(group.value) > 1 and group.value[0] == u'*' and group.value[-1] == u'*':
 			data = group.value[1:-1]
 			data_str = data
+			process_file = self.process_file
+			process_dir = self.process_dir
 			
 			if data.startswith(u'^'):
 				data = data[2:-1]
 				if data.startswith(u"file://"):
 					data = data.replace(u"file://", u"")
 			
-				path, tail = os.path.split(self.process_file)
-				abs_path = os.path.join(path, data)
-				f = open(abs_path, "r")
+				process_dir, tail = os.path.split(self.process_file)
+				process_file = os.path.join(process_dir, data)
+				f = open(process_file, "r")
 				data_str = f.read()
 				f.close()
 			
