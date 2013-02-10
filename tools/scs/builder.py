@@ -225,6 +225,7 @@ def createNodeOrLink(elIdtf, elType):
 			if res != SC_RESULT_OK:
 				print "Can't setup link data for %s" % (str(elIdtf))
 			sc_stream_free(stream)
+		
 
 	elif elType & sc_type_node:
 		
@@ -303,12 +304,11 @@ def generateIdentifiers():
 		if system_idtf.startswith('.') or (system_idtf.startswith('"') and system_idtf.endswith('"')) or system_idtf.startswith('_.'):
 			continue
 		
-		
 		# temporary hack
 		if system_idtf == nrel_idtf_str:
 			continue
 		
-		#print "\tSetup for %s" % idtf
+		#print "\tSetup for %s, %d: %d" % (idtf, addr.seg, addr.offset)
 		
 		assert addr is not None
 		# generate identifier relation
@@ -376,7 +376,7 @@ if __name__ == "__main__":
 		arc.begin = subject
 		arc.end = object
 		arc.type = sc_types[predicate]
-		
+		 
 		sc_arcs[predicate] = arc
 		
 	# now create arcs, while there are any arcs not created, 

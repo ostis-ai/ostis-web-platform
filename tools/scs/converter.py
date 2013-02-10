@@ -234,6 +234,16 @@ class Converter:
         
         self.synonyms[idtf1] = idtf2
         
+    def buildFormatRelation(self, linkIdtf, ext):
+        """Build relation between sc-link and it's format
+        @param linkIdtf: Identifier of sc-link
+        @param ext: File extension 
+        """
+        fmt_idtf = u'format_' + ext
+        arc_idtf = self.generate_arc_idtf(u'=>', True)
+        self.append_sentence(linkIdtf, arc_idtf, fmt_idtf, False)
+        self.append_sentence(u'hypermedia_nrel_format', self.generate_arc_idtf(u'->', True), arc_idtf, False)
+        
     def resolve_synonym(self, idtf):
         if self.synonyms.has_key(idtf):
             return self.resolve_synonym(self.synonyms[idtf])
@@ -276,6 +286,9 @@ class Converter:
             self.link_copy_contents[link_idtf] = abs_path
             self.contents_copy_link[abs_path] = link_idtf
             group.value = '"file://%s"' % link_idtf
+            
+            path, ext = os.path.splitext(abs_path)
+            self.buildFormatRelation(link_idtf, ext[1:])
         
     def processKeywordGroup(self, group):
         return group
@@ -342,8 +355,6 @@ class Converter:
                 if data.startswith(u"file://"):
                     data = data.replace(u"file://", u"")
                     
-                if data.endswith(u'_content.scsi'):
-                    pass
             
                 process_dir, tail = os.path.split(self.process_file)
                 process_file = os.path.join(process_dir, data)
@@ -399,6 +410,8 @@ class Converter:
             self.link_contents[link_idtf] = group.value
             group.value = '"file://%s"' % link_idtf
             result = link_idtf
+            
+            self.buildFormatRelation(group.value, u'txt')
         
         return result
         
