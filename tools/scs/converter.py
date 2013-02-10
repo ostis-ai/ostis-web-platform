@@ -341,6 +341,9 @@ class Converter:
                 data = data[2:-1]
                 if data.startswith(u"file://"):
                     data = data.replace(u"file://", u"")
+                    
+                if data.endswith(u'_content.scsi'):
+                    pass
             
                 process_dir, tail = os.path.split(self.process_file)
                 process_file = os.path.join(process_dir, data)
@@ -361,8 +364,8 @@ class Converter:
             converter.oset_count = self.oset_count
             converter.arc_count = self.arc_count
             converter.link_count = self.link_count
-            converter.process_file = self.process_file
-            converter.process_dir = self.process_dir
+            converter.process_file = process_file
+            converter.process_dir = process_dir
             
             converter.parse_string(data_str)
             
