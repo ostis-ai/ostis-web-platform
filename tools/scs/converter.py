@@ -239,7 +239,7 @@ class Converter:
         @param linkIdtf: Identifier of sc-link
         @param ext: File extension 
         """
-        fmt_idtf = u'format_' + ext
+        fmt_idtf = u'hypermedia_format_' + ext
         arc_idtf = self.generate_arc_idtf(u'=>', True)
         self.append_sentence(linkIdtf, arc_idtf, fmt_idtf, False)
         self.append_sentence(u'hypermedia_nrel_format', self.generate_arc_idtf(u'->', True), arc_idtf, False)
@@ -288,7 +288,7 @@ class Converter:
             group.value = '"file://%s"' % link_idtf
             
             path, ext = os.path.splitext(abs_path)
-            self.buildFormatRelation(link_idtf, ext[1:])
+            self.buildFormatRelation(group.value, ext[1:])
         
     def processKeywordGroup(self, group):
         return group

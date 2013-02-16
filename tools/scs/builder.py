@@ -236,6 +236,8 @@ def createNodeOrLink(elIdtf, elType):
 	else:
 		raise "Unknown type"
 	
+	if elIdtf.startswith(u'data'):
+		pass
 	sc_addrs[elIdtf] = addr
 	
 def resolveScAddr(idtf):
@@ -309,6 +311,7 @@ def generateIdentifiers():
 			continue
 		
 		#print "\tSetup for %s, %d: %d" % (idtf, addr.seg, addr.offset)
+		#print system_idtf
 		
 		assert addr is not None
 		# generate identifier relation
