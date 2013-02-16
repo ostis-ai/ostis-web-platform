@@ -28,6 +28,11 @@ import ctypes
 from pysc import *
 from pysc import _sc_addr
 
+# keynode identifires
+keynode_hypermedia_format_txt_str = u"hypermedia_format_txt"
+keynode_hypermedia_nrel_format_str = u"hypermedia_nrel_format"
+
+
 encoding = "utf-8" 
 reload(sys)
 sys.setdefaultencoding(encoding)
@@ -65,7 +70,13 @@ idtfToType = {
 			# nodes
 			u"sc_const": sc_type_const,
 			u"sc_var": sc_type_var,
-			u"sc_node_norole_relation": sc_type_node | sc_type_node_norole,
+			u"sc_node_not_binary_tuple": sc_type_node_tuple,
+			u"sc_node_struct": sc_type_node_struct,
+			u"sc_node_role_relation": sc_type_node_role,
+			u"sc_node_norole_relation": sc_type_node_norole,
+			u"sc_node_not_relation": sc_type_node_class, 
+			u"sc_node_abstract": sc_type_node_abstract,
+			u"sc_node_material": sc_type_node_material, 
 			}
 
 # mapping identifiers into sc-addrs
@@ -235,9 +246,7 @@ def createNodeOrLink(elIdtf, elType):
 		
 	else:
 		raise "Unknown type"
-	
-	if elIdtf.startswith(u'data'):
-		pass
+
 	sc_addrs[elIdtf] = addr
 	
 def resolveScAddr(idtf):
@@ -259,6 +268,9 @@ def generateSystemIdentifier(el_addr, idtf):
 	global created_arcs
 	global created_links
 	
+	format_txt = sc_addrs[keynode_hypermedia_format_txt_str]
+	nrel_format = sc_addrs[keynode_hypermedia_nrel_format_str]
+	
 	idtf_data = str(idtf)
 	stream = sc_stream_memory_new(idtf_data, len(idtf_data), SC_STREAM_READ, False)
 	
@@ -275,6 +287,10 @@ def generateSystemIdentifier(el_addr, idtf):
 	# link nodes
 	arc_addr = sc_memory_arc_new(sc_type_arc_common | sc_type_const, el_addr, idtf_link)
 	sc_memory_arc_new(sc_type_arc_pos_const_perm, nrel_idtf_addr, arc_addr)
+	
+	# setup format
+	arc_addr = sc_memory_arc_new(sc_type_arc_common | sc_type_const, idtf_link, format_txt)
+	sc_memory_arc_new(sc_type_arc_pos_const_perm, nrel_format, arc_addr)
 	
 	created_links += 1
 	created_arcs += 2
