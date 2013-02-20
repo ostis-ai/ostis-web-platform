@@ -30,7 +30,7 @@ from pyparsing import OneOrMore, srange, Keyword, QuotedString, ParseResults, Op
 import scs_parser
 from sre_parse import parse_template
 
-ParserElement.enablePackrat()
+#ParserElement.enablePackrat()
 
 encoding = "utf-8" 
 reload(sys)
@@ -400,6 +400,7 @@ class Converter:
                         objects.append(triple[idx])
             
             contour = self.generate_contour_idtf()
+            self.append_sentence(u'sc_node_struct', self.generate_arc_idtf('->', False), contour, False)
             for obj in objects:
                 self.append_sentence(contour, self.generate_arc_idtf('->', False), obj, False)
             
