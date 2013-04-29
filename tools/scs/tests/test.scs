@@ -44,3 +44,5 @@ Partition_SCs_code <= nrel_decomposition:
  
  
  y -> [*^"file://incl.scsi"*];;
+
+const_arc -> (v -> (g <= n)) (* <- tested;; *);;

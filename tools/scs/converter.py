@@ -221,6 +221,8 @@ class Converter:
             alias = self.generate_oset_idtf()
         elif isinstance(group, scs_parser.SetGroup):
             alias = self.generate_set_idtf()
+        elif isinstance(group, scs_parser.TripleGroup):
+            alias = self.generate_arc_idtf(group.predicate, True)
             
         self.aliases[key] = alias
         
@@ -333,7 +335,17 @@ class Converter:
         return group
         
     def processTripleGroup(self, group):
-        return group
+        
+        self.parse_tree(group.subject)
+        self.parse_tree(group.object)
+        
+        pred = self.resolve_identifier(group)
+        subj = self.resolve_identifier(group.subject)
+        obj = self.resolve_identifier(group.object)
+        
+        self.append_sentence(subj, pred, obj, self.check_predicate_mirror(group.predicate))
+                
+        return pred
         
     def processAliasGroup(self, group):
         """Just resolve identifier for alias
