@@ -154,7 +154,8 @@ class Converter:
                         }
         
         self.comments = {}
-        self.triples = []
+        self.triples = []   # general triples
+        self.metaTriples = [] # meta triples, used to store meta information. They not append into contours, because they builded by converter
     
         # map of contents, that need to be written
         self.link_contents = {}
@@ -243,8 +244,8 @@ class Converter:
         """
         fmt_idtf = u'hypermedia_format_' + ext
         arc_idtf = self.generate_arc_idtf(u'=>', True)
-        self.append_sentence(linkIdtf, arc_idtf, fmt_idtf, False)
-        self.append_sentence(u'hypermedia_nrel_format', self.generate_arc_idtf(u'->', True), arc_idtf, False)
+        self.append_sentence(linkIdtf, arc_idtf, fmt_idtf, False, True)
+        self.append_sentence(u'hypermedia_nrel_format', self.generate_arc_idtf(u'->', True), arc_idtf, False, True)
         
     def resolve_synonym(self, idtf):
         if self.synonyms.has_key(idtf):
@@ -256,17 +257,22 @@ class Converter:
         
         return (predicate in mirror_connectors)
     
-    def append_sentence(self, subject, predicate, object, isMirrored):
+    def append_sentence(self, subject, predicate, object, isMirrored, isMeta = False):
         """Appends new scs-level 1 sentence into list
         """
         assert isinstance(subject, str) or isinstance(subject, unicode)
         assert isinstance(object, str) or isinstance(object, unicode)
         assert isinstance(predicate, str) or isinstance(predicate, unicode)
         
+        triples = self.triples
+        
+        if isMeta:
+            triples = self.metaTriples
+        
         if not isMirrored:
-            self.triples.append((subject, predicate, object))
+            triples.append((subject, predicate, object))
         else:
-            self.triples.append((object, predicate, subject))
+            triples.append((object, predicate, subject))
     
     # ---------------------------------------
     def processSimpleIdentifierGroup(self, group):
@@ -396,6 +402,7 @@ class Converter:
             self.link_contents = converter.link_contents
             self.synonyms = converter.synonyms
             self.triples.extend(converter.triples)
+            self.metaTriples.extend(converter.metaTriples)
             self.aliases = converter.aliases
             self.set_count = converter.set_count
             self.oset_count = converter.oset_count
@@ -577,8 +584,11 @@ class Converter:
         os.makedirs(path)
         
         count = 0
+        triples = []
+        triples.extend(self.triples)
+        triples.extend(self.metaTriples)
         with codecs.open(os.path.join(path, "data.scs"), "w", "utf-8") as output:
-            for t in self.triples:
+            for t in triples:
                 
                 if self.comments.has_key(count):
                     output.write('\n/* --- %s --- */\n' % self.comments[count])

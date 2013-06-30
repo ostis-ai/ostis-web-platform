@@ -350,7 +350,12 @@ class ScBuilder:
 		
 		# determine types of all objects
 		print "Determine list of all objects and their types..."
-		for triple in self.conv.triples:
+		
+		triples = []
+		triples.extend(self.conv.triples)
+		triples.extend(self.conv.metaTriples)
+		
+		for triple in triples:
 			subject = triple[0]
 			object = triple[2]
 			predicate = triple[1]
@@ -376,7 +381,8 @@ class ScBuilder:
 		
 		# process triples
 		print "Resolve sc-addrs..."
-		for triple in self.conv.triples:
+		
+		for triple in triples:
 			subject = triple[0]
 			object = triple[2]
 			predicate = triple[1]
