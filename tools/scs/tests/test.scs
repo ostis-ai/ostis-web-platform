@@ -2,7 +2,7 @@
 5 -> 6: 7: tr; ty;;
 6 <- 8: re; gg; hj;;
 
-file -> "file://image.png";;
+file | rac | "file://image.png";;
 set -> attr_set: { sum: 1; result: 2; 3};;
 set ~> < attr1: 1; attr2: 2; attr3: 3>;;
 

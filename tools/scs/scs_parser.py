@@ -26,7 +26,7 @@ import re, sys, traceback
 from pyparsing import Word, Literal, Forward, Regex, Group, ZeroOrMore, SkipTo, ParserElement
 from pyparsing import OneOrMore, srange, Keyword, QuotedString, ParseResults, Optional, cStyleComment
 
-ParserElement.enablePackrat()
+#ParserElement.enablePackrat()
 
 reKeyword = r'/!\*\s*keyword:\s*([a-zA-Z0-9_]+)\s*\*/'
 
@@ -385,6 +385,7 @@ def syntax():
     rpar_trf = Literal(u']').suppress()
     lpar_int = Literal(u'(*').suppress()
     rpar_int = Literal(u'*)').suppress()
+    plus = Literal(u'+').suppress()
     
     # comments
     comment_keyword = Regex(reKeyword).setParseAction(KeywordGroup)

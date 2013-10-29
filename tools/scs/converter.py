@@ -304,6 +304,9 @@ class Converter:
     def processSimpleSentenceGroup(self, group):
         """Process scs-level 1 sentences
         """
+        self.parse_tree(group.subject)
+        self.parse_tree(group.object)
+        
         subject_idtf = self.resolve_identifier(group.subject)
         object_idtf = self.resolve_identifier(group.object)
         arc_idtf = group.predicate.value
