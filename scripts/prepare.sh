@@ -4,10 +4,15 @@ echo -en '\E[47;31m'"\033[1mScript to prepare ostis tools started\033[0m\n"
 
 clone_project()
 {
-	echo -en '\E[0;32m'"\033[1mClone $2\033[0m\n"
 
 	if [ ! -d "../$2" ]; then
+		echo -en '\E[0;32m'"\033[1mClone $2\033[0m\n"
 		git clone $1 ../$2
+	else
+		echo -en '\E[0;32m'"\033[1mUpdate $2\033[0m\n"
+		cd ../$2
+		git pull
+		cd -
 	fi
 	cd ../$2
 	git checkout $3
