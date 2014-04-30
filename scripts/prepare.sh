@@ -14,9 +14,9 @@ clone_project()
 	cd -
 }
 
-clone_project git@github.com:deniskoronchik/sc-machine.git sc-machine v0.1.0
-clone_project git@github.com:deniskoronchik/ims.ostis.kb.git kb.sources v0.1.0
-clone_project git@github.com:deniskoronchik/sc-web.git sc_web v0.1.0
+clone_project https://github.com/deniskoronchik/sc-machine.git sc-machine v0.1.0
+clone_project https://github.com/deniskoronchik/ims.ostis.kb.git kb.sources v0.1.0
+clone_project https://github.com/deniskoronchik/sc-web.git sc_web v0.1.0
 
 echo -en '\E[0;32m'"\033[1mInstall dependencies for sc-machine\033[0m\n"
 sudo ../sc-machine/scripts/install_deps_ubuntu.sh
