@@ -51,3 +51,6 @@ cd -
 cp ../config/settings_local.py ../sc_web/sc_web/sc_web/
 cd ../sc_web/scripts
 ./prepare.sh
+cd -
+
+
