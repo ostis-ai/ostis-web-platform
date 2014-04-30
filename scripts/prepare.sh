@@ -47,6 +47,7 @@ cd -
 echo -en '\E[0;32m'"\033[1mInstall dependencies for sc-web\033[0m\n"
 cd ../sc_web/scripts
 ./install_deps_ubuntu.sh
-./prepare.sh
 cd -
 cp ../config/settings_local.py ../sc_web/sc_web/sc_web/
+cd ../sc_web/scripts
+./prepare.sh
