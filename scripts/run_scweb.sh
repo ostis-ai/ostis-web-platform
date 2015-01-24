@@ -1,1 +1,5 @@
-python ../sc_web/sc_web/manage.py runserver
+#!/bin/bash
+
+cd ../sc-web/server/
+python app.py
+cd -

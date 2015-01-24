@@ -1,4 +1,11 @@
+#!/bin/bash
+
 export LD_LIBRARY_PATH=../sc-machine/bin
-mkdir ../repo.bin
-../sc-machine/bin/sc-builder -f -c -e ../sc-machine/bin/extensions -s ../config/sc-web.ini -i ../kb.sources -o ../repo.bin
+if [ ! -d "../kb.bin" ]; then
+    mkdir ../kb.bin
+fi
+
+cd ..
+sc-machine/bin/sc-builder -f -c -i repo.path -o kb.bin -s config/sc-web.ini -e sc-machine/bin/extensions
+
 
