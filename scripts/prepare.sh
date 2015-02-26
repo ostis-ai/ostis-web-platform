@@ -32,8 +32,9 @@ clone_project()
 stage "Clone projects"
 
 clone_project https://github.com/deniskoronchik/sc-machine.git sc-machine master
+clone_project https://github.com/ShunkevichDV/scp-machine.git scp-machine master
 clone_project https://github.com/deniskoronchik/sc-web.git sc-web master
-clone_project https://github.com/deniskoronchik/ims.ostis.kb.git ims.ostis.kb master
+clone_project https://github.com/ShunkevichDV/ims.ostis.kb.git ims.ostis.kb master
 
 stage "Prepare projects"
 
@@ -50,6 +51,12 @@ if [ ! -d "redis-2.8.4" ]; then
 ./install_redis_ubuntu.sh
 fi
 
+./clean_all.sh
+./make_all.sh
+cd -
+
+prepare "scp-machine"
+cd ../scp-machine/scripts
 ./clean_all.sh
 ./make_all.sh
 cd -

@@ -1,5 +1,8 @@
 # common
-ims.ostis.kb
+ims.ostis.kb_copy
 
-#components
+# private
+kb
+
+# components
 sc-web/components/scg/kb
