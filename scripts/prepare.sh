@@ -57,7 +57,6 @@ cd -
 
 prepare "scp-machine"
 cd ../scp-machine/scripts
-./clean_all.sh
 ./make_all.sh
 cd -
 
