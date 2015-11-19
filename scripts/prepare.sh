@@ -59,6 +59,7 @@ cd ../scp-machine/scripts
 cd -
 
 prepare "sc-web"
+sudo apt-get install python-dev # required for numpy module
 cd ../sc-web/scripts
 ./install_deps_ubuntu.sh
 ./prepare_js.sh
