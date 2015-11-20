@@ -47,9 +47,7 @@ prepare "sc-machine"
 cd ../sc-machine/scripts
 ./install_deps_ubuntu.sh
 
-if [ ! -d "redis-2.8.4" ]; then
-./install_redis_ubuntu.sh
-fi
+sudo apt-get install redis-server
 
 ./clean_all.sh
 ./make_all.sh
@@ -61,6 +59,7 @@ cd ../scp-machine/scripts
 cd -
 
 prepare "sc-web"
+sudo apt-get install python-dev # required for numpy module
 cd ../sc-web/scripts
 ./install_deps_ubuntu.sh
 ./prepare_js.sh
