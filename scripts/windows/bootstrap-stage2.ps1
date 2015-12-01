@@ -14,17 +14,25 @@ function Invoke-CmdScript {
 
 # detect VC++2015 Build Tools
 if (Test-Path HKLM:\SOFTWARE\Wow6432Node\Microsoft\VisualCppBuildTools\14.0){
-    $hasvc14tools = [bool](gp HKLM:\SOFTWARE\Wow6432Node\Microsoft\VisualCppBuildTools\14.0).Installed
+    $hasvc14tools = $False -and [bool](gp HKLM:\SOFTWARE\Wow6432Node\Microsoft\VisualCppBuildTools\14.0).Installed
+    Write-Warning "Visual C++ Build Tools 2015 were detected, but are not yet supported, sorry"
+    Write-Warning "Will use Visual Studio 2013 if available"
+    pause
 }
 
 # change to working directory
-pushd ..
+pushd ..\..
 
 # clone latest sources from github
 git clone https://github.com/deniskoronchik/sc-machine
 git clone https://github.com/deniskoronchik/sc-web
 git clone https://github.com/deniskoronchik/ims.ostis.kb
 mkdir kb.bin
+
+# cleanup sc-machine
+pushd sc-machine
+git clean -d -f -x
+popd
 
 # pull a minimum required subset of ims.ostis KB {
 
@@ -52,6 +60,9 @@ popd
 copy config\server.conf sc-web\server
 
 pushd sc-machine
+
+# cleanup build directory
+git clean -d -f -x
 
 # ask user for QT installation directory and try to find msvc2013_64 there ourselves
 $qtdir = Read-Host -Prompt "Qt5 install location"

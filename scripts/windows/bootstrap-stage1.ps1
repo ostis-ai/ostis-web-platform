@@ -29,6 +29,6 @@ python -m pip install .\3rd-party\numpy-1.9.3+vanilla-cp27-none-win_amd64.whl
 # software installation finished, we can drop admin privileges now
 # remember to preserve the PATH, thus /env switch for 'runas'
 $user = & whoami
-runas /env /user:$user "powershell .\bootstrap-ostis-stage2.ps1"
+runas /env /user:$user "powershell .\bootstrap-stage2.ps1"
 
 exit
