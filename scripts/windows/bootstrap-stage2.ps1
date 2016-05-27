@@ -24,9 +24,9 @@ if (Test-Path HKLM:\SOFTWARE\Wow6432Node\Microsoft\VisualCppBuildTools\14.0){
 pushd ..\..
 
 # clone latest sources from github
-git clone https://github.com/deniskoronchik/sc-machine
-git clone https://github.com/deniskoronchik/sc-web
-git clone https://github.com/deniskoronchik/ims.ostis.kb
+git clone https://github.com/shunkevichdv/sc-machine
+git clone https://github.com/Ivan-Zhukau/sc-web
+git clone -b dev https://github.com/shunkevichdv/ims.ostis.kb
 mkdir kb.bin
 
 # cleanup sc-machine
