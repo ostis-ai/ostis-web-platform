@@ -24,7 +24,7 @@ if (Test-Path HKLM:\SOFTWARE\Wow6432Node\Microsoft\VisualCppBuildTools\14.0){
 pushd ..\..
 
 # clone latest sources from github
-git clone https://github.com/shunkevichdv/sc-machine
+git clone https://github.com/deniskoronchik/sc-machine
 git clone https://github.com/Ivan-Zhukau/sc-web
 git clone -b dev https://github.com/shunkevichdv/ims.ostis.kb
 mkdir kb.bin
@@ -40,15 +40,15 @@ popd
 del -Recurse -Force -ErrorAction SilentlyContinue ims.ostis.kb_copy
 mkdir ims.ostis.kb_copy
 
-copy -Recurse ims.ostis.kb/ims/doc_technology_ostis/semantic_network_represent/ ims.ostis.kb_copy/
-copy -Recurse ims.ostis.kb/ims/doc_technology_ostis/unificated_models/ ims.ostis.kb_copy/
-copy -Recurse ims.ostis.kb/ims/doc_technology_ostis/semantic_networks_processing/ ims.ostis.kb_copy/
-copy -Recurse ims.ostis.kb/ims/doc_technology_ostis/library_OSTIS/components_interface/ui_menu/ ims.ostis.kb_copy/
-copy -Recurse ims.ostis.kb/ims/doc_technology_ostis/library_OSTIS/components_kpm/lib_c_agents/ ims.ostis.kb_copy/
-copy -Recurse ims.ostis.kb/ims/doc_technology_ostis/library_OSTIS/components_kpm/lib_scp_agents/ ims.ostis.kb_copy/
-copy -Recurse ims.ostis.kb/ims/doc_technology_ostis/library_OSTIS/components_kpm/programs_for_sc_text_processing/scp_program/ ims.ostis.kb_copy/
-copy -Recurse ims.ostis.kb/to_check/ ims.ostis.kb_copy/
-copy -Recurse ims.ostis.kb/ui/ ims.ostis.kb_copy/
+copy -Recurse ims.ostis.kb\ims\ostis_technology\semantic_network_represent\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_technology\unificated_models\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_technology\semantic_networks_processing\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_technology\library_ostis\section_library_of_reusable_components_interfaces\ui_menu\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_technology\library_ostis\section_library_of_reusable_components_kpm\reusable_sc_agents\lib_c_agents\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_technology\library_ostis\section_library_of_reusable_components_kpm\reusable_sc_agents\lib_scp_agents\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_technology\library_ostis\section_library_of_reusable_components_kpm\programs_for_sc_text_processing\scp_program\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\to_check\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ui\ ims.ostis.kb_copy\
 del -Recurse ims.ostis.kb_copy\ui\menu
 # }
 
