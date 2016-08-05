@@ -1,44 +1,32 @@
-# Invokes a Cmd.exe shell script and updates the environment.
-function Invoke-CmdScript {
-  param(
-    [String] $scriptName
-  )
-  $cmdLine = """$scriptName"" $args & set"
-  & $Env:SystemRoot\system32\cmd.exe /c $cmdLine |
-  select-string '^([^=]*)=(.*)$' | foreach-object {
-    $varName = $_.Matches[0].Groups[1].Value
-    $varValue = $_.Matches[0].Groups[2].Value
-    set-item Env:$varName $varValue
-  }
-}
+param([ValidateSet('VS12', 'VS14', 'BT14')]$Toolchain, [string]$Qtdir)
 
-# detect VC++2015 Build Tools
-if (Test-Path HKLM:\SOFTWARE\Wow6432Node\Microsoft\VisualCppBuildTools\14.0){
-    $hasvc14tools = $False -and [bool](gp HKLM:\SOFTWARE\Wow6432Node\Microsoft\VisualCppBuildTools\14.0).Installed
-    Write-Warning "Visual C++ Build Tools 2015 were detected, but are not yet supported, sorry"
-    Write-Warning "Will use Visual Studio 2013 if available"
-    pause
-}
+. .\utils.ps1
 
 # change to working directory
 pushd ..\..
 
 # clone latest sources from github
-git clone https://github.com/deniskoronchik/sc-machine
-git clone https://github.com/Ivan-Zhukau/sc-web
-git clone -b dev https://github.com/shunkevichdv/ims.ostis.kb
-mkdir kb.bin
+if(!(Test-Path .\sc-machine)){
+	git clone https://github.com/deniskoronchik/sc-machine
+}
 
-# cleanup sc-machine
-pushd sc-machine
-git clean -d -f -x
-popd
+if(!(Test-Path .\sc-web)){
+	git clone https://github.com/Ivan-Zhukau/sc-web
+}
+
+if(!(Test-Path .\ims.ostis.kb)){
+	git clone -b dev https://github.com/shunkevichdv/ims.ostis.kb
+}
+
+if(!(Test-Path .\kb.bin)){
+	mkdir kb.bin | out-null
+}
 
 # pull a minimum required subset of ims.ostis KB {
 
 # recreate a target location anew
 del -Recurse -Force -ErrorAction SilentlyContinue ims.ostis.kb_copy
-mkdir ims.ostis.kb_copy
+mkdir ims.ostis.kb_copy | out-null
 
 copy -Recurse ims.ostis.kb\ims\ostis_technology\semantic_network_represent\ ims.ostis.kb_copy\
 copy -Recurse ims.ostis.kb\ims\ostis_technology\unificated_models\ ims.ostis.kb_copy\
@@ -61,28 +49,34 @@ copy config\server.conf sc-web\server
 
 pushd sc-machine
 
-# cleanup build directory
-git clean -d -f -x
-
-# ask user for QT installation directory and try to find msvc2013_64 there ourselves
-$qtdir = Read-Host -Prompt "Qt5 install location"
-$env:CMAKE_PREFIX_PATH = (dir -Path $qtdir -Filter msvc2013_64 -Directory -Recurse)[0].FullName
-
-if($hasvc14tools){
-    # pull in environment for vc++ 2015 build tools
-    pushd "${env:ProgramFiles(x86)}\Microsoft Visual C++ Build Tools"
-    Invoke-CmdScript vcbuildtools.bat amd64 
-    popd
-    # generate makefiles for x64 vs2015
-    & "${env:ProgramFiles(x86)}\CMake\bin\cmake" -G 'Visual Studio 14 2015 Win64' .
-}
-else{
-    # pull in environment for vs2013
-    pushd $env:VS120COMNTOOLS\..\..\VC
-    Invoke-CmdScript vcvarsall.bat amd64
-    popd
-    # generate makefiles for x64 vs2013
-    & "${env:ProgramFiles(x86)}\CMake\bin\cmake" -G 'Visual Studio 12 2013 Win64' .
+switch($Toolchain){
+	"VS12" {
+	    $env:CMAKE_PREFIX_PATH = (dir -Recurse -Path $Qtdir -Filter msvc2013_64 -Attributes D)[0].FullName
+		# pull in environment for vs2013
+		pushd $env:VS120COMNTOOLS\..\..\VC
+		Invoke-CmdScript vcvarsall.bat amd64
+		popd
+		# generate makefiles for x64 vs2013
+		& "${env:ProgramFiles}\CMake\bin\cmake" -G 'Visual Studio 12 2013 Win64' .
+	}
+	"VS14" {
+		$env:CMAKE_PREFIX_PATH = (dir -Recurse -Path $Qtdir -Filter msvc2015_64 -Attributes D)[0].FullName
+		# pull in environment for VS2015
+		pushd $env:VS140COMNTOOLS\..\..\VC
+		Invoke-CmdScript vcvarsall.bat amd64 
+		popd
+		# generate makefiles for x64 vs2015
+		& "${env:ProgramFiles}\CMake\bin\cmake" -G 'Visual Studio 14 2015 Win64' .
+	}
+	"BT14"{
+		$env:CMAKE_PREFIX_PATH = (dir -Recurse -Path $Qtdir -Filter msvc2015_64 -Attributes D)[0].FullName
+		# pull in environment for vc++ 2015 build tools
+		pushd "${env:ProgramFiles(x86)}\Microsoft Visual C++ Build Tools"
+		Invoke-CmdScript vcbuildtools.bat amd64 
+		popd
+		# generate makefiles for x64 vs2015
+		& "${env:ProgramFiles}\CMake\bin\cmake" -G 'Visual Studio 14 2015 Win64' .
+	}
 }
 
 # build generated solution
@@ -92,3 +86,7 @@ msbuild /m sc-machine.sln /property:Configuration=Release
 copy $env:CMAKE_PREFIX_PATH\bin\Qt5Core.dll bin\
 copy $env:CMAKE_PREFIX_PATH\bin\Qt5Network.dll bin\
 popd
+
+write-host
+write-host -nonewline -foregroundcolor green "Base system installation is now complete. Press Enter to leave the installer. "
+read-host
