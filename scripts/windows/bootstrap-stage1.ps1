@@ -87,6 +87,16 @@ python -m pip install tornado sqlalchemy redis==2.9
 # install custom-built numpy module
 python -m pip install .\3rd-party\numpy-1.9.3+vanilla-cp27-none-win_amd64.whl
 
+Write-Host "Setting up firewall rules"
+# firewall rules for ports 8000 (web ui) and 55770 (sc-storage server)
+if (!(Test-FirewallRule -Name "scweb")){
+    Add-FirewallPortRule -Name "scweb" -Port 8000
+}
+
+if (!(Test-FirewallRule -Name "sctp")){
+    Add-FirewallPortRule -Name "sctp" -Port 55770
+}
+
 if ($restart){
 	write-host "Your computer needs to be restarted to finish installing prerequisite software"
 	write-host "Installation will continue after a reboot"
