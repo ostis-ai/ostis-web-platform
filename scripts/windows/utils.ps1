@@ -8,7 +8,7 @@ function Test-RegValue{
 	process{
 		if(Test-Path $Path){
 			$key = (gi $Path)
-			return $key.GetValueNames().Contains($Name)
+			return $key.GetValueNames() -contains "$Name"
 		}
 		else{
 			return $false;
