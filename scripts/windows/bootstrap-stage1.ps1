@@ -1,6 +1,6 @@
 ﻿. .\utils.ps1
 
-# a PATH variable is changed during the next command, so we need to preserve it
+# a PATH variable is changed during package installation, so we need to preserve it
 $oldpath = $env:Path
 
 # is restart needed before advancing to a second stage
@@ -41,7 +41,8 @@ else {
 	
 	(New-Object net.webclient).DownloadFile("http://go.microsoft.com/fwlink/?LinkId=691126", "vcpp15bt.exe")
 	Start-Process .\vcpp15bt.exe /Passive -Wait
-	del vcpp15bt.exe
+	Start-Sleep -Milliseconds 500
+    del vcpp15bt.exe
 	$Toolchain = "BT14"
 	$qt_compiler = "msvc2015"
 	$restart = $true # both pieces of software require system reboot
@@ -57,7 +58,8 @@ while ($q = Read-Host -Prompt "Do you have Qt5 installed? [y/n]") {
 		Write-Host "The script will automatically install Qt5 in C:\Qt"
 		(New-Object net.webclient).DownloadFile("http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe", "qt-online.exe")
 		Start-Process ".\qt-online.exe" "--script", "qt5-unattend.qs", "Compiler=$qt_compiler" -Wait
-		del qt-online.exe
+		Start-Sleep -Milliseconds 500
+        del qt-online.exe
 		$qtdir = "C:\Qt"
 		break
 	}
@@ -67,7 +69,8 @@ while ($q = Read-Host -Prompt "Do you have Qt5 installed? [y/n]") {
 }
 
 # reinstall and restart redis service
-if (Get-Service redis) {
+
+if ("Redis" -in (Get-Service | %{$_.Name})) {
 	redis-server --service-stop
 	redis-server --service-uninstall
 }
@@ -90,8 +93,11 @@ if ($restart){
 	read-host "Save your work and press Enter to reboot"
 	
 	# schedule the second stage to run after reboot and initiate reboot
-	New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce `
-	-Name OstisBootstrap -PropertyType String -Value "cmd /c ""cd /d $pwd & powershell .\bootstrap-stage2.ps1 -Toolchain $Toolchain -Qtdir $qtdir""" | out-null
+	if (!(Test-Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce)){
+        New-Item HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
+    }
+    New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce -Name OstisBootstrap -PropertyType String -Value `
+    "cmd /c ""cd /d $pwd & powershell -ExecutionPolicy Bypass .\bootstrap-stage2.ps1 -Toolchain $Toolchain -Qtdir $qtdir""" | out-null
 	restart-computer -force
 }
 else{
