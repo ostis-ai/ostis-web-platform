@@ -8,7 +8,7 @@ function Test-RegValue{
 	process{
 		if(Test-Path $Path){
 			$key = (gi $Path)
-			return $key.GetValueNames().Contains($Name)
+			return $key.GetValueNames() -contains "$Name"
 		}
 		else{
 			return $false;
@@ -28,4 +28,23 @@ function Invoke-CmdScript {
     $varValue = $_.Matches[0].Groups[2].Value
     set-item Env:$varName $varValue
   }
+}
+
+function Test-FirewallRule{
+    param(
+        [Parameter(Position=0, Mandatory=$true)][String]$Name
+    )
+    process{
+        netsh advfirewall firewall show rule name="$Name" | out-null
+    }
+}
+
+function Add-FirewallPortRule{
+    param(
+        [Parameter(Position=0, Mandatory=$true)][String]$Name, 
+        [Parameter(Position=1, Mandatory=$true)][int]$Port
+    )
+    process{
+        netsh advfirewall firewall add rule name="$Name" dir=in action=allow protocol=TCP localport=$Port
+    }
 }

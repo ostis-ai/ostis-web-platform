@@ -51,7 +51,7 @@ pushd sc-machine
 
 switch($Toolchain){
 	"VS12" {
-	    $env:CMAKE_PREFIX_PATH = (dir -Recurse -Path $Qtdir -Filter msvc2013_64 -Attributes D)[0].FullName
+	    $env:CMAKE_PREFIX_PATH = @(dir -Recurse -Path $Qtdir -Filter msvc2013_64 | ?{ $_.PSIsContainer })[0].FullName
 		# pull in environment for vs2013
 		pushd $env:VS120COMNTOOLS\..\..\VC
 		Invoke-CmdScript vcvarsall.bat amd64
@@ -60,7 +60,7 @@ switch($Toolchain){
 		& "${env:ProgramFiles}\CMake\bin\cmake" -G 'Visual Studio 12 2013 Win64' .
 	}
 	"VS14" {
-		$env:CMAKE_PREFIX_PATH = (dir -Recurse -Path $Qtdir -Filter msvc2015_64 -Attributes D)[0].FullName
+		$env:CMAKE_PREFIX_PATH = @(dir -Recurse -Path $Qtdir -Filter msvc2015_64 | ?{ $_.PSIsContainer })[0].FullName
 		# pull in environment for VS2015
 		pushd $env:VS140COMNTOOLS\..\..\VC
 		Invoke-CmdScript vcvarsall.bat amd64 
@@ -69,7 +69,7 @@ switch($Toolchain){
 		& "${env:ProgramFiles}\CMake\bin\cmake" -G 'Visual Studio 14 2015 Win64' .
 	}
 	"BT14"{
-		$env:CMAKE_PREFIX_PATH = (dir -Recurse -Path $Qtdir -Filter msvc2015_64 -Attributes D)[0].FullName
+		$env:CMAKE_PREFIX_PATH = @(dir -Recurse -Path $Qtdir -Filter msvc2015_64 | ?{ $_.PSIsContainer })[0].FullName
 		# pull in environment for vc++ 2015 build tools
 		pushd "${env:ProgramFiles(x86)}\Microsoft Visual C++ Build Tools"
 		Invoke-CmdScript vcbuildtools.bat amd64 
