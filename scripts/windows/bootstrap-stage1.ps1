@@ -16,7 +16,7 @@ Catch{
 }
 
 # install prerequisite software (except VS and Qt)
-cinst packages.config -yr
+cinst packages.config -yr --allowemptychecksum
 
 # Detect available toolchains
 $ms = "HKLM:\SOFTWARE\Wow6432Node\Microsoft"
@@ -37,7 +37,7 @@ else {
 	Write-Host "The script will automatically install .NET 4.5.2 and Visual C++ 2015 Build Tools"
 	Read-Host "Press Enter to continue, Ctrl-C to abort"
 
-	cinst dotnet4.5.2 -yr
+	cinst dotnet4.5.2 -yr --allowemptychecksum
 	
 	(New-Object net.webclient).DownloadFile("http://go.microsoft.com/fwlink/?LinkId=691126", "vcpp15bt.exe")
 	Start-Process .\vcpp15bt.exe /Passive -Wait
