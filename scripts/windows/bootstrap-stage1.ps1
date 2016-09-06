@@ -70,7 +70,7 @@ while ($q = Read-Host -Prompt "Do you have Qt5 installed? [y/n]") {
 
 # reinstall and restart redis service
 
-if ("Redis" -in (Get-Service | %{$_.Name})) {
+if ((Get-Service | %{$_.Name}) -contains "Redis") {
 	redis-server --service-stop
 	redis-server --service-uninstall
 }
