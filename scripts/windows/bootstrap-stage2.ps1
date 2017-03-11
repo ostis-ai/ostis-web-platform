@@ -7,7 +7,7 @@ pushd ..\..
 
 # clone latest sources from github
 if(!(Test-Path .\sc-machine)){
-	git clone https://github.com/deniskoronchik/sc-machine
+	git clone -b scp_stable https://github.com/shunkevichdv/sc-machine
 }
 
 if(!(Test-Path .\sc-web)){
