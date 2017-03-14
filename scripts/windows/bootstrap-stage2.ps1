@@ -28,13 +28,13 @@ if(!(Test-Path .\kb.bin)){
 del -Recurse -Force -ErrorAction SilentlyContinue ims.ostis.kb_copy
 mkdir ims.ostis.kb_copy | out-null
 
-copy -Recurse ims.ostis.kb\ims\ostis_technology\semantic_network_represent\ ims.ostis.kb_copy\
-copy -Recurse ims.ostis.kb\ims\ostis_technology\unificated_models\ ims.ostis.kb_copy\
-copy -Recurse ims.ostis.kb\ims\ostis_technology\semantic_networks_processing\ ims.ostis.kb_copy\
-copy -Recurse ims.ostis.kb\ims\ostis_technology\library_ostis\section_library_of_reusable_components_interfaces\ui_menu\ ims.ostis.kb_copy\
-copy -Recurse ims.ostis.kb\ims\ostis_technology\library_ostis\section_library_of_reusable_components_kpm\reusable_sc_agents\lib_c_agents\ ims.ostis.kb_copy\
-copy -Recurse ims.ostis.kb\ims\ostis_technology\library_ostis\section_library_of_reusable_components_kpm\reusable_sc_agents\lib_scp_agents\ ims.ostis.kb_copy\
-copy -Recurse ims.ostis.kb\ims\ostis_technology\library_ostis\section_library_of_reusable_components_kpm\programs_for_sc_text_processing\scp_program\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_tech\semantic_network_represent\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_tech\unificated_models\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_tech\semantic_networks_processing\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_tech\lib_ostis\sectn_lib_of_reusable_comp_ui\ui_menu\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_tech\lib_ostis\sectn_lib_reusable_comp_kpm\reusable_sc_agents\lib_c_agents\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_tech\lib_ostis\sectn_lib_reusable_comp_kpm\reusable_sc_agents\lib_scp_agents\ ims.ostis.kb_copy\
+copy -Recurse ims.ostis.kb\ims\ostis_tech\lib_ostis\sectn_lib_reusable_comp_kpm\programs_for_sc_text_processing\scp_program\ ims.ostis.kb_copy\
 copy -Recurse ims.ostis.kb\to_check\ ims.ostis.kb_copy\
 copy -Recurse ims.ostis.kb\ui\ ims.ostis.kb_copy\
 del -Recurse ims.ostis.kb_copy\ui\menu
