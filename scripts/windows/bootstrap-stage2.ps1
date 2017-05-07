@@ -42,7 +42,18 @@ del -Recurse ims.ostis.kb_copy\ui\menu
 
 # prepare GUI
 pushd sc-web\scripts
+
 .\client.bat
+
+# nodejs dependency setup
+npm cache clean -f
+npm install -g grunt-cli
+
+popd
+
+pushd sc-web
+npm install
+grunt build
 popd
 
 copy config\server.conf sc-web\server
