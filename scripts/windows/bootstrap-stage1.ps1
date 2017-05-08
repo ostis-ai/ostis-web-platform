@@ -82,7 +82,7 @@ $p = $oldpath + ';' + [System.Environment]::GetEnvironmentVariable("Path","Machi
 $env:Path = ($p -Split ';' | select -Unique) -join ";"
 
 # install python modules for web interface
-python -m pip install tornado sqlalchemy redis==2.9
+python -m pip install tornado sqlalchemy redis==2.9 configparser
 
 # install custom-built numpy module
 python -m pip install .\3rd-party\numpy-1.9.3+vanilla-cp27-none-win_amd64.whl
