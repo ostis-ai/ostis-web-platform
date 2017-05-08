@@ -15,7 +15,7 @@ if(!(Test-Path .\sc-web)){
 }
 
 if(!(Test-Path .\ims.ostis.kb)){
-	git clone -b dev https://github.com/shunkevichdv/ims.ostis.kb
+	git clone https://github.com/shunkevichdv/ims.ostis.kb
 }
 
 if(!(Test-Path .\kb.bin)){
