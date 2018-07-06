@@ -1,5 +1,5 @@
 #!/bin/bash
-export LD_LIBRARY_PATH=../sc-machine/bin
+export LD_LIBRARY_PATH=./sc-machine/bin
 if [ ! -d "../ims.ostis.kb_copy" ]; then
     mkdir ../ims.ostis.kb_copy
 else

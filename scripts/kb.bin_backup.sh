@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export LD_LIBRARY_PATH=../sc-machine/bin
+export LD_LIBRARY_PATH=./sc-machine/bin
 
 if [ ! -d "../kb.bin_backup" ]; then
 	mkdir ../kb.bin_backup
