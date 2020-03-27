@@ -52,6 +52,8 @@ pip3 install -r requirements.txt
 cd scripts
 ./make_all.sh
 
+cat ../bin/config.ini >> ../../config/sc-web.ini
+
 prepare "sc-server web"
 sudo apt remove cmdtest
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
