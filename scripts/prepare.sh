@@ -80,5 +80,5 @@ cp -f ../config/server.conf ../sc-web/server/
 
 stage "Build knowledge base"
 
-cd ../sc-machine/scripts
+cd ../scripts
 ./build_kb.sh
