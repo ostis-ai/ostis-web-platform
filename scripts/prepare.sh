@@ -32,7 +32,7 @@ clone_project()
 stage "Clone projects"
 
 clone_project https://github.com/MikhailSadovsky/sc-machine.git sc-machine release/0.6.0
-clone_project https://github.com/Ivan-Zhukau/sc-web.git sc-web master
+clone_project https://github.com/MikhailSadovsky/sc-web.git sc-web 0.6.0
 clone_project https://github.com/MikhailSadovsky/ims.ostis.kb.git ims.ostis.kb 0.6.0
 
 stage "Prepare projects"
