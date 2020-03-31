@@ -73,7 +73,7 @@ sudo pip3 install --default-timeout=100 future
 sudo apt-get install python-setuptools
 cd ../sc-web/scripts
 
-sudo apt-get install nodejs-dev node-gyp libssl1.0-dev
+sudo apt-get install -y nodejs-dev node-gyp libssl1.0-dev
 ./install_deps_ubuntu.sh
 ./install_nodejs_dependence.sh
 
