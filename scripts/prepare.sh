@@ -64,7 +64,8 @@ sudo apt remove -y cmdtest
 sudo apt remove -y yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get update && sudo apt-get install -y yarn
+sudo apt-get update
+sudo apt-get install -y yarn
 cd ../web/client
 yarn && yarn run webpack-dev
 cd ../..
