@@ -59,6 +59,7 @@ cd scripts
 cat ../bin/config.ini >> ../../config/sc-web.ini
 
 prepare "sc-server web"
+sudo apt-get install -y curl
 sudo apt remove -y cmdtest
 sudo apt remove -y yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
