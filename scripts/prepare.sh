@@ -45,6 +45,9 @@ prepare()
 prepare "sc-machine"
 
 cd ../sc-machine/scripts
+python3Version=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
+sed -i -e "s/python3.5-dev/python$python3Version-dev/" ./install_deps_ubuntu.sh
+sed -i -e "s/python3.5-dev/python$python3Version/" ./install_deps_ubuntu.sh
 ./install_deps_ubuntu.sh
 
 cd ..
