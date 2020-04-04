@@ -1,7 +1,5 @@
 #!/bin/bash
 
-./copy_ims_kb.sh
-
 export LD_LIBRARY_PATH=./sc-machine/bin
 if [ ! -d "../kb.bin" ]; then
     mkdir ../kb.bin

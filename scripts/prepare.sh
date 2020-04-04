@@ -31,9 +31,9 @@ clone_project()
 
 stage "Clone projects"
 
-clone_project https://github.com/ShunkevichDV/sc-machine.git sc-machine 0.5.0
-clone_project https://github.com/Ivan-Zhukau/sc-web.git sc-web master
-clone_project https://github.com/ShunkevichDV/ims.ostis.kb.git ims.ostis.kb master
+clone_project https://github.com/ShunkevichDV/sc-machine.git sc-machine 0.6.0
+clone_project https://github.com/MikhailSadovsky/sc-web.git sc-web 0.6.0
+clone_project https://github.com/ShunkevichDV/ims.ostis.kb.git ims.ostis.kb 0.6.0
 
 stage "Prepare projects"
 
@@ -50,19 +50,32 @@ sed -i -e "s/python3.5-dev/python$python3Version-dev/" ./install_deps_ubuntu.sh
 sed -i -e "s/python3.5-dev/python$python3Version/" ./install_deps_ubuntu.sh
 ./install_deps_ubuntu.sh
 
-sudo apt-get install redis-server
+cd ..
+pip3 install -r requirements.txt
 
-./clean_all.sh
+cd scripts
 ./make_all.sh
-cd -
+
+cat ../bin/config.ini >> ../../config/sc-web.ini
+
+prepare "sc-server web"
+sudo apt-get install -y curl
+sudo apt remove -y cmdtest
+sudo apt remove -y yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update
+sudo apt-get install -y yarn
+cd ../web/client
+yarn && yarn run webpack-dev
+cd ../..
 
 prepare "sc-web"
-sudo pip install --default-timeout=100 future
-sudo apt-get install python-dev # required for numpy module
+sudo pip3 install --default-timeout=100 future
 sudo apt-get install python-setuptools
-
 cd ../sc-web/scripts
 
+sudo apt-get install -y nodejs-dev node-gyp libssl1.0-dev libcurl4-openssl-dev
 ./install_deps_ubuntu.sh
 ./install_nodejs_dependence.sh
 
@@ -76,4 +89,5 @@ cp -f ../config/server.conf ../sc-web/server/
 
 stage "Build knowledge base"
 
+cd ../scripts
 ./build_kb.sh
