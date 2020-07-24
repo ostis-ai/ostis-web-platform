@@ -5,6 +5,15 @@ import codecs
 
 
 def main(workDirectory):
+    osName = os.name
+    slash = ""
+    if osName == 'posix':
+        slash = "/"
+    elif osName == 'nt':
+        slash = "\\"
+        os.system('reg delete "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v LongPathsEnabled /f')
+        os.system('reg add "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v LongPathsEnabled /t REG_DWORD /d 1')
+
     for file in os.listdir(workDirectory):
         if file.endswith(".txt"):
             print(os.path.join(workDirectory, file))
@@ -14,12 +23,18 @@ def main(workDirectory):
     print(listOfFiles)
     for file in listOfFiles:
         if file.endswith(".scs"):
-            f =codecs.open(file, "r", "utf_8")
-            dirpathList = re.split(r'/', file)
+            f = codecs.open(file, "r", "utf_8")
+            if osName == 'posix':
+                dirpathList = re.split(r'/', file)
+                #dirPath = ""
+            elif osName == 'nt':
+                dirpathList = re.split(r'\\', file)
+                #dirPath = os.path.abspath(os.getcwd()) + "\\"
+            #f = codecs.open(dirPath + file, "r", "utf_8")
             dirPath = ""
             x = 0
             for x in range (0, len(dirpathList)-1):
-                dirPath = dirPath + dirpathList[x] + "/"
+                dirPath = dirPath + dirpathList[x] + slash
             isEdit = False
             bufferFileList = []
             for line in f:
@@ -32,16 +47,22 @@ def main(workDirectory):
                         
                     bufferFileList.append(stage1[0]+'\n')
                     stage2 = re.split(r'"\*\];;', stage1[1])
-                    f2 = codecs.open(dirPath+stage2[0], "r", "utf_8")
-                    
+
                     temp = re.findall(r'/',stage2[0])
                     relativePath = ""
+                    scsiPath = ""
                     if(len(temp) > 0):
-                        scsiPath = re.split(r'/',stage2[0])
+                        stage3 = re.split(r'/',stage2[0])
                         x = 0
-                        for x in range (0, len(scsiPath)-1):
-                            relativePath = relativePath + scsiPath[x] + "/"
+                        for x in range (0, len(stage3)-1):
+                            relativePath = relativePath + stage3[x] + "/"
+                            scsiPath = scsiPath + stage3[x] + slash
+                        scsiPath = scsiPath + stage3[x+1]
+                    else:
+                        scsiPath = stage2[0]
 
+                    f2 = codecs.open(dirPath+scsiPath, "r", "utf_8")
+                    
                     for line2 in f2:                        
                         res = re.findall(r'\"file://', line2)
                         if (len(res) > 0 and len(relativePath) > 0):
@@ -52,11 +73,11 @@ def main(workDirectory):
                     bufferFileList.append("\n")
                     bufferFileList.append("*];;")
                     f2.close()
-                    os.remove(dirPath+stage2[0])
+                    os.remove(dirPath+scsiPath)
                     isEdit = True
                     print(file)
                     print(line)
-                    print(stage2[0])
+                    print(scsiPath)
                     print("================")
                 else:
                     bufferFileList.append(line)
