@@ -10,15 +10,15 @@ rst="\e[0m"     # Text reset
 
 st=1
 
-kb_build = 1
-make_all = 1
+kb_build=1
+make_all=1
 
 while [ "$1" != "" ]; do
     case $1 in
-        "no_kb_build" )       	kb_build = 0
+        "no_kb_build" )       	kb_build=0
                                 ;;
-	"no_make" )       	make_all = 0
-				kb_build = 0
+	"no_make" )       	make_all=0
+				kb_build=0
                                 ;;
     esac
     shift
