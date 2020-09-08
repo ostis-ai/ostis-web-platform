@@ -18,14 +18,11 @@ while [ "$1" != "" ]; do
         "no_kb_build" )       	kb_build = 0
                                 ;;
 	"no_make" )       	make_all = 0
+				kb_build = 0
                                 ;;
     esac
     shift
 done
-
-if (( $make_all == 0 )); then
-	kb_build = 0
-fi
 
 stage()
 {
