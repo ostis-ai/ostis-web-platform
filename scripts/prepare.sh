@@ -45,21 +45,17 @@ prepare()
 prepare "sc-machine"
 
 cd ../sc-machine/scripts
-python3Version=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
-sed -i -e "s/python3.5-dev/python$python3Version-dev/" ./install_deps_ubuntu.sh
-sed -i -e "s/python3.5-dev/python$python3Version/" ./install_deps_ubuntu.sh
 ./install_deps_ubuntu.sh
 
-sudo apt-get install redis-server
+sudo apt-get install -y redis-server
 
 ./clean_all.sh
 ./make_all.sh
 cd -
 
 prepare "sc-web"
-sudo pip install --default-timeout=100 future
-sudo apt-get install python-dev # required for numpy module
-sudo apt-get install python-setuptools
+sudo apt-get install -y python-dev # required for numpy module
+sudo apt-get install -y python-setuptools
 
 cd ../sc-web/scripts
 
