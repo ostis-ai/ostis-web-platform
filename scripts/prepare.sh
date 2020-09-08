@@ -10,6 +10,23 @@ rst="\e[0m"     # Text reset
 
 st=1
 
+kb_build = 1
+make_all = 1
+
+while [ "$1" != "" ]; do
+    case $1 in
+        "no_kb_build" )       	kb_build = 0
+                                ;;
+	"no_make" )       	make_all = 0
+                                ;;
+    esac
+    shift
+done
+
+if (( $make_all == 0 )); then
+	kb_build = 0
+fi
+
 stage()
 {
     echo -en "$green[$st] "$blue"$1...$rst\n"
@@ -54,7 +71,10 @@ cd ..
 pip3 install -r requirements.txt
 
 cd scripts
-./make_all.sh
+
+if (( $make_all == 1 )); then
+	./make_all.sh
+fi
 
 cat ../bin/config.ini >> ../../config/sc-web.ini
 
@@ -87,7 +107,10 @@ cd -
 echo -en $green"Copy server.conf"$rst"\n"
 cp -f ../config/server.conf ../sc-web/server/
 
-stage "Build knowledge base"
 
-cd ../scripts
-./build_kb.sh
+if (( $kb_build == 1 )); then
+	stage "Build knowledge base"
+	cd ../scripts
+	./build_kb.sh
+fi
+
