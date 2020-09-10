@@ -10,17 +10,17 @@ rst="\e[0m"     # Text reset
 
 st=1
 
-kb_build=1
-make_all=1
+build_kb=1
+build_sc_machine=1
 
 while [ "$1" != "" ]; do
 	case $1 in
-		"no_kb_build" )
-			kb_build=0
+		"no_build_kb" )
+			build_kb=0
 			;;
-		"no_make" )
-			make_all=0
-			kb_build=0
+		"no_build_sc_machine" )
+			build_sc_machine=0
+			build_kb=0
 			;;
 	esac
 	shift
@@ -71,7 +71,7 @@ pip3 install -r requirements.txt
 
 cd scripts
 
-if (( $make_all == 1 )); then
+if (( $build_sc_machine == 1 )); then
 	./make_all.sh
 fi
 
@@ -107,7 +107,7 @@ echo -en $green"Copy server.conf"$rst"\n"
 cp -f ../config/server.conf ../sc-web/server/
 
 
-if (( $kb_build == 1 )); then
+if (( $build_kb == 1 )); then
 	stage "Build knowledge base"
 	cd ../scripts
 	./build_kb.sh
