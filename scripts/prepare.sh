@@ -10,6 +10,22 @@ rst="\e[0m"     # Text reset
 
 st=1
 
+build_kb=1
+build_sc_machine=1
+
+while [ "$1" != "" ]; do
+	case $1 in
+		"no_build_kb" )
+			build_kb=0
+			;;
+		"no_build_sc_machine" )
+			build_sc_machine=0
+			build_kb=0
+			;;
+	esac
+	shift
+done
+
 stage()
 {
     echo -en "$green[$st] "$blue"$1...$rst\n"
@@ -54,7 +70,10 @@ cd ..
 pip3 install -r requirements.txt
 
 cd scripts
-./make_all.sh
+
+if (( $build_sc_machine == 1 )); then
+	./make_all.sh
+fi
 
 cat ../bin/config.ini >> ../../config/sc-web.ini
 
@@ -87,7 +106,10 @@ cd -
 echo -en $green"Copy server.conf"$rst"\n"
 cp -f ../config/server.conf ../sc-web/server/
 
-stage "Build knowledge base"
 
-cd ../scripts
-./build_kb.sh
+if (( $build_kb == 1 )); then
+	stage "Build knowledge base"
+	cd ../scripts
+	./build_kb.sh
+fi
+
