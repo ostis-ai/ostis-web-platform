@@ -28,21 +28,21 @@ done
 
 stage()
 {
-    echo -en "$green[$st] "$blue"$1...$rst\n"
-    let "st += 1"
+	echo -en "$green[$st] "$blue"$1...$rst\n"
+	let "st += 1"
 }
 
 clone_project()
 {
-    if [ ! -d "../$2" ]; then
-        echo -en $green"Clone $2$rst\n"
-        git clone $1 ../$2
-        cd ../$2
-        git checkout $3
-        cd -
-    else
-        echo -en "You can update "$green"$2"$rst" manualy$rst\n"
-    fi
+	if [ ! -d "../$2" ]; then
+		echo -en $green"Clone $2$rst\n"
+		git clone $1 ../$2
+		cd ../$2
+		git checkout $3
+		cd -
+	else
+		echo -en "You can update "$green"$2"$rst" manualy$rst\n"
+	fi
 }
 
 stage "Clone projects"
@@ -55,7 +55,7 @@ stage "Prepare projects"
 
 prepare()
 {
-    echo -en $green$1$rst"\n"
+	echo -en $green$1$rst"\n"
 }
 
 prepare "sc-machine"
@@ -67,34 +67,45 @@ sed -i -e "s/python3.5-dev/python$python3Version/" ./install_deps_ubuntu.sh
 ./install_deps_ubuntu.sh
 
 cd ..
+pip3 install setuptools wheel
 pip3 install -r requirements.txt
 
 cd scripts
 
 if (( $build_sc_machine == 1 )); then
 	./make_all.sh
+	cat ../bin/config.ini >> ../../config/sc-web.ini
 fi
-
-cat ../bin/config.ini >> ../../config/sc-web.ini
 
 prepare "sc-server web"
 sudo apt-get install -y curl
 sudo apt remove -y cmdtest
-sudo apt remove -y yarn
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get update
+
+nodeVersion=$(apt-cache policy nodejs | grep -oP "(?<=Candidate:\s)(.+)(?=)")
+if [[ "${nodeVersion}" =~ ^8\.10\.0~dfsg-2ubuntu0\.[3-9] ]] # 8.10.0~dfsg-2ubuntu0.3+ conflicts with libcurl4-openssl-dev
+then
+	sudo apt-get install -y nodejs=8.10.0~dfsg-2ubuntu0.2 nodejs-dev=8.10.0~dfsg-2ubuntu0.2
+else
+	sudo apt-get install -y nodejs
+fi
+
+if ! ( apt-cache search yarn | grep -m 1 "yarn\s" )
+then
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+	sudo apt-get update
+fi
 sudo apt-get install -y yarn
+
 cd ../web/client
 yarn && yarn run webpack-dev
 cd ../..
 
 prepare "sc-web"
-sudo pip3 install --default-timeout=100 future
-sudo apt-get install python-setuptools
+sudo yes | sudo pip3 install --default-timeout=100 future
+sudo apt-get install -y python-setuptools
 cd ../sc-web/scripts
 
-sudo apt-get install -y nodejs-dev node-gyp libssl1.0-dev libcurl4-openssl-dev
 ./install_deps_ubuntu.sh
 ./install_nodejs_dependence.sh
 
