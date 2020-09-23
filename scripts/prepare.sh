@@ -12,21 +12,21 @@ st=1
 
 stage()
 {
-    echo -en "$green[$st] "$blue"$1...$rst\n"
-    let "st += 1"
+	echo -en "$green[$st] "$blue"$1...$rst\n"
+	let "st += 1"
 }
 
 clone_project()
 {
-    if [ ! -d "../$2" ]; then
-        echo -en $green"Clone $2$rst\n"
-        git clone $1 ../$2
-        cd ../$2
-        git checkout $3
-        cd -
-    else
-        echo -en "You can update "$green"$2"$rst" manualy$rst\n"
-    fi
+	if [ ! -d "../$2" ]; then
+		echo -en $green"Clone $2$rst\n"
+		git clone $1 ../$2
+		cd ../$2
+		git checkout $3
+		cd -
+	else
+		echo -en "You can update "$green"$2"$rst" manualy$rst\n"
+	fi
 }
 
 stage "Clone projects"
@@ -39,27 +39,23 @@ stage "Prepare projects"
 
 prepare()
 {
-    echo -en $green$1$rst"\n"
+	echo -en $green$1$rst"\n"
 }
 
 prepare "sc-machine"
 
 cd ../sc-machine/scripts
-python3Version=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
-sed -i -e "s/python3.5-dev/python$python3Version-dev/" ./install_deps_ubuntu.sh
-sed -i -e "s/python3.5-dev/python$python3Version/" ./install_deps_ubuntu.sh
 ./install_deps_ubuntu.sh
 
-sudo apt-get install redis-server
+sudo apt-get install -y redis-server
 
 ./clean_all.sh
 ./make_all.sh
 cd -
 
 prepare "sc-web"
-sudo pip install --default-timeout=100 future
-sudo apt-get install python-dev # required for numpy module
-sudo apt-get install python-setuptools
+sudo apt-get install -y python-dev # required for numpy module
+sudo apt-get install -y python-setuptools
 
 cd ../sc-web/scripts
 
