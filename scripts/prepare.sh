@@ -12,21 +12,21 @@ st=1
 
 stage()
 {
-    echo -en "$green[$st] "$blue"$1...$rst\n"
-    let "st += 1"
+	echo -en "$green[$st] "$blue"$1...$rst\n"
+	let "st += 1"
 }
 
 clone_project()
 {
-    if [ ! -d "../$2" ]; then
-        echo -en $green"Clone $2$rst\n"
-        git clone $1 ../$2
-        cd ../$2
-        git checkout $3
-        cd -
-    else
-        echo -en "You can update "$green"$2"$rst" manualy$rst\n"
-    fi
+	if [ ! -d "../$2" ]; then
+		echo -en $green"Clone $2$rst\n"
+		git clone $1 ../$2
+		cd ../$2
+		git checkout $3
+		cd -
+	else
+		echo -en "You can update "$green"$2"$rst" manualy$rst\n"
+	fi
 }
 
 stage "Clone projects"
@@ -39,7 +39,7 @@ stage "Prepare projects"
 
 prepare()
 {
-    echo -en $green$1$rst"\n"
+	echo -en $green$1$rst"\n"
 }
 
 prepare "sc-machine"
