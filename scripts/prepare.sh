@@ -49,7 +49,7 @@ stage "Clone projects"
 
 clone_project https://github.com/ShunkevichDV/sc-machine.git sc-machine 0.6.0
 clone_project https://github.com/ostis-dev/sc-web.git sc-web 0.6.0
-clone_project https://github.com/ShunkevichDV/ims.ostis.kb.git ims.ostis.kb 0.6.0
+clone_project https://github.com/ostis-dev/ims.ostis.kb.git ims.ostis.kb 432bbaa
 
 stage "Prepare projects"
 
