@@ -21,7 +21,7 @@ def main(copy_kb_path: str):
         for path in repo_path_file:
             if '#' not in path and '\n' != path:
                 path = path.replace('\n','')
-                copy_kb(os.path.join(CopyKbPaths.OSTIS.value, path), os.path.join(copy_kb_path, path))
+                copy_kb(os.path.join(CopyKbPaths.OSTIS.value, path), os.path.join(copy_kb_path, path.replace('../','')))
     for script in Scripts:
         os.system("python3 " + script.value + ' ' + copy_kb_path)
 
