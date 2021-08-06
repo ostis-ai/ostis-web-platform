@@ -9,6 +9,6 @@ fi
 python3 kb_scripts/prepare_kb.py
 
 cd ..
-sc-machine/bin/sc-builder -f -c -i prepared_kb -o kb.bin -s config/sc-web.ini -e sc-machine/bin/extensions
+sc-machine/bin/sc-builder -f -c -i prepared_kb/repo.path -o kb.bin -s config/sc-web.ini -e sc-machine/bin/extensions
 
 
