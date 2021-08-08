@@ -2,6 +2,7 @@ import os
 from enum import Enum
 from copy_kb import copy_kb
 import sys
+import shutil
 
 
 class CopyKbPaths(Enum):
@@ -17,11 +18,21 @@ class Scripts(Enum):
 
 def main(copy_kb_path: str):
     copy_kb_path = os.path.join(CopyKbPaths.OSTIS.value, os.path.split(copy_kb_path)[1])
+    if os.path.isdir(copy_kb_path):
+        shutil.rmtree(copy_kb_path)
+    os.mkdir(copy_kb_path)
     with open(CopyKbPaths.REPO_PATH.value) as repo_path_file:
-        for path in repo_path_file:
-            if '#' not in path and '\n' != path:
-                path = path.replace('\n','')
-                copy_kb(os.path.join(CopyKbPaths.OSTIS.value, path), os.path.join(copy_kb_path, path.replace('../','')))
+        with open(os.path.join(copy_kb_path, 'repo.path'), mode='w') as prepared_repo_path:
+            for path in repo_path_file:
+                if '#' not in path and '\n' != path:
+                    path = path.replace('\n', '')
+                    copy_kb(
+                        os.path.join(CopyKbPaths.OSTIS.value, path),
+                        os.path.join(copy_kb_path, path.replace('../', ''))
+                    )
+                    prepared_repo_path.write(
+                        os.path.join(os.path.split(copy_kb_path)[1], path.replace('../', '')) + '\n'
+                    )
     for script in Scripts:
         os.system("python3 " + script.value + ' ' + copy_kb_path)
 
