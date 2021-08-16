@@ -14,6 +14,7 @@ class CopyKbPaths(Enum):
 
 class Scripts(Enum):
     REMOVE_SCSI = os.path.join(CopyKbPaths.KB_SCRIPTS.value, 'remove_scsi.py')
+    GWF_TO_SCS = os.path.join(CopyKbPaths.KB_SCRIPTS.value, 'gwf_to_scs.py')
 
 
 def main(copy_kb_path: str):
@@ -33,6 +34,7 @@ def main(copy_kb_path: str):
                     prepared_repo_path.write(
                         os.path.join(os.path.split(copy_kb_path)[1], path.replace('../', '')) + '\n'
                     )
+            prepared_repo_path.write(os.path.join(os.path.split(copy_kb_path)[1], 'converted_gwf_to_scs'))
     for script in Scripts:
         os.system("python3 " + script.value + ' ' + copy_kb_path)
 
