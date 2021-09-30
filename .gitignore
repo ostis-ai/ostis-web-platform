@@ -10,3 +10,4 @@ prepared_kb
 
 *.*~
 .idea
+__pycache__
