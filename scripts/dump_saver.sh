@@ -12,12 +12,17 @@ echo "initial file path: "$file
 while IFS= read -r line
 do
   if $isEnd; then
-    if [[ $line == "DumpPath = "* ]];then
-        dumpsPath=${line##* }
+    if [[ $line == "SavePeriod = "* ]];then
+        savePeriod=${line##* }
         isEnd=false
     else
-        dumpsPath=$path"/dumps"
+        savePeriod=3600
     fi
+  fi
+  if [[ $line == "DumpPath = "* ]];then
+      dumpsPath=${line##* }
+  else
+      dumpsPath=$path"/dumps"
   fi
   if $isStart; then
     path=${line##* }
@@ -31,14 +36,16 @@ do
 done < $file
 echo "segments.scdb path: "$path
 echo "dumps path: "$dumpsPath
+echo "save period: $savePeriod miliseconds"
 currentName="segments.scdb"
-LTIME=`stat -c %Z $path/$currentName`
+LTIME=$(date +%s)
 echo "waiting for a new dump"
 while true    
 do
-   ATIME=`stat -c %Z $path/$currentName`
+   ATIME=$(date +%s)
    dumpdate=$(date +"%T-%m-%d-%y") 
-   if [[ "$ATIME" != "$LTIME" ]]
+   runtime=$((($ATIME-$LTIME)*60))
+   if [[ "$runtime" == "$savePeriod" ]]
    then    
         if [ -d $dumpsPath ]; then
             cp $path/$currentName $dumpsPath/$dumpdate.scdb
