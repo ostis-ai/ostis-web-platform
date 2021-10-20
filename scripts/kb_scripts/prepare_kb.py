@@ -63,7 +63,7 @@ def main(ostis_path: str, copy_kb_name: str, repo_path_name: str):
                                 os.path.join(path_to_copy_kb, line) + '\n'
                             )
     for script in scripts:
-        os.system('python3 ' + script + ' ' + path_to_copy_kb)
+        os.system('python3 ' + script + ' ' + path_to_copy_kb + ' ' + path_to_repo_path)
 
     with open(path_to_repo_path) as repo_path_file:
         lines = repo_path_file.readlines()

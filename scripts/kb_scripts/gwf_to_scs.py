@@ -24,7 +24,7 @@ class Gwf2SCs:
     return result
 
   def run(self, params):
-    input = params.input
+    input = params.kb_path
     output = params.output
 
     if os.path.isdir(output):
@@ -32,7 +32,7 @@ class Gwf2SCs:
     os.makedirs(output)
 
     files = self.collect_files(input)
-    print (colored("Collected ", "white") + colored(len(files), "green") + colored(" files"))
+    print(colored("Collected ", "white") + colored(len(files), "green") + colored(" files"))
 
     for f in tqdm(files):
       _, ext = os.path.splitext(f)
@@ -66,10 +66,15 @@ class Gwf2SCs:
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description='Converts directory with GWF files into SCs files')
-  parser.add_argument('input', action='store',
+  parser.add_argument('kb_path', action='store',
                       help='Path to input directory, that contains gwf files')
+  parser.add_argument('repo_path', action='store',
+                      help='Repo path file')
   args = parser.parse_args()
-  args.output =os.path.join(args.input, 'converted_gwf_to_scs')
+  args.output =os.path.join(args.kb_path, 'converted_gwf_to_scs')
+
+  with open(args.repo_path, mode='a') as repo_path_file:
+    repo_path_file.write(args.output)
   
   converter = Gwf2SCs()
   converter.run(args)
