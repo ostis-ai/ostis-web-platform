@@ -1,6 +1,5 @@
 import argparse
 import os
-import shutil
 import sys
 
 from termcolor import colored
@@ -25,11 +24,6 @@ class Gwf2SCs:
 
   def run(self, params):
     input = params.input
-    output = params.output
-
-    if os.path.isdir(output):
-      shutil.rmtree(output)
-    os.makedirs(output)
 
     files = self.collect_files(input)
     print (colored("Collected ", "white") + colored(len(files), "green") + colored(" files"))
@@ -37,7 +31,8 @@ class Gwf2SCs:
     for f in tqdm(files):
       _, ext = os.path.splitext(f)
       if ext.lower() == '.gwf':
-        self.convert_file(os.path.join(input, f), os.path.splitext(os.path.join(output, f))[0] + ".scs")
+        file = os.path.join(input, f)
+        self.convert_file(file, os.path.splitext(file)[0] + ".scs")
 
   def convert_file(self, input_path, output_path):
     parser = GWFParser(self.add_error)
@@ -69,8 +64,7 @@ if __name__ == "__main__":
   parser.add_argument('input', action='store',
                       help='Path to input directory, that contains gwf files')
   args = parser.parse_args()
-  args.output =os.path.join(args.input, 'converted_gwf_to_scs')
-  
+
   converter = Gwf2SCs()
   converter.run(args)
   if converter.check_status():
