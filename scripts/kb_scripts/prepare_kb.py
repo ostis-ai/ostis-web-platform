@@ -43,6 +43,7 @@ def main(ostis_path: str, copy_kb_name: str, repo_path_name: str):
     path_to_root_repo_path = create_path(ostis_path, repo_path_name)
     path_to_repo_path = create_path(path_to_copy_kb, repo_path_name)
     path_to_prepared_repo_path = create_path(path_to_copy_kb, Tokens.PREPARED_FILE_PREFIX.value + repo_path_name)
+    prepared_kb = os.path.split(path_to_copy_kb)[1]
 
     is_need_to_prepare = True
     with open(path_to_root_repo_path) as root_repo_path_file:
@@ -54,13 +55,13 @@ def main(ostis_path: str, copy_kb_name: str, repo_path_name: str):
                     if Tokens.NOT_PREPARED.value in line:
                         is_need_to_prepare = True
                     if Tokens.COMMENT.value not in line and line != '\n':
-                        line = line.replace('\n', '').replace('../', '')
+                        line = line.replace('\n', '')
                         if not is_need_to_prepare:
                             prepared_repo_path_file.write(line + '\n')
                         elif is_need_to_prepare:
                             copy_path(ostis_path, path_to_copy_kb, line)
                             repo_path_file.write(
-                                os.path.join(path_to_copy_kb, line) + '\n'
+                                os.path.join(prepared_kb, line.replace('../', '')) + '\n'
                             )
     for script in scripts:
         os.system('python3 ' + script + ' ' + path_to_copy_kb)
@@ -73,7 +74,7 @@ def main(ostis_path: str, copy_kb_name: str, repo_path_name: str):
                 line = line.replace('\n', '')
                 copy_path(ostis_path, path_to_copy_kb, line)
                 repo_path_file.write(
-                    os.path.join(path_to_copy_kb, line) + '\n'
+                    os.path.join(prepared_kb, line.replace('../', '')) + '\n'
                 )
             for line in lines:
                 repo_path_file.write(line)
