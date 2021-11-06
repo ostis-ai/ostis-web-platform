@@ -35,7 +35,7 @@ def create_path(ext_path: str, int_path: str) -> str:
     return os.path.join(ext_path, os.path.split(int_path)[1])
 
 
-def main(ostis_path: str, copy_kb_name: str, repo_path_name: str):
+def main(ostis_path: str, copy_kb_name: str, repo_path_name: str, errors_file_path: str):
     path_to_copy_kb = create_path(ostis_path, copy_kb_name)
     if os.path.isdir(path_to_copy_kb):
         shutil.rmtree(path_to_copy_kb)
@@ -64,7 +64,7 @@ def main(ostis_path: str, copy_kb_name: str, repo_path_name: str):
                                 os.path.join(prepared_kb, line.replace('../', '')) + '\n'
                             )
     for script in scripts:
-        os.system('python3 ' + script + ' ' + path_to_copy_kb)
+        os.system('python3 ' + script + ' ' + path_to_copy_kb + ' ' + errors_file_path)
 
     with open(path_to_repo_path) as repo_path_file:
         lines = repo_path_file.readlines()
@@ -82,7 +82,7 @@ def main(ostis_path: str, copy_kb_name: str, repo_path_name: str):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 3:
-        main(CopyKbPaths.OSTIS.value, 'prepared_kb', 'repo.path')
+    if len(sys.argv) == 5:
+        main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
     else:
-        main(sys.argv[1], sys.argv[2], sys.argv[3])
+        print("Invalid number of arguments...")

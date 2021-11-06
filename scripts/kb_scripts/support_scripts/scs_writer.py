@@ -1,3 +1,4 @@
+import re
 from os import path
 
 NodeTypeSets = {
@@ -178,34 +179,35 @@ class Buffer:
         lines = self.value.splitlines(True)
         self.value = ""
 
-        for l in lines:
-            self.value += tabs_value + l
+        for line in lines:
+            self.value += tabs_value + line
 
 
 class SCsWriter:
     kNrelSystemIdtf = "nrel_system_identifier"
     kNrelMainIdtf = "nrel_main_identifier"
 
-    def __init__(self, output_path, add_error):
-        self.add_error = add_error
+    def __init__(self, output_path):
         self.output_path = output_path
 
         self.written_elements = []
+        self.errors = []
 
-    def log_error(self, msg):
-        self.add_error(self.output_path, msg)
+    def add_error(self, error):
+        self.errors.append(error)
 
     def write(self, elements):
         buff = Buffer()
         for _, el in elements.items():
             self.correct_idtf(buff, el)
 
-        buff = Buffer()
         self.process_elements(elements, buff, 0)
 
         file = open(self.output_path, "w")
         file.write(buff.value)
         file.close()
+
+        return self.errors
 
     def process_elements(self, elements, buffer, parent, nested_level=0):
 
@@ -306,13 +308,13 @@ class SCsWriter:
                     if src_el["tag"] == "bus":
                         src_el = elements[src_el["node_id"]]
                 except KeyError:
-                    self.log_error("Can't find source element with id {}".format(src_id))
+                    self.add_error("Can't find source element with id {}".format(src_id))
                     continue
 
                 try:
                     trg_el = elements[trg_id]
                 except KeyError:
-                    self.log_error("Can't find target element with id {}".format(trg_id))
+                    self.add_error("Can't find target element with id {}".format(trg_id))
                     continue
 
                 edge_type = e["type"]
@@ -324,9 +326,10 @@ class SCsWriter:
                         scs_edge_type = UnsupportedEdgeTypes[edge_type]
                         is_unsupported = True
                     except KeyError:
-                        msg = "Edge type `{}` is unknown. Please add it into EdgeTypes or into UnsupportedEdgeTypes".format(
-                            edge_type)
-                        self.log_error(msg)
+                        msg = "Edge type `{}` is unknown. " \
+                              "Please add it into EdgeTypes or into UnsupportedEdgeTypes"\
+                            .format(edge_type)
+                        self.add_error(msg)
                         buffer.write("// {}".format(msg))
                         continue
 
@@ -346,16 +349,16 @@ class SCsWriter:
                 try:
                     src_el = elements[e["source"]]
                 except KeyError:
-                    self.log_error("Can't find source element with id {}".format(e["source"]))
+                    self.add_error("Can't find source element with id {}".format(e["source"]))
                     continue
 
                 try:
                     trg_el = elements[e["target"]]
                 except KeyError:
-                    self.log_error("Can't find target element with id {}".format(e["target"]))
+                    self.add_error("Can't find target element with id {}".format(e["target"]))
                     continue
 
-                self.log_error("Wasn't able to create edge: {}->{}".format(src_el["idtf"], trg_el["idtf"]))
+                self.add_error("Wasn't able to create edge: {}->{}".format(src_el["idtf"], trg_el["idtf"]))
 
     def write_contour(self, buffer, el, elements, nested_level):
         el_id = el["id"]
@@ -376,37 +379,35 @@ class SCsWriter:
             idtf = el["idtf"]
 
             try:
-                set = NodeTypeSets[el_type]
+                node_set = NodeTypeSets[el_type]
                 buffer.write(idtf)
 
-                for s in set:
+                for s in node_set:
                     buffer.write("\n  <- {}".format(s))
                 buffer.write(";;\n")
 
             except KeyError:
                 try:
-                    set = UnsupportedNodeTypeSets[el_type]
+                    node_set = UnsupportedNodeTypeSets[el_type]
                     buffer.write(idtf)
 
-                    for s in set:
+                    for s in node_set:
                         buffer.write("\n  <- {}".format(s))
                     buffer.write(";;\n")
                 except KeyError:
                     msg = "Node type `{}` is not supported. Please add it into NodeTypeSets".format(el_type)
                     buffer.write("// {}".format(msg))
-                    self.log_error(msg)
+                    self.add_error(msg)
                     return
 
         else:
             self.write_link(buffer, el)
 
     def write_link(self, buffer, el):
-
         content = el["content"]
         content_type = content["type"]
         content_data = content["data"]
 
-        write_content = ""
         is_url = False
         is_image = False
         image_format = ''
@@ -418,7 +419,6 @@ class SCsWriter:
         elif content_type == 3:
             write_content = '"float:{}"'.format(content_data)
         elif content_type == 4:
-            # print(path.split(self.output_path)[0])
             write_content = path.split(self.output_path)[0] + "/" + content["file_name"]
             f = open(write_content, "wb")
             f.write(content_data)
@@ -432,7 +432,7 @@ class SCsWriter:
         else:
             msg = "Content type {} is not supported".format(content_type)
             buffer.write("// {}".format(msg))
-            self.log_error(msg)
+            self.add_error(msg)
             return
 
         alias = self.make_alias("link", el["id"])
