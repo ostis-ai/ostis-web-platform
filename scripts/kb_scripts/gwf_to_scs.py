@@ -8,66 +8,68 @@ from tqdm import tqdm
 from support_scripts.gwf_parser import GWFParser
 from support_scripts.scs_writer import SCsWriter
 
+
 class Gwf2SCs:
 
-  def __init__(self):
-    self.errors = []
+    def __init__(self):
+        self.errors = []
 
-  def collect_files(self, directory):
-    result = []
+    def collect_files(self, directory):
+        result = []
 
-    for root, _, files in os.walk(directory, topdown=False):
-      for f in files:
-        result.append(os.path.relpath(os.path.join(root, f), directory))
-      
-    return result
+        for root, _, files in os.walk(directory, topdown=False):
+            for f in files:
+                result.append(os.path.relpath(os.path.join(root, f), directory))
 
-  def run(self, params):
-    input = params.input
+        return result
 
-    files = self.collect_files(input)
-    print (colored("Collected ", "white") + colored(len(files), "green") + colored(" files"))
+    def run(self, params):
+        input = params.input
 
-    for f in tqdm(files):
-      _, ext = os.path.splitext(f)
-      if ext.lower() == '.gwf':
-        file = os.path.join(input, f)
-        self.convert_file(file, os.path.splitext(file)[0] + ".scs")
+        files = self.collect_files(input)
+        print(colored("Collected ", "white") + colored(len(files), "green") + colored(" files"))
 
-  def convert_file(self, input_path, output_path):
-    parser = GWFParser(self.add_error)
-    elements = parser.parse(input_path)
+        for f in tqdm(files):
+            _, ext = os.path.splitext(f)
+            if ext.lower() == '.gwf':
+                file = os.path.join(input, f)
+                self.convert_file(file, os.path.splitext(file)[0] + ".scs")
 
-    dir_name = os.path.dirname(output_path)
-    if not os.path.isdir(dir_name):
-      os.makedirs(dir_name)
+    def convert_file(self, input_path, output_path):
+        parser = GWFParser(self.add_error)
+        elements = parser.parse(input_path)
 
-    if elements is not None:
-      writer = SCsWriter(output_path, self.add_error)
-      writer.write(elements)
+        dir_name = os.path.dirname(output_path)
+        if not os.path.isdir(dir_name):
+            os.makedirs(dir_name)
 
-  def add_error(self, file_name, msg):
-    self.errors.append((file_name, msg))
+        if elements is not None:
+            writer = SCsWriter(output_path, self.add_error)
+            writer.write(elements)
 
-  def check_status(self):
-    if len(self.errors) > 0:
-      print (colored("There are some errors during conversion:", "red"))
-      for e in self.errors:
-        f, msg = e
-        print (colored(f, "green") + ": " + colored(msg, "white"))
-      return False
-    else:
-      return True
+    def add_error(self, file_name, msg):
+        self.errors.append((file_name, msg))
+
+    def check_status(self):
+        if len(self.errors) > 0:
+            print(colored("There are some errors during conversion:", "red"))
+            for e in self.errors:
+                f, msg = e
+                print(colored(f, "green") + ": " + colored(msg, "white"))
+            return False
+        else:
+            return True
+
 
 if __name__ == "__main__":
-  parser = argparse.ArgumentParser(description='Converts directory with GWF files into SCs files')
-  parser.add_argument('input', action='store',
-                      help='Path to input directory, that contains gwf files')
-  args = parser.parse_args()
+    parser = argparse.ArgumentParser(description='Converts directory with GWF files into SCs files')
+    parser.add_argument('input', action='store',
+                        help='Path to input directory, that contains gwf files')
+    args = parser.parse_args()
 
-  converter = Gwf2SCs()
-  converter.run(args)
-  if converter.check_status():
-    sys.exit(0)
-  else:
-    sys.exit(1)
+    converter = Gwf2SCs()
+    converter.run(args)
+    if converter.check_status():
+        sys.exit(0)
+    else:
+        sys.exit(1)
