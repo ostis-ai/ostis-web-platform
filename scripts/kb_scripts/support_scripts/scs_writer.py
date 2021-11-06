@@ -1,4 +1,3 @@
-from os import write
 from os import path
 
 NodeTypeSets = {
@@ -178,12 +177,14 @@ class Buffer:
     def add_tabs(self, tabs_value):
         lines = self.value.splitlines(True)
         self.value = ""
+
         for l in lines:
             self.value += tabs_value + l
 
 
 class SCsWriter:
     kNrelSystemIdtf = "nrel_system_identifier"
+    kNrelMainIdtf = "nrel_main_identifier"
 
     def __init__(self, output_path, add_error):
         self.add_error = add_error
@@ -195,8 +196,9 @@ class SCsWriter:
         self.add_error(self.output_path, msg)
 
     def write(self, elements):
+        buff = Buffer()
         for _, el in elements.items():
-            self.correct_idtf(el)
+            self.correct_idtf(buff, el)
 
         buff = Buffer()
         self.process_elements(elements, buff, 0)
@@ -220,8 +222,9 @@ class SCsWriter:
             el_tag = el["tag"]
             el_id = el["id"]
 
-            if el_tag == "node":
-                self.write_node(buffer, el)
+            if el_tag == "node" or el_tag == "bus":
+                if el_tag == "node":
+                    self.write_node(buffer, el)
                 self.written_elements.append(el_id)
                 buffer.write("\n")
 
@@ -240,9 +243,18 @@ class SCsWriter:
         # write edges
         self.write_edges(buffer, edges_queue, elements)
 
-    def correct_idtf(self, el):
+    def correct_idtf(self, buffer, el):
         idtf = el["idtf"]
         is_var = self.is_variable(el["type"])
+
+        main_idtf = None
+        if not re.match(r"^[0-9a-zA-Z_]*$", idtf):
+            idtf = ""
+            if re.match(r"^[0-9a-zA-Z_*'..]*$", idtf):
+                main_idtf = el["idtf"]
+            else:
+                self.add_error("Identifier `{}` should match expression `^[0-9a-zA-Z_]*$`".format(idtf))
+
         if idtf is None or len(idtf) == 0:
             if is_var:
                 el["idtf"] = ".._el_{}".format(el["id"].replace("-", "_"))
@@ -255,16 +267,23 @@ class SCsWriter:
             if idtf.startswith("_"):
                 el["idtf"] = "{}".format(idtf[1:].replace("-", "_"))
 
-    def make_alias(self, prefix, id):
-        return "@{}_{}".format(prefix, id.replace("-", "_"))
+        if main_idtf is not None:
+            buffer.write("\n{}\n => {}: {};;\n".format(el["idtf"], self.kNrelMainIdtf, main_idtf))
 
-    def is_idtf_generated(self, idtf):
+    @staticmethod
+    def make_alias(prefix, element_id):
+        return "@{}_{}".format(prefix, element_id.replace("-", "_"))
+
+    @staticmethod
+    def is_idtf_generated(idtf):
         return idtf.startswith("..el_") or idtf.startswith(".._el_")
 
-    def is_variable(self, el_type):
+    @staticmethod
+    def is_variable(el_type):
         return "/var/" in el_type
 
-    def write_system_idtf(self, buffer, alias, idtf):
+    @staticmethod
+    def write_system_idtf(buffer, alias, idtf):
         buffer.write("{} => {}: [{}];;\n".format(alias, SCsWriter.kNrelSystemIdtf, idtf))
 
     def write_edges(self, buffer, edges_queue, elements):
@@ -284,6 +303,8 @@ class SCsWriter:
 
                 try:
                     src_el = elements[src_id]
+                    if src_el["tag"] == "bus":
+                        src_el = elements[src_el["node_id"]]
                 except KeyError:
                     self.log_error("Can't find source element with id {}".format(src_id))
                     continue

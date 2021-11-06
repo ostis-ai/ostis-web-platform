@@ -66,18 +66,13 @@ class GWFParser:
                         "data": data,
                     }
 
-                if not re.match(r"^[0-9a-zA-Z_]*$", el_idtf):
-                    self.add_error(input_path,
-                                   "Identifier `{}` should match expression `^[0-9a-zA-Z_]*$`".format(el_idtf))
-                    return None
-
                 result_el["content"] = content
 
             elif tag == "pair" or tag == "arc":
                 result_el["source"] = el.attrib["id_b"]
                 result_el["target"] = el.attrib["id_e"]
             elif tag == "bus":
-                pass
+                result_el["node_id"] = el.attrib["owner"]
             elif tag == "contour":
                 pass
 
