@@ -252,7 +252,7 @@ class SCsWriter:
         main_idtf = None
         if not re.match(r"^[0-9a-zA-Z_]*$", idtf):
             idtf = ""
-            if re.match(r"^[0-9a-zA-Z_*'..]*$", idtf):
+            if re.match(r"^[0-9a-zA-Z_*'.. ]*$", idtf):
                 main_idtf = el["idtf"]
             else:
                 self.add_error("Identifier `{}` should match expression `^[0-9a-zA-Z_]*$`".format(idtf))
