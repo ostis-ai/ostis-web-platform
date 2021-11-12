@@ -46,7 +46,7 @@ def main(work_directory):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) == 2:
+    if len(sys.argv) == 3:
         main(sys.argv[1])
     else:
         print("invalid number of arguments, Please specify only the work directory")
