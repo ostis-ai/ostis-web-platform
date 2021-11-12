@@ -1,6 +1,7 @@
 import argparse
 import os
 import sys
+from xml.etree.ElementTree import ParseError
 
 from termcolor import colored
 
@@ -59,8 +60,11 @@ class Gwf2SCs:
 
     @staticmethod
     def parse_gwf(input_path, elements):
-        gwf_parser = GWFParser(elements)
-        return gwf_parser.parse(input_path)
+        try:
+            gwf_parser = GWFParser(elements)
+            return gwf_parser.parse(input_path)
+        except (TypeError, ParseError) as e:
+            return e
 
     @staticmethod
     def convert_to_scs(output_path, elements):
