@@ -216,25 +216,25 @@ class SCsWriter:
 
         # generate nodes
         for _, el in elements.items():
-
             el_parent = int(el["parent"])
-            if el_parent != parent:
-                continue
 
             el_tag = el["tag"]
             el_id = el["id"]
 
             if el_tag == "node" or el_tag == "bus":
-                if el_tag == "node":
-                    self.write_node(buffer, el)
-                self.written_elements.append(el_id)
-                buffer.write("\n")
+                if parent == 0:
+                    if el_tag == "node":
+                        self.write_node(buffer, el)
+                    self.written_elements.append(el_id)
+                    buffer.write("\n")
 
             elif el_tag == "contour":
-                contours_queue.append(el)
+                if el_parent == parent:
+                    contours_queue.append(el)
 
             elif el_tag == "arc" or el_tag == "pair":
-                edges_queue.append(el)
+                if el_parent == parent:
+                    edges_queue.append(el)
 
         # write contours
         for c in contours_queue:
