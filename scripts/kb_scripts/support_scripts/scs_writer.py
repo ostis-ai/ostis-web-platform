@@ -370,7 +370,7 @@ class SCsWriter:
         buffer.write("{} = [*\n{}\n*];;\n".format(alias, contour_buff.value))
 
         idtf = el["idtf"]
-        if not self.is_idtf_generated(idtf):
+        if self.is_idtf_generated(idtf):
             self.write_system_idtf(buffer, alias, idtf)
 
     def write_node(self, buffer, el):
