@@ -366,10 +366,8 @@ class SCsWriter:
         self.process_elements(elements, contour_buff, int(el_id), nested_level + 1)
         contour_buff.add_tabs('    ' * (nested_level + 1))
 
-        alias = self.make_alias("contour", el_id)
-        buffer.write("{} = [*\n{}\n*];;\n".format(alias, contour_buff.value))
-
-        el["idtf"] = alias
+        self.correct_idtf(buffer, el)
+        buffer.write("{} = [*\n{}\n*];;\n".format(el["idtf"], contour_buff.value))
 
     def write_node(self, buffer, el):
         if el["content"]["type"] == 0:
