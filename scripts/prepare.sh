@@ -47,7 +47,7 @@ clone_project()
 
 stage "Clone projects"
 
-clone_project https://github.com/ostis-ai/sc-machine.git sc-machine 6b4e1e9
+clone_project https://github.com/ostis-ai/sc-machine.git sc-machine main
 clone_project https://github.com/ostis-ai/sc-web.git sc-web main
 clone_project https://github.com/ostis-ai/ims.ostis.kb.git ims.ostis.kb main
 
@@ -60,7 +60,9 @@ prepare()
 
 prepare "sc-machine"
 
-cd ../sc-machine/scripts
+cd ../sc-machine
+git submodule update --init --recursive
+cd scripts
 python3Version=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
 sed -i -e "s/python3.5-dev/python$python3Version-dev/" ./install_deps_ubuntu.sh
 sed -i -e "s/python3.5-dev/python$python3Version/" ./install_deps_ubuntu.sh
