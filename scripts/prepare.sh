@@ -47,9 +47,9 @@ clone_project()
 
 stage "Clone projects"
 
-clone_project https://github.com/ostis-ai/sc-machine.git sc-machine main
+clone_project https://github.com/NikitaZotov/sc-machine-1.git sc-machine fix/sc_template_search
 clone_project https://github.com/ostis-ai/sc-web.git sc-web main
-clone_project https://github.com/ostis-ai/ims.ostis.kb.git ims.ostis.kb main
+clone_project https://github.com/ostis-ai/ims.ostis.kb.git ims.ostis.kb minimum_required
 
 stage "Prepare projects"
 
