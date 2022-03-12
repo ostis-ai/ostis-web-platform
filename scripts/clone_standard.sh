@@ -15,7 +15,7 @@ clone_project()
 	fi
 }
 
-clone_project git@github.com:ostis-ai/ostis-standard.git ostis-standart master
+clone_project git@github.com:ostis-ai/ostis-standard.git ostis-standard master
 	if ! grep -q $standard_path ../repo.path ; then
                 echo "#standard" >> ../repo.path 
                 echo $standard_path >> ../repo.path
