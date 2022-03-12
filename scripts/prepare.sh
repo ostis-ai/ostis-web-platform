@@ -23,9 +23,9 @@ while [ "$1" != "" ]; do
 			build_sc_machine=0
 			build_kb=0
 			;;
-        "clone_standard" )
+		"clone_standard" )
 			clone_standard=1
-            build_kb=0
+			build_kb=0
 			;;
 	esac
 	shift
