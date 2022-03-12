@@ -1,6 +1,6 @@
 #!/bin/bash
 
-standart_path="ostis-standard/translated_scs"
+standard_path="ostis-standard/translated_scs"
 
 clone_project()
 {
