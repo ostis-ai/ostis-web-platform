@@ -80,7 +80,6 @@ cd scripts
 if (( $build_sc_machine == 1 )); then
 	./make_all.sh
 	cat ../bin/config.ini >> ../../config/sc-web.ini
-        cd ..
 fi
 cd ..
 
