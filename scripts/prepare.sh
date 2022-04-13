@@ -62,62 +62,48 @@ prepare "sc-machine"
 
 cd ../sc-machine
 git submodule update --init --recursive
+
+
 cd scripts
 python3Version=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
 sed -i -e "s/python3.5-dev/python$python3Version-dev/" ./install_deps_ubuntu.sh
 sed -i -e "s/python3.5-dev/python$python3Version/" ./install_deps_ubuntu.sh
 ./install_deps_ubuntu.sh
 
+
 cd ..
 pip3 install setuptools wheel
 pip3 install -r requirements.txt
 
-cd scripts
 
+cd scripts
 if (( $build_sc_machine == 1 )); then
 	./make_all.sh
 	cat ../bin/config.ini >> ../../config/sc-web.ini
+        cd ..
 fi
+cd ..
 
-prepare "sc-server web"
-sudo apt-get install -y curl
-sudo apt remove -y cmdtest
-
-nodeVersion=$(apt-cache policy nodejs | grep -oP "(?<=Candidate:\s)(.+)(?=)")
-if [[ "${nodeVersion}" =~ ^8\.10\.0~dfsg-2ubuntu0\.[3-9] ]] # 8.10.0~dfsg-2ubuntu0.3+ conflicts with libcurl4-openssl-dev
-then
-	sudo apt-get install -y nodejs=8.10.0~dfsg-2ubuntu0.2 nodejs-dev=8.10.0~dfsg-2ubuntu0.2
-else
-	sudo apt-get install -y nodejs
-fi
-
-if ! ( apt-cache search yarn | grep -m 1 "yarn\s" )
-then
-	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-	sudo apt-get update
-fi
-sudo apt-get install -y yarn
-
-cd ../web/client
-yarn && yarn run webpack-dev
-cd ../..
 
 prepare "sc-web"
 sudo yes | sudo pip3 install --default-timeout=100 future
 sudo apt-get install -y python-setuptools
+
+
 cd ../sc-web/scripts
 
 ./install_deps_ubuntu.sh
 ./install_nodejs_dependence.sh
 
+
 cd -
 cd ../sc-web
 npm install
 grunt build
-cd -
+
 echo -en $green"Copy server.conf"$rst"\n"
 cp -f ../config/server.conf ../sc-web/server/
+cd -
 
 
 if (( $build_kb == 1 )); then
@@ -125,4 +111,3 @@ if (( $build_kb == 1 )); then
 	cd ../scripts
 	./build_kb.sh
 fi
-
