@@ -76,14 +76,12 @@ pip3 install -r requirements.txt
 cd scripts
 if (( $build_sc_machine == 1 )); then
 	./make_all.sh
-	cat ../bin/config.ini >> ../../config/sc-web.ini
 fi
 cd ..
 
 
 prepare "sc-web"
 sudo yes | sudo pip3 install --default-timeout=100 future
-sudo apt-get install -y python-setuptools
 
 
 cd ../sc-web/scripts
