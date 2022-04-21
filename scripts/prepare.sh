@@ -95,11 +95,6 @@ cd ../sc-web
 npm install
 grunt build
 
-echo -en $green"Copy server.conf"$rst"\n"
-cp -f ../config/server.conf ../sc-web/server/
-cd -
-
-
 if (( $build_kb == 1 )); then
 	stage "Build knowledge base"
 	cd ../scripts
