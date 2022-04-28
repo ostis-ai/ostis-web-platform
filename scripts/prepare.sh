@@ -47,9 +47,9 @@ clone_project()
 
 stage "Clone projects"
 
-clone_project https://github.com/ostis-ai/sc-machine.git sc-machine main
-clone_project https://github.com/ostis-ai/sc-web.git sc-web main
-clone_project https://github.com/ostis-ai/ims.ostis.kb.git ims.ostis.kb main
+clone_project https://github.com/ostis-ai/sc-machine.git sc-machine 0.6.1
+clone_project https://github.com/ostis-ai/sc-web.git sc-web 0.6.1
+clone_project https://github.com/ostis-ai/ims.ostis.kb.git ims.ostis.kb 0.2.1
 
 stage "Prepare projects"
 
