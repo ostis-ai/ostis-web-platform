@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Set modules links to ostis-ai repos
+- Set sc-machine to 0.6.1
+- Set sc-web to 0.6.1
+- Set ims.ostis.kb to 0.2.1
 
 ### Removed
 - Remove yarn web interface build
