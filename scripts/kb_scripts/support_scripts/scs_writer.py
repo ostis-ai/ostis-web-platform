@@ -270,7 +270,10 @@ class SCsWriter:
                 el["idtf"] = "{}".format(idtf[1:].replace("-", "_"))
 
         if main_idtf is not None:
-            buffer.write("\n{}\n => {}: {};;\n".format(el["idtf"], self.kNrelMainIdtf, main_idtf))
+            if main_idtf.startswith("["):
+                buffer.write("\n{}\n => {}: {};;\n".format(el["idtf"], self.kNrelMainIdtf, main_idtf))
+            else:
+                buffer.write("\n{}\n => {}: [{}];;\n".format(el["idtf"], self.kNrelMainIdtf, main_idtf))
 
     @staticmethod
     def make_alias(prefix, element_id):
