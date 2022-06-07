@@ -13,6 +13,8 @@ st=1
 build_kb=1
 build_sc_machine=1
 
+set -eo pipefail
+
 while [ "$1" != "" ]; do
 	case $1 in
 		"no_build_kb" )
@@ -81,14 +83,12 @@ cd ..
 
 
 prepare "sc-web"
-sudo yes | sudo pip3 install --default-timeout=100 future
+pip3 install --default-timeout=100 future
 
 
 cd ../sc-web/scripts
 
 ./install_deps_ubuntu.sh
-./install_nodejs_dependence.sh
-
 
 cd -
 cd ../sc-web
