@@ -65,9 +65,6 @@ git submodule update --init --recursive
 
 
 cd scripts
-python3Version=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
-sed -i -e "s/python3.5-dev/python$python3Version-dev/" ./install_deps_ubuntu.sh
-sed -i -e "s/python3.5-dev/python$python3Version/" ./install_deps_ubuntu.sh
 ./install_deps_ubuntu.sh
 
 
@@ -79,14 +76,12 @@ pip3 install -r requirements.txt
 cd scripts
 if (( $build_sc_machine == 1 )); then
 	./make_all.sh
-	cat ../bin/config.ini >> ../../config/sc-web.ini
 fi
 cd ..
 
 
 prepare "sc-web"
 sudo yes | sudo pip3 install --default-timeout=100 future
-sudo apt-get install -y python-setuptools
 
 
 cd ../sc-web/scripts
@@ -99,11 +94,6 @@ cd -
 cd ../sc-web
 npm install
 grunt build
-
-echo -en $green"Copy server.conf"$rst"\n"
-cp -f ../config/server.conf ../sc-web/server/
-cd -
-
 
 if (( $build_kb == 1 )); then
 	stage "Build knowledge base"
