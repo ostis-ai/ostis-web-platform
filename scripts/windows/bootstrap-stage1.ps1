@@ -93,10 +93,6 @@ if (!(Test-FirewallRule -Name "scweb")){
     Add-FirewallPortRule -Name "scweb" -Port 8000
 }
 
-if (!(Test-FirewallRule -Name "sctp")){
-    Add-FirewallPortRule -Name "sctp" -Port 55770
-}
-
 if ($restart){
 	write-host "Your computer needs to be restarted to finish installing prerequisite software"
 	write-host "Installation will continue after a reboot"
