@@ -93,7 +93,7 @@ cd ../sc-web/scripts
 cd -
 cd ../sc-web
 npm install
-grunt build
+npm run build
 
 if (( $build_kb == 1 )); then
 	stage "Build knowledge base"
