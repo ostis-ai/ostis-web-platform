@@ -5,8 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Changed
-- Fix gwf-parser. Add opportunity to parse russian identifiers.
+### Breaking actions
+- Connect sc-web with sc-server instead of removed sctp-server
+- Remove sctp-server scripts from projects that use ostis-web-platform
 
 ### Removed
 - Remove sctp-server scripts
