@@ -20,6 +20,11 @@ jobs:
         run: |
           sudo apt-get update
 
+      - name: Restore build caches
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: ${{ github.job }}
+
       - name: Preparing platform
         run: |
           cd scripts
