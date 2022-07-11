@@ -1,0 +1,3 @@
+[submodule "tools/tex2scs-translator"]
+	path = tools/tex2scs-translator
+	url = https://github.com/ostis-ai/tex2scs-translator
