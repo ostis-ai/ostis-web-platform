@@ -11,3 +11,5 @@ prepared_kb
 *.*~
 .idea
 __pycache__
+
+tools/*
