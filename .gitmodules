@@ -1,0 +1,3 @@
+[submodule "scp-machine"]
+	path = scp-machine
+	url = https://github.com/ostis-ai/scp-machine
