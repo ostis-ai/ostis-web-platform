@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Connect sc-web with sc-server instead of removed sctp-server
 - Remove sctp-server scripts from projects that use ostis-web-platform
 
+### Changed
+- Unify config file for sc-server and sc-builder
+
 ### Removed
 - Remove sctp-server scripts
 
