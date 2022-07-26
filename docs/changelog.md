@@ -5,13 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Breaking actions
+- Remove sctp-server scripts from projects that use ostis-web-platform
+- Use py-sc-client and ts-sc-client for sc-server instead of sctp-clients for sctp-server
+
 ### Added
 - Add latex documentation from OSTIS Standard
 - Add CI
-
-### Breaking actions
-- Connect sc-web with sc-server instead of removed sctp-server
-- Remove sctp-server scripts from projects that use ostis-web-platform
 
 ### Changed
 - Unify config file for sc-server and sc-builder
