@@ -12,7 +12,7 @@ prepared_kb
 .idea
 __pycache__
 
-
+latex/scn
 # texstudio
 *.aux
 *.bcf
