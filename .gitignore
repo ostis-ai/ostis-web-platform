@@ -11,3 +11,13 @@ prepared_kb
 *.*~
 .idea
 __pycache__
+
+latex/scn
+# texstudio
+*.aux
+*.bcf
+*.idx
+*.log
+*.run.xml
+*.synctex.gz
+
