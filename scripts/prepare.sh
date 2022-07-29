@@ -93,6 +93,8 @@ cd ../sc-web/scripts
 
 cd -
 cd ../sc-web
+pip3 install -r requirements.txt
+
 npm install
 npm run build
 
