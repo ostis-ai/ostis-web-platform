@@ -68,7 +68,7 @@ git submodule update --init --recursive
 
 
 cd scripts
-./install_deps_ubuntu.sh
+./install_deps_ubuntu.sh --dev
 
 
 cd ..
@@ -89,10 +89,12 @@ pip3 install --default-timeout=100 future
 
 cd ../sc-web/scripts
 
-./install_deps_ubuntu.sh
+./install_deps_ubuntu.sh --dev
 
 cd -
 cd ../sc-web
+pip3 install -r requirements.txt
+
 npm install
 npm run build
 
