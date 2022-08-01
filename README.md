@@ -48,7 +48,7 @@ To do that, run docker image:
 cd ostis-web-platform/docs/scn/
 docker run -v </full/path/to/ostis-web-platform>:/workdir ostis/scntex-builder 'cd docs && pdflatex -interaction=nonstopmode main.tex'
 ```
-After the compilation, the `main.pdf` file should appear at `ostis-web-platform/latex/`.
+After the compilation, the `main.pdf` file should appear at `ostis-web-platform/docs/`.
 
 Alternatively, you can use any LaTeX distribution to build and view the documentation, but you will have to install all
 dependencies manually.
