@@ -1,17 +1,12 @@
-\documentclass{scn/svmono}
+\documentclass{scndocument}
 
 \usepackage{import}
-\usepackage[normalem]{ulem}
+\usepackage{scn}
 
-\renewcommand{\ULdepth}{1.8pt}
-
-\pagenumbering{arabic}
-
-\usepackage{scn/scn}
+\addbibresource{bibliography/biblio.bib}
 
 \begin{document}
 
-\selectlanguage{russian}
 \DeactivateBG
 \title{\centering
 Документация программного варианта реализации платформы интерпретации sc-моделей компьютерных систем}
@@ -25,5 +20,6 @@
 \ActivateBG
 \begin{SCn}
 \input{ostis\_web\_platform}
+\input{bibliography/biblio}
 \end{SCn}
 \end{document}
