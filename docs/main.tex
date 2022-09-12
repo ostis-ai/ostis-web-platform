@@ -1,94 +1,13 @@
-\documentclass[graybox,envcountchap,sectrefs]{scn/svmono}
+\documentclass{scn/svmono}
 
 \usepackage{import}
-\usepackage{mathptmx}
-\usepackage{helvet}
-\usepackage{courier}
-\usepackage{type1cm}         
-\usepackage{setspace}
-
-\usepackage{xparse} 
-\usepackage[table]{xcolor}
-\usepackage{enumitem} 
-\usepackage{mathtools}
-\usepackage{ragged2e}
-\usepackage{float}
-\usepackage{amssymb}
-\usepackage[algo2e]{algorithm2e}
-\usepackage{algorithm}
-\usepackage{titlesec}
-\usepackage[tracking=true]{microtype}
-\usepackage{changepage}
-\usepackage{trimspaces}
-\usepackage{bm}
-\usepackage{datetime}
-\usepackage{suffix}
-\usepackage{nameref}
-\usepackage[framemethod=TikZ]{mdframed}
 \usepackage[normalem]{ulem}
-\usepackage{longtable}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 
 \renewcommand{\ULdepth}{1.8pt}
 
-\usepackage{makeidx}         % allows index generation
-\usepackage{graphicx}        % standard LaTeX graphics tool
-% when including figure files
-\graphicspath{{Figures/}}
-\usepackage{multicol}        % used for the two-column index
-\usepackage[bottom]{footmisc}% places footnotes at page bottom
-
-\usepackage[english,russian]{babel}
-
-\babelhyphenation{иден-ти-фи-ка-то-ры}
-
-% Курсив и жирность для кириллицы
-\usepackage{substitutefont}
-
-\substitutefont{T2A}{\familydefault}{Tempora-TLF}
-\makeatletter
-\input{t2atempora-tlf.fd}
-\DeclareFontShape{T2A}{Tempora-TLF}{m}{sc}{
-	<-> ssub * Tempora-TLF/m/n
-}{}
-
-
-% see the list of further useful packages
-% in the Reference Guide
-
-\makeindex             % used for the subject index
-% please use the style svind.ist with
-% your makeindex program
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\renewcommand\headrulewidth{0pt}
-\lhead{}\chead{\hspace{14.5em}{\normalfont\thepage}}\rhead{}
-\cfoot{}
-%\pagenumbering{arabic}
-%\fancypagestyle{plain}{}
-%	\fancyfoot[C]{\thepage}}
-%\pagestyle{plain}
-
-\usepackage{geometry}
-\geometry{
-a4paper,
-left=20mm,
-right=20mm,
-top=20mm,
-bottom=15mm,
-%textwidth=117mm,
-%textheight=191mm,
-heightrounded, % <- I recommend this
-hratio=1:1,
-vratio=1:1,
-}
+\pagenumbering{arabic}
 
 \usepackage{scn/scn}
-\addbibresource{../docs/bibliography/biblio.bib}
 
 \begin{document}
 
@@ -96,6 +15,7 @@ vratio=1:1,
 \DeactivateBG
 \title{\centering
 Документация программного варианта реализации платформы интерпретации sc-моделей компьютерных систем}
+\author{}
 \maketitle
 
 \normalsize
@@ -103,15 +23,7 @@ vratio=1:1,
 \setcounter{page}{3}
 
 \ActivateBG
-
-\addtocounter{chapter}{-1}
-
 \begin{SCn}
-\subimport{}{ostis_web_platform}
-\input{bibliography/biblio}
+\input{ostis\_web\_platform}
 \end{SCn}
-
-
-\backmatter
-
 \end{document}
