@@ -18,10 +18,37 @@ processing with tools to interact with it;
 # Installation
 ## Using Docker
 You will need [Docker](https://docs.docker.com/get-docker/) installed and running on your machine.
+
 ```sh
+git clone https://github.com/ostis-ai/ostis-web-platform
 cd ostis-web-platform
 docker compose pull
 ```
+
+<details> 
+<summary> Building images locally </summary>
+
+e.g. when you want to launch a custom branch of sc-machine/sc-web
+#### Requirements
+1. **If you're using Windows**, please make sure you are using UNIX line endings inside the repository and `longpaths` are enabled:
+   ```
+   git config --local core.autocrlf true
+   git config --local core.longpaths true
+   git add --normalize .
+   ```
+2. Enable Docker BuildKit. You can use `DOCKER_BUILDKIT=1` shell variable for this.
+
+```sh
+git clone https://github.com/ostis-ai/ostis-web-platform
+git submodule update --init --recursive
+cd scripts
+./prepare.sh no_build_sc_web no_build_sc_web no_build_kb # download all submodules (without compilation)
+cd ..
+docker compose build
+```
+</details>
+
+
 
 
 ## Natively
