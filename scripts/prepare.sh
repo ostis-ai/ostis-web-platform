@@ -12,6 +12,7 @@ st=1
 
 build_kb=1
 build_sc_machine=1
+build_sc_web=1
 
 set -eo pipefail
 
@@ -24,6 +25,8 @@ while [ "$1" != "" ]; do
 			build_sc_machine=0
 			build_kb=0
 			;;
+		"no_build_sc_web" )
+			build_sc_web=0
 	esac
 	shift
 done
@@ -66,7 +69,7 @@ prepare "sc-machine"
 cd ../sc-machine
 git submodule update --init --recursive
 
-
+if (( $build_sc_machine == 1 )); then
 cd scripts
 ./install_deps_ubuntu.sh --dev
 
@@ -77,13 +80,13 @@ pip3 install -r requirements.txt
 
 
 cd scripts
-if (( $build_sc_machine == 1 )); then
 	./make_all.sh
 fi
 cd ..
 
 
 prepare "sc-web"
+if (( $build_sc_web == 1 )); then
 pip3 install --default-timeout=100 future
 
 
@@ -97,6 +100,7 @@ pip3 install -r requirements.txt
 
 npm install
 npm run build
+fi
 
 if (( $build_kb == 1 )); then
 	stage "Build knowledge base"
