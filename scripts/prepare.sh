@@ -50,6 +50,8 @@ clone_project()
 	fi
 }
 
+git submodule update --init --recursive
+
 stage "Clone projects"
 
 clone_project https://github.com/ostis-ai/sc-machine.git sc-machine 0.6.1
