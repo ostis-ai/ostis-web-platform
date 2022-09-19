@@ -1,0 +1,46 @@
+services:
+  web:
+    image: ostis/sc-web
+    build:
+      context: ./sc-web
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    networks:
+      - sc-machine
+    command:
+      - "--server-host=machine"
+    depends_on:
+      machine:
+        condition: service_healthy
+
+  machine:
+    image: ostis/sc-machine
+    build:
+      context: ./sc-machine
+    restart: unless-stopped
+    volumes:
+      - ./:/kb
+      - kb-binary:/kb.bin
+    networks:
+      - sc-machine
+    ports:
+      - "8090:8090"
+    healthcheck:
+      test: "python3 /sc-machine/scripts/healthcheck.py"
+      interval: 5s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    environment:
+      # Use the commented env variable if you need to rebuild KB every startup.
+      #- "REBUILD_KB=1"
+      - "KB_PATH=/kb/repo.path"
+    command:
+      - "serve"
+
+volumes:
+  kb-binary: {}
+
+networks:
+  sc-machine: {}
