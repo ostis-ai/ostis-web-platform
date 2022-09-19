@@ -91,10 +91,10 @@ We're providing a Docker image to build the documentation.
 
 To do that, run docker image:
 ```sh
-docker run -v <path/to/ostis-web-platform/>:/workdir ostis/scntex-builder 'cd docs && pdflatex -interaction=nonstopmode main.tex'
+docker run -v </full/path/to/ostis-web-platform>:/workdir ostis/scn-latex-plugin:latest docs/main.tex
 ```
-
 After the compilation, the `main.pdf` file should appear at `ostis-web-platform/docs/`.
 
 Alternatively, you can use any LaTeX distribution to build and view the documentation, but you will have to install all
-dependencies manually.
+dependencies manually. We use own LaTeX plugin as a submodule, to build docs natively you can read more about usage of 
+this plugin [here](https://github.com/ostis-ai/scn-latex-plugin).
