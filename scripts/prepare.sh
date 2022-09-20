@@ -1,13 +1,5 @@
 #!/bin/bash
 
-red="\e[1;31m"  # Red B
-blue="\e[1;34m" # Blue B
-green="\e[0;32m"
-
-bwhite="\e[47m" # white background
-
-rst="\e[0m"     # Text reset
-
 st=1
 
 build_kb=1
@@ -33,24 +25,22 @@ done
 
 stage()
 {
-	echo -en "$green[$st] "$blue"$1...$rst\n"
+	echo -en "[$1]\n"
 	let "st += 1"
 }
 
 clone_project()
 {
 	if [ ! -d "../$2" ]; then
-		echo -en $green"Clone $2$rst\n"
-		git clone $1 ../$2
-		cd ../$2
-		git checkout $3
+		printf "Clone %s\n" "$1"
+		git clone "$1" ../"$2"
+		cd ../"$2"
+		git checkout "$3"
 		cd -
 	else
-		echo -en "You can update "$green"$2"$rst" manualy$rst\n"
+		echo -e "You can update $2 manualy\n"
 	fi
 }
-
-git submodule update --init --recursive
 
 stage "Clone projects"
 
@@ -58,19 +48,19 @@ clone_project https://github.com/ostis-ai/sc-machine.git sc-machine 0.6.1
 clone_project https://github.com/ostis-ai/sc-web.git sc-web 0.6.1
 clone_project https://github.com/ostis-ai/ims.ostis.kb.git ims.ostis.kb 0.2.1
 
+git submodule update --init --recursive
+
 stage "Prepare projects"
 
 prepare()
 {
-	echo -en $green$1$rst"\n"
+	echo -en "$1\n"
 }
 
+if (( $build_sc_machine == 1 )); then
 prepare "sc-machine"
 
 cd ../sc-machine
-git submodule update --init --recursive
-
-if (( $build_sc_machine == 1 )); then
 cd scripts
 ./install_deps_ubuntu.sh --dev
 
@@ -86,8 +76,8 @@ cd ..
 fi
 
 
-prepare "sc-web"
 if (( $build_sc_web == 1 )); then
+prepare "sc-web"
 pip3 install --default-timeout=100 future
 
 
