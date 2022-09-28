@@ -82,8 +82,8 @@ pip3 install -r requirements.txt
 
 cd scripts
 	./make_all.sh
-fi
 cd ..
+fi
 
 
 prepare "sc-web"
