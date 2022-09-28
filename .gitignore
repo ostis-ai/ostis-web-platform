@@ -12,11 +12,14 @@ prepared_kb
 .idea
 __pycache__
 
-latex/scn
 # texstudio
 *.aux
 *.bcf
 *.idx
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
 *.log
 *.run.xml
 *.synctex.gz
