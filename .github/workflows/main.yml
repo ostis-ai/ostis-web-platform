@@ -9,8 +9,13 @@ on:
 
 jobs:
   build:
-    name: Prepare
-    runs-on: ubuntu-latest
+    name: Prepare on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+        fail-fast: false
+        matrix:
+          os: [ ubuntu-20.04, ubuntu-22.04 ]
 
     steps:
       - name: Checkout
