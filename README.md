@@ -10,7 +10,7 @@ OSTIS Web platform contains:
 2. [Knowledge processing machine](https://github.com/ostis-ai/sc-machine) with semantic network storage and agent-based knowledge processing
 3. [Web-oriented semantic interface](https://github.com/ostis-ai/sc-web) for users to interact with the intelligent system.
 
-To learn more about the platform, check out our [documentation](https://raw.githubusercontent.com/ostis-ai/ostis-web-platform/develop/docs/main.pdf).
+To learn more about the platform, check out our [documentation](https://github.com/ostis-ai/ostis-web-platform/blob/develop/docs/main.pdf).
 
 ## Installation
 
