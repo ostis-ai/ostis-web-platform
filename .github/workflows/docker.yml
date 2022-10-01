@@ -1,0 +1,33 @@
+name: Docker
+
+on:
+  pull_request:
+    branches: [ develop, main, release/** ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build and Run
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Update
+        run: |
+          sudo apt-get update
+
+      - name: Build the Docker compose
+        run: |
+          docker compose pull
+          git submodule update --init --recursive
+          docker compose run machine build
+
+      - name: Run the Docker compose
+        run: |
+          docker compose up -d --wait
