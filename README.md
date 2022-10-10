@@ -127,7 +127,7 @@ cd ostis-web-platform/scripts
   docker run -v ${PWD}:/workdir --rm -it ostis/scn-latex-plugin:latest "docs/main.tex"
   ```
 
-  After the compilation, the `main.pdf` file should appear at `ostis-web-platform/docs/`. You can find more information about docs building [here](https://github.com/ostis-ai/scn-latex-plugin).
+  After the compilation, the `main.pdf` file should appear at `ostis-web-platform/docs/`. You can find more information about [scn-latex-plugin here](https://github.com/ostis-ai/scn-latex-plugin).
 
 ## Feedback
 
