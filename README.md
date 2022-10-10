@@ -117,7 +117,7 @@ cd ostis-web-platform/scripts
 
   ```sh
   cd ostis-web-platform/docs
-  latexmk -pdf -bibtex main.tex
+  TEXINPUTS=./scn: latexmk -pdf -bibtex main.tex
   ```
 
 - ### Build steps (using Docker)
@@ -127,7 +127,7 @@ cd ostis-web-platform/scripts
   docker run -v ${PWD}:/workdir --rm -it ostis/scn-latex-plugin:latest "docs/main.tex"
   ```
 
-  After the compilation, the `main.pdf` file should appear at `ostis-web-platform/docs/`.
+  After the compilation, the `main.pdf` file should appear at `ostis-web-platform/docs/`. You can find more information about docs building [here](https://github.com/ostis-ai/scn-latex-plugin).
 
 ## Feedback
 
