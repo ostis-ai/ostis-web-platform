@@ -1,3 +1,7 @@
 [submodule "docs/scn"]
 	path = docs/scn
 	url = https://github.com/ostis-ai/scn-latex-plugin
+[submodule "ims.ostis.kb"]
+	path = ims.ostis.kb
+	url = https://github.com/ostis-ai/ims.ostis.kb
+	branch = main
