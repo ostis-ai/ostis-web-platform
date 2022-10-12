@@ -16,6 +16,19 @@ To learn more about the platform, check out our [documentation](https://github.c
 
 - Quick start using Docker Compose
 
+  <details>
+  
+  <summary><b>Additional steps for Windows users</b></summary>
+
+  Make sure you are using UNIX line endings inside the repository and `longpaths` are enabled, otherwise you may face problems during build or installation process. Use the commands below to reconfigure Git on your machine:
+
+    ```sh
+    git config --global core.autocrlf input
+    git config --global core.longpaths true
+    ```
+
+  </details>
+
   Requirements: you will need [Docker](https://docs.docker.com/get-docker/) installed and running on your machine.
 
   ```sh
@@ -23,6 +36,8 @@ To learn more about the platform, check out our [documentation](https://github.c
   cd ostis-web-platform
   # download images from Docker Hub
   docker compose pull
+  # download KB and LaTeX docs plugin
+  git submodule update --init --recursive
   # build knowledge base
   docker compose run machine build
   # launch web platform stack
@@ -34,17 +49,10 @@ To learn more about the platform, check out our [documentation](https://github.c
 
   This may come in handy e.g. when you want to use a custom branch of the sc-machine or sc-web.
 
-  ### Requirements
+  ### Requirements:
 
-  1.  **If you're using Windows**, please make sure you are using UNIX line endings inside the repository and `longpaths` are enabled:
-
-      ```
-      git config --local core.autocrlf true
-      git config --local core.longpaths true
-      git add --renormalize .
-      ```
-
-  2.  Enable Docker BuildKit. You can use `DOCKER_BUILDKIT=1` shell variable for this.
+  1. In case you're using Windows, set up git using the installation instructions above
+  2. Enable Docker BuildKit. You can use `DOCKER_BUILDKIT=1` shell variable for this.
 
   ### Build process
 
