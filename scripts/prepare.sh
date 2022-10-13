@@ -60,6 +60,7 @@ if (( $build_sc_machine == 1 )); then
 prepare "sc-machine"
 
 cd ../sc-machine
+git submodule update --init --recursive
 cd scripts
 ./install_deps_ubuntu.sh --dev
 
