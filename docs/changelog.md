@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
-## [0.7.0-Rebirth] - 12.10.2022
+## [0.7.0-Rebirth] - 13.10.2022
 ### Breaking actions
 - Remove sctp-server scripts from projects that use ostis-web-platform
 - Use py-sc-client and ts-sc-client for sc-server instead of sctp-clients for sctp-server
