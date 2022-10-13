@@ -1,6 +1,6 @@
 services:
   web:
-    image: ostis/sc-web
+    image: ostis/sc-web:0.7.0-Rebirth
     build:
       context: ./sc-web
     restart: unless-stopped
@@ -15,7 +15,7 @@ services:
         condition: service_healthy
 
   machine:
-    image: ostis/sc-machine
+    image: ostis/sc-machine:0.7.0-Rebirth
     build:
       context: ./sc-machine
     restart: unless-stopped
