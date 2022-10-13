@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use py-sc-client and ts-sc-client for sc-server instead of sctp-clients for sctp-server
 
 ### Added
+- Add docker CI
 - Add latex documentation from OSTIS Standard
 - Add CI
 
