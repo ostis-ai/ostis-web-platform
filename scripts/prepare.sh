@@ -46,7 +46,6 @@ stage "Clone projects"
 
 clone_project https://github.com/ostis-ai/sc-machine.git sc-machine main
 clone_project https://github.com/ostis-ai/sc-web.git sc-web main
-clone_project https://github.com/ostis-ai/ims.ostis.kb.git ims.ostis.kb main
 
 git submodule update --init --recursive
 
@@ -61,6 +60,7 @@ if (( $build_sc_machine == 1 )); then
 prepare "sc-machine"
 
 cd ../sc-machine
+git submodule update --init --recursive
 cd scripts
 ./install_deps_ubuntu.sh --dev
 
