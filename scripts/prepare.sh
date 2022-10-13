@@ -1,17 +1,12 @@
 #!/bin/bash
 
-red="\e[1;31m"  # Red B
-blue="\e[1;34m" # Blue B
-green="\e[0;32m"
-
-bwhite="\e[47m" # white background
-
-rst="\e[0m"     # Text reset
-
 st=1
 
 build_kb=1
 build_sc_machine=1
+build_sc_web=1
+
+set -eo pipefail
 
 while [ "$1" != "" ]; do
 	case $1 in
@@ -22,53 +17,52 @@ while [ "$1" != "" ]; do
 			build_sc_machine=0
 			build_kb=0
 			;;
+		"no_build_sc_web" )
+			build_sc_web=0
 	esac
 	shift
 done
 
 stage()
 {
-	echo -en "$green[$st] "$blue"$1...$rst\n"
+	echo -en "[$1]\n"
 	let "st += 1"
 }
 
 clone_project()
 {
 	if [ ! -d "../$2" ]; then
-		echo -en $green"Clone $2$rst\n"
-		git clone $1 ../$2
-		cd ../$2
-		git checkout $3
+		printf "Clone %s\n" "$1"
+		git clone "$1" ../"$2"
+		cd ../"$2"
+		git checkout "$3"
 		cd -
 	else
-		echo -en "You can update "$green"$2"$rst" manualy$rst\n"
+		echo -e "You can update $2 manualy\n"
 	fi
 }
 
 stage "Clone projects"
 
-clone_project https://github.com/ostis-ai/sc-machine.git sc-machine 0.6.1
-clone_project https://github.com/ostis-ai/sc-web.git sc-web 0.6.1
-clone_project https://github.com/ostis-ai/ims.ostis.kb.git ims.ostis.kb 0.2.1
+clone_project https://github.com/ostis-ai/sc-machine.git sc-machine release/0.7.0-Rebirth
+clone_project https://github.com/ostis-ai/sc-web.git sc-web release/0.7.0-Rebirth
+
+git submodule update --init --recursive
 
 stage "Prepare projects"
 
 prepare()
 {
-	echo -en $green$1$rst"\n"
+	echo -en "$1\n"
 }
 
+if (( $build_sc_machine == 1 )); then
 prepare "sc-machine"
 
 cd ../sc-machine
 git submodule update --init --recursive
-
-
 cd scripts
-python3Version=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
-sed -i -e "s/python3.5-dev/python$python3Version-dev/" ./install_deps_ubuntu.sh
-sed -i -e "s/python3.5-dev/python$python3Version/" ./install_deps_ubuntu.sh
-./install_deps_ubuntu.sh
+./install_deps_ubuntu.sh --dev
 
 
 cd ..
@@ -77,33 +71,27 @@ pip3 install -r requirements.txt
 
 
 cd scripts
-if (( $build_sc_machine == 1 )); then
 	./make_all.sh
-	cat ../bin/config.ini >> ../../config/sc-web.ini
-fi
 cd ..
+fi
 
 
+if (( $build_sc_web == 1 )); then
 prepare "sc-web"
-sudo yes | sudo pip3 install --default-timeout=100 future
-sudo apt-get install -y python-setuptools
+pip3 install --default-timeout=100 future
 
 
 cd ../sc-web/scripts
 
-./install_deps_ubuntu.sh
-./install_nodejs_dependence.sh
-
+./install_deps_ubuntu.sh --dev
 
 cd -
 cd ../sc-web
+pip3 install -r requirements.txt
+
 npm install
-grunt build
-
-echo -en $green"Copy server.conf"$rst"\n"
-cp -f ../config/server.conf ../sc-web/server/
-cd -
-
+npm run build
+fi
 
 if (( $build_kb == 1 )); then
 	stage "Build knowledge base"

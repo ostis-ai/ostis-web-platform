@@ -2,7 +2,6 @@ kb.bin
 sc-machine
 scp-machine
 sc-web
-ims.ostis.kb
 ims.ostis.kb_copy
 geometry.drawings
 web-scn-editor
@@ -11,3 +10,16 @@ prepared_kb
 *.*~
 .idea
 __pycache__
+
+# texstudio
+*.aux
+*.bcf
+*.idx
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.run.xml
+*.synctex.gz
+
