@@ -5,3 +5,6 @@
 	path = ims.ostis.kb
 	url = https://github.com/ostis-ai/ims.ostis.kb
 	branch = main
+[submodule "scl-machine"]
+	path = scl-machine
+	url = https://github.com/ostis-ai/scl-machine
