@@ -6,6 +6,9 @@ ims.ostis.kb_copy
 geometry.drawings
 web-scn-editor
 prepared_kb
+build
+bin
+.cache
 
 *.*~
 .idea
