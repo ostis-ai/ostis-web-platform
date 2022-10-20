@@ -1,3 +1,3 @@
 #!/bin/bash
-export LD_LIBRARY_PATH=../sc-machine/bin
-../sc-machine/bin/sc-server -c ../ostis-web-platform.ini
+export LD_LIBRARY_PATH=../bin
+../bin/sc-server -c ../ostis-web-platform.ini
