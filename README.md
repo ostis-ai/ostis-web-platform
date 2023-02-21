@@ -85,6 +85,18 @@ To learn more about the platform, check out our [documentation](https://github.c
   ./run_sc_component_manager.sh -c ../../ostis-web-platform.ini -b ../../repo.path
   ```
 
+- Using component manager
+
+  ```sh
+  git clone https://github.com/ostis-ai/ostis-web-platform
+  cd ostis-web-platform
+  git checkout feature/component_manager
+  cd scripts
+  ./prepare.sh
+  cd ../sc-machine/scripts
+  ./run_sc_component_manager.sh -c ../../ostis-web-platform.ini -b ../../repo.path
+  ```
+
 ## Usage
 
 - Docker Compose
