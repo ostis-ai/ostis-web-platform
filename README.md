@@ -73,6 +73,15 @@ To learn more about the platform, check out our [documentation](https://github.c
   ./scripts/install_platform.sh
   ```
 
+- Natively (using sc-component-manager)
+
+  ```sh
+  git clone https://github.com/ostis-ai/ostis-web-platform
+  cd ostis-web-platform/scripts
+  ./install_platform_with_component_manager.sh
+  ./run_sc_component_manager.sh -c ../ostis-web-platform.ini
+  ```
+
 ## Usage
 
 - Docker Compose
