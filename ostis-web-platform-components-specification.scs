@@ -1,0 +1,41 @@
+ostis-web-platform_repository
+	<- concept_repository;
+	-> rrel_components: ..components_addresses;
+
+..components_addresses
+	-> knowledge_base_ims_specification
+		(*
+			<- concept_reusable_component_specification;;
+			=> nrel_alternative_addresses:
+			...
+			(*
+				<- sc_node_tuple;;
+				<- singletone;;
+				-> rrel_1:
+					... 
+					(*
+						-> [https://github.com/ostis-ai/ims.ostis.kb]
+							(*
+								<- concept_github_url;;
+							*);;
+					*);;
+			*);;
+		*);
+	-> sc_web_specification 	
+		(*
+			<- concept_reusable_component_specification;;
+			=> nrel_alternative_addresses:
+			...
+			(*
+				<- sc_node_tuple;;
+				<- singletone;;
+				-> rrel_1:
+					... 
+					(*
+						-> [https://github.com/ostis-ai/sc-web]
+							(*
+								<- concept_github_url;;
+							*);;
+					*);;
+			*);;
+		*);;
