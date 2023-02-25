@@ -3,6 +3,6 @@ ostis_web_platform_repository
 	-> rrel_components: ..components_addresses;;
 
 ..components_addresses
-	-> ... (* -> rrel_address: [https://github.com/ostis-ai/ims.ostis.kb.git];; *);
-	-> ... (* -> rrel_address: [https://github.com/ostis-ai/sc-web.git];; *);;
+	-> ... (* -> rrel_address: [https://github.com/ostis-ai/ims.ostis.kb];; *);
+	-> ... (* -> rrel_address: [https://github.com/ostis-ai/sc-web];; *);;
 
