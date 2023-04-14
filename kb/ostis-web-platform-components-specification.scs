@@ -1,8 +1,9 @@
-ostis-web-platform_repository
+ostis_web_platform_repository
 	<- concept_repository;
-	-> rrel_components: ..components_addresses;
+	-> rrel_components_specifications: ..components_addresses;;
 
 ..components_addresses
+	<- sc_node_tuple;
 	-> knowledge_base_ims_specification
 		(*
 			<- concept_reusable_component_specification;;
