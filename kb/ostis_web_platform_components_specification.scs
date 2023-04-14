@@ -1,7 +1,0 @@
-ostis_web_platform_repository
-	<- concept_repository;
-	-> rrel_components: ..components_addresses;;
-
-..components_addresses
-	-> ... (* -> rrel_address: [https://github.com/ostis-ai/ims.ostis.kb];; *);;
-
