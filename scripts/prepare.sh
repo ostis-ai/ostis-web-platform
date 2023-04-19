@@ -71,7 +71,7 @@ pip3 install -r requirements.txt
 
 
 cd scripts
-	./make_all.sh
+	./make_all.sh -m
 cd ..
 fi
 
