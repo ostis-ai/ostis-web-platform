@@ -4,7 +4,6 @@ st=1
 
 build_kb=1
 build_sc_machine=1
-build_sc_web=1
 
 set -eo pipefail
 
@@ -16,9 +15,6 @@ while [ "$1" != "" ]; do
 		"no_build_sc_machine" )
 			build_sc_machine=0
 			build_kb=0
-			;;
-		"no_build_sc_web" )
-			build_sc_web=0
 	esac
 	shift
 done
@@ -45,7 +41,6 @@ clone_project()
 stage "Clone projects"
 
 clone_project https://github.com/ostis-ai/sc-machine.git sc-machine feature/component_manager
-clone_project https://github.com/ostis-ai/sc-web.git sc-web main
 
 git submodule update --init --recursive
 
@@ -71,26 +66,8 @@ pip3 install -r requirements.txt
 
 
 cd scripts
-	./make_all.sh
+	./make_all.sh -m
 cd ..
-fi
-
-
-if (( $build_sc_web == 1 )); then
-prepare "sc-web"
-pip3 install --default-timeout=100 future
-
-
-cd ../sc-web/scripts
-
-./install_deps_ubuntu.sh --dev
-
-cd -
-cd ../sc-web
-pip3 install -r requirements.txt
-
-npm install
-npm run build
 fi
 
 if (( $build_kb == 1 )); then
