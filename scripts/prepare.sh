@@ -44,7 +44,7 @@ clone_project()
 
 stage "Clone projects"
 
-clone_project https://github.com/ostis-ai/sc-machine.git sc-machine a74e686fcfea733ebc42098a52246afe8d27373e
+clone_project https://github.com/ostis-ai/sc-machine.git sc-machine 324aa8861df9e376fa728be4628cf8d548a8f118
 clone_project https://github.com/ostis-ai/sc-web.git sc-web bea38c5eab838f6531c6c2f5c74d19ec83df3fd3
 
 git submodule update --init --recursive
