@@ -26,3 +26,5 @@ __pycache__
 *.run.xml
 *.synctex.gz
 
+*.db
+*.txt
