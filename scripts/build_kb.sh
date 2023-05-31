@@ -1,3 +1,2 @@
 #!/bin/bash
-python3 ../sc-machine/scripts/build_kb.py ../repo.path -c ../ostis-web-platform.ini -b ../sc-machine/bin
-
+../sc-machine/bin/sc-builder -f --clear -c ../ostis-web-platform.ini -i ../repo.path -o ../kb.bin
