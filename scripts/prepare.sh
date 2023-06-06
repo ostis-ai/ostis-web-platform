@@ -1,12 +1,21 @@
 #!/bin/bash
+set -eo pipefail
 
-st=1
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+echo -e "${RED}[WARNING] This script was deprecated in ostis-web-platform 0.8.0.
+Please, use scripts/install_platform.sh instead. It will be removed in in ostis-web-platform 0.9.0.${NC}"
+
+if [[ -z ${PLATFORM_PATH+1} ]];
+then
+  CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
+  source "${CURRENT_DIR}/set_vars.sh"
+  source "${CURRENT_DIR}/formats.sh"
+fi
 
 build_kb=1
 build_sc_machine=1
 build_sc_web=1
-
-set -eo pipefail
 
 while [ "$1" != "" ]; do
 	case $1 in
@@ -23,15 +32,9 @@ while [ "$1" != "" ]; do
 	shift
 done
 
-stage()
-{
-	echo -en "[$1]\n"
-	let "st += 1"
-}
-
 clone_project()
 {
-	if [ ! -d "../$2" ]; then
+	if [ ! -d "${PLATFORM_PATH}/$2" ]; then
 		printf "Clone %s\n" "$1"
 		git clone "$1" ../"$2"
 		cd ../"$2"
@@ -56,45 +59,29 @@ prepare()
 	echo -en "$1\n"
 }
 
-if (( $build_sc_machine == 1 )); then
-prepare "sc-machine"
+if (( $build_sc_machine == 1 ));
+then
+  prepare "SC-machine"
 
-cd ../sc-machine
-git submodule update --init --recursive
-cd scripts
-./install_deps_ubuntu.sh --dev
+  cd "${SC_MACHINE_PATH}"
+  git submodule update --init --recursive
+  "${SC_MACHINE_PATH}/scripts/install_deps_ubuntu.sh" --dev
 
-
-cd ..
-pip3 install setuptools wheel
-pip3 install -r requirements.txt
-
-
-cd scripts
-	./make_all.sh
-cd ..
+  "${SC_MACHINE_PATH}/scripts/make_all.sh"
 fi
 
 
 if (( $build_sc_web == 1 )); then
-prepare "sc-web"
-pip3 install --default-timeout=100 future
+  prepare "SC-web"
 
+  "${SC_WEB_PATH}/scripts/install_deps_ubuntu.sh"
 
-cd ../sc-web/scripts
-
-./install_deps_ubuntu.sh --dev
-
-cd -
-cd ../sc-web
-pip3 install -r requirements.txt
-
-npm install
-npm run build
+  "${SC_WEB_PATH}/scripts/build_sc_web.sh"
 fi
 
 if (( $build_kb == 1 )); then
 	stage "Build knowledge base"
-	cd ../scripts
-	./build_kb.sh
+	"${APP_ROOT_PATH}/scripts/build_kb.sh"
 fi
+
+cd "${WORKING_PATH}"
