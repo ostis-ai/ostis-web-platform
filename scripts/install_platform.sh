@@ -1,20 +1,19 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 
-if [[ -z ${SC_MACHINE_PATH+1} ]];
+CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
+source "${CURRENT_DIR}/formats.sh"
+
+if [ -z "${SC_MACHINE_PATH}" ];
 then
-  CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
   source "${CURRENT_DIR}/set_vars.sh"
-  source "${CURRENT_DIR}/formats.sh"
 fi
 
 stage "Install ostis-web-platform"
 
 "${SCRIPTS_PATH}/install_submodules.sh"
 "${SCRIPTS_PATH}/install_dependencies.sh"
-"${SCRIPTS_PATH}/build_sc_machine.sh"
-"${SCRIPTS_PATH}/build_sc_web.sh"
+"${SC_MACHINE_PATH}/build_sc_machine.sh"
+"${SC_WEB_PATH}/build_sc_web.sh"
 
-cd "${WORKING_PATH}"
-
-stage "OSTIS-web-platform installed"
+stage "OSTIS-web-platform successfully installed"

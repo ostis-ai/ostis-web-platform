@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove windows scripts
 - Remove drawings and scp scripts
-- Remove dump scrips
+- Remove dump scripts
 - Remove sctp-server scripts
 
 ## [0.6.1] - 28.04.2022

@@ -1,9 +1,9 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -eo pipefail
 
-if [[ -z ${BINARY_PATH+1} ]];
+if [ -z "${BINARY_PATH}" ];
 then
   source "$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"/set_vars.sh
 fi
 
-"${BINARY_PATH}/sc-builder" -f --clear -c "${CONFIG_PATH}" -i "${APP_ROOT_PATH}/repo$1.path" -o "${APP_ROOT_PATH}"/kb.bin
+"${SC_MACHINE_PATH}/scripts/build_kb.sh" "$@"

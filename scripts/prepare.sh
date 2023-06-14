@@ -1,16 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 
-RED='\033[0;31m'
+YELLOW='\033[01;33m'
 NC='\033[0m' # No Color
-echo -e "${RED}[WARNING] This script was deprecated in ostis-web-platform 0.8.0.
+echo -e "${YELLOW}[WARNING] This script was deprecated in ostis-web-platform 0.8.0.
 Please, use scripts/install_platform.sh instead. It will be removed in in ostis-web-platform 0.9.0.${NC}"
 
-if [[ -z ${PLATFORM_PATH+1} ]];
+CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
+source "${CURRENT_DIR}/formats.sh"
+
+if [ -z "${PLATFORM_PATH}" ];
 then
-  CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
   source "${CURRENT_DIR}/set_vars.sh"
-  source "${CURRENT_DIR}/formats.sh"
 fi
 
 build_kb=1
@@ -59,7 +60,7 @@ prepare()
 	echo -en "$1\n"
 }
 
-if (( $build_sc_machine == 1 ));
+if (( ${build_sc_machine} == 1 ));
 then
   prepare "SC-machine"
 
@@ -71,7 +72,7 @@ then
 fi
 
 
-if (( $build_sc_web == 1 )); then
+if (( ${build_sc_web} == 1 )); then
   prepare "SC-web"
 
   "${SC_WEB_PATH}/scripts/install_deps_ubuntu.sh"
@@ -79,9 +80,7 @@ if (( $build_sc_web == 1 )); then
   "${SC_WEB_PATH}/scripts/build_sc_web.sh"
 fi
 
-if (( $build_kb == 1 )); then
+if (( ${build_kb} == 1 )); then
 	stage "Build knowledge base"
 	"${APP_ROOT_PATH}/scripts/build_kb.sh"
 fi
-
-cd "${WORKING_PATH}"
