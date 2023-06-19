@@ -33,4 +33,4 @@ jobs:
       - name: Preparing platform
         run: |
           cd scripts
-          ./prepare.sh
+          ./install_platform.sh

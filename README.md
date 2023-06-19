@@ -60,7 +60,7 @@ To learn more about the platform, check out our [documentation](https://github.c
   git clone https://github.com/ostis-ai/ostis-web-platform
   git submodule update --init --recursive
   cd scripts
-  ./prepare.sh no_build_sc_machine no_build_sc_web # download all submodules without compilation.
+  ./install_submodules.sh # download all submodules without compilation.
   cd ..
   docker compose build
   ```
@@ -73,7 +73,7 @@ To learn more about the platform, check out our [documentation](https://github.c
 
   ```sh
   cd ostis-web-platform/scripts/
-  ./prepare.sh
+  ./install_platform.sh
   ```
 
 ## Usage
@@ -100,7 +100,7 @@ To learn more about the platform, check out our [documentation](https://github.c
   # *in another terminal*
   # Launch semantic web interface at localhost:8000
   cd ostis-web-platform/scripts/
-  ./run_scweb.sh
+  ./run_sc_web.sh
   ```
 
 ## Documentation
@@ -118,7 +118,7 @@ the help of LaTeX tools in SCn-code representation. To build documentation manua
 ```sh
 # feel free to skip this step if the platform is already installed natively
 cd ostis-web-platform/scripts
-./prepare.sh no_build_sc_machine no_build_sc_web
+./install_submodules.sh
 ```
 
 - ### Build steps (using LaTeX)

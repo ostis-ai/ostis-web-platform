@@ -35,15 +35,15 @@ done
 
 clone_project()
 {
-	if [ ! -d "${PLATFORM_PATH}/$2" ]; then
-		printf "Clone %s\n" "$1"
-		git clone "$1" ../"$2"
-		cd ../"$2"
-		git checkout "$3"
-		cd -
-	else
-		echo -e "You can update $2 manualy\n"
-	fi
+  if [ ! -d "${PLATFORM_PATH}/$2" ]; then
+    printf "Clone %s\n" "$1"
+    git clone "$1" ../"$2"
+    cd ../"$2"
+    git checkout "$3"
+    cd -
+  else
+    echo -e "You can update $2 manualy\n"
+  fi
 }
 
 stage "Clone projects"
@@ -57,7 +57,7 @@ stage "Prepare projects"
 
 prepare()
 {
-	echo -en "$1\n"
+  echo -en "$1\n"
 }
 
 if (( ${build_sc_machine} == 1 ));
@@ -81,6 +81,6 @@ if (( ${build_sc_web} == 1 )); then
 fi
 
 if (( ${build_kb} == 1 )); then
-	stage "Build knowledge base"
-	"${APP_ROOT_PATH}/scripts/build_kb.sh"
+  stage "Build knowledge base"
+  "${APP_ROOT_PATH}/scripts/build_kb.sh"
 fi

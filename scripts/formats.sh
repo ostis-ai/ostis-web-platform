@@ -1,4 +1,4 @@
 stage()
 {
-	echo -en '\033[22;34m'"$1\033[0m\n"
+  tput setaf 4 && tput bold && echo "$1" && tput sgr0
 }

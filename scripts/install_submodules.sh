@@ -4,7 +4,7 @@ set -eo pipefail
 CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
 source "${CURRENT_DIR}/formats.sh"
 
-if [ -z "${APP_ROOT_PATH}" ];
+if [[ -z "${APP_ROOT_PATH}" || -z "${PLATFORM_PATH}" ]];
 then
   source "${CURRENT_DIR}/set_vars.sh"
 fi
@@ -26,19 +26,19 @@ USAGE
 
 clone_project()
 {
-	if [ ! -d "${PLATFORM_PATH}/$2" ]; then
-	  if (( ${update} == 1 ));
+  if [ ! -d "${PLATFORM_PATH}/$2" ]; then
+    if (( ${update} == 1 ));
     then
-      printf "Remove submodule %s (%s) into %s \n" "$1" "$3" "$2"
+      stage "Remove submodule %s (%s) into %s \n" "$1" "$3" "$2"
       rm -rf "${PLATFORM_PATH}/$2"
       git pull
     fi
 
-    printf "Clone submodule %s (%s) into %s \n" "$1" "$3" "$2"
+    stage "Clone submodule %s (%s) %s \n" "$1" "$3" "$2"
     git clone "$1" --branch "$3" --single-branch "$2" --recursive
-	else
-		echo -e "You can update $2 manually\n"
-	fi
+  else
+    stage "You can update $2 manually. Use this script with \"update\" parameter.\n"
+  fi
 }
 
 update=0
