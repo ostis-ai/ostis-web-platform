@@ -29,15 +29,15 @@ clone_project()
   if [ ! -d "${PLATFORM_PATH}/$2" ]; then
     if (( ${update} == 1 ));
     then
-      stage "Remove submodule %s (%s) into %s \n" "$1" "$3" "$2"
+      printf "Remove submodule %s (%s) %s \n" "$1" "$3" "$2"
       rm -rf "${PLATFORM_PATH}/$2"
       git pull
     fi
 
-    stage "Clone submodule %s (%s) %s \n" "$1" "$3" "$2"
+    printf "Clone submodule %s (%s) into %s\n" "$1" "$3" "$2"
     git clone "$1" --branch "$3" --single-branch "$2" --recursive
   else
-    stage "You can update $2 manually. Use this script with \"update\" parameter.\n"
+    printf "You can update %s manually. Use this script with \"update\" parameter.\n" "$2"
   fi
 }
 
@@ -72,4 +72,4 @@ clone_project "${SC_MACHINE_REPO}" "${SC_MACHINE_PATH}" "${SC_MACHINE_BRANCH}"
 clone_project "${SC_WEB_REPO}" "${SC_WEB_PATH}" "${SC_WEB_BRANCH}"
 cd "${PLATFORM_PATH}" && git submodule update --init --recursive
 
-stage "Submodules successfully cloned"
+stage "Submodules cloned successfully"

@@ -43,4 +43,4 @@ done
 "${SC_MACHINE_PATH}/scripts/install_deps_ubuntu.sh" ${args}
 "${SC_WEB_PATH}/scripts/install_deps_ubuntu.sh"
 
-stage "Dependencies installed"
+stage "Dependencies installed successfully"

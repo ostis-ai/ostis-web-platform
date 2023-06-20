@@ -9,7 +9,7 @@ Please, use scripts/install_platform.sh instead. It will be removed in in ostis-
 CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
 source "${CURRENT_DIR}/formats.sh"
 
-if [ -z "${PLATFORM_PATH}" ];
+if [[ -z "${PLATFORM_PATH}" || -z "${SC_MACHINE_PATH}" || -z "${SC_WEB_PATH}" ]];
 then
   source "${CURRENT_DIR}/set_vars.sh"
 fi
@@ -37,8 +37,8 @@ clone_project()
 {
   if [ ! -d "${PLATFORM_PATH}/$2" ]; then
     printf "Clone %s\n" "$1"
-    git clone "$1" ../"$2"
-    cd ../"$2"
+    git clone "$1" "${PLATFORM_PATH}/$2"
+    cd "${PLATFORM_PATH}/$2"
     git checkout "$3"
     cd -
   else
@@ -82,5 +82,5 @@ fi
 
 if (( ${build_kb} == 1 )); then
   stage "Build knowledge base"
-  "${APP_ROOT_PATH}/scripts/build_kb.sh"
+  "${PLATFORM_PATH}/scripts/build_kb.sh"
 fi
