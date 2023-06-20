@@ -33,4 +33,5 @@ jobs:
       - name: Preparing platform
         run: |
           cd scripts
+          ./set_vars.sh --ci
           ./install_platform.sh
