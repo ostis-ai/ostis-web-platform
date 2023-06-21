@@ -37,7 +37,7 @@ clone_project()
 {
   if [ ! -d "${PLATFORM_PATH}/$2" ]; then
     printf "Clone %s\n" "$1"
-    git clone "$1" "${PLATFORM_PATH}/$2"
+    git clone "$1" "$2"
     cd "${PLATFORM_PATH}/$2"
     git checkout "$3"
     cd -
