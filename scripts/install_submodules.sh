@@ -68,8 +68,8 @@ stage "Clone submodules"
 
 cd "${APP_ROOT_PATH}"
 
-clone_project "${SC_MACHINE_REPO}" "${SC_MACHINE_PATH}" "${SC_MACHINE_BRANCH}"
-clone_project "${SC_WEB_REPO}" "${SC_WEB_PATH}" "${SC_WEB_BRANCH}"
+clone_project "${SC_MACHINE_REPO}" "${SC_MACHINE_NAME}" "${SC_MACHINE_BRANCH}"
+clone_project "${SC_WEB_REPO}" "${SC_WEB_NAME}" "${SC_WEB_BRANCH}"
 cd "${PLATFORM_PATH}" && git submodule update --init --recursive
 
 stage "Submodules cloned successfully"
