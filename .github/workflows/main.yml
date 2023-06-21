@@ -13,9 +13,9 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
-        fail-fast: false
-        matrix:
-          os: [ ubuntu-20.04, ubuntu-22.04 ]
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-20.04, ubuntu-22.04 ]
 
     steps:
       - name: Checkout
@@ -31,6 +31,9 @@ jobs:
           key: ${{ github.job }}
 
       - name: Preparing platform
+        env:
+          TERM: linux
         run: |
           cd scripts
-          ./prepare.sh
+          ./set_vars.sh
+          ./install_platform.sh

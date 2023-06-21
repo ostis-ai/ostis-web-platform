@@ -1,12 +1,22 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -eo pipefail
 
-st=1
+YELLOW='\033[01;33m'
+NC='\033[0m' # No Color
+echo -e "${YELLOW}[WARNING] This script was deprecated in ostis-web-platform 0.8.0.
+Please, use scripts/install_platform.sh instead. It will be removed in in ostis-web-platform 0.9.0.${NC}"
+
+CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
+source "${CURRENT_DIR}/formats.sh"
+
+if [[ -z "${PLATFORM_PATH}" || -z "${SC_MACHINE_PATH}" || -z "${SC_WEB_PATH}" ]];
+then
+  source "${CURRENT_DIR}/set_vars.sh"
+fi
 
 build_kb=1
 build_sc_machine=1
 build_sc_web=1
-
-set -eo pipefail
 
 while [ "$1" != "" ]; do
 	case $1 in
@@ -23,23 +33,17 @@ while [ "$1" != "" ]; do
 	shift
 done
 
-stage()
-{
-	echo -en "[$1]\n"
-	let "st += 1"
-}
-
 clone_project()
 {
-	if [ ! -d "../$2" ]; then
-		printf "Clone %s\n" "$1"
-		git clone "$1" ../"$2"
-		cd ../"$2"
-		git checkout "$3"
-		cd -
-	else
-		echo -e "You can update $2 manualy\n"
-	fi
+  if [ ! -d "${PLATFORM_PATH}/$2" ]; then
+    printf "Clone %s\n" "$1"
+    git clone "$1" "${PLATFORM_PATH}/$2"
+    cd "${PLATFORM_PATH}/$2"
+    git checkout "$3"
+    cd -
+  else
+    echo -e "You can update $2 manualy\n"
+  fi
 }
 
 stage "Clone projects"
@@ -53,48 +57,30 @@ stage "Prepare projects"
 
 prepare()
 {
-	echo -en "$1\n"
+  echo -en "$1\n"
 }
 
-if (( $build_sc_machine == 1 )); then
-prepare "sc-machine"
+if (( ${build_sc_machine} == 1 ));
+then
+  prepare "SC-machine"
 
-cd ../sc-machine
-git submodule update --init --recursive
-cd scripts
-./install_deps_ubuntu.sh --dev
+  cd "${SC_MACHINE_PATH}"
+  git submodule update --init --recursive
+  "${SC_MACHINE_PATH}/scripts/install_deps_ubuntu.sh" --dev
 
-
-cd ..
-pip3 install setuptools wheel
-pip3 install -r requirements.txt
-
-
-cd scripts
-	./make_all.sh
-cd ..
+  "${SC_MACHINE_PATH}/scripts/make_all.sh"
 fi
 
 
-if (( $build_sc_web == 1 )); then
-prepare "sc-web"
-pip3 install --default-timeout=100 future
+if (( ${build_sc_web} == 1 )); then
+  prepare "SC-web"
 
+  "${SC_WEB_PATH}/scripts/install_deps_ubuntu.sh"
 
-cd ../sc-web/scripts
-
-./install_deps_ubuntu.sh --dev
-
-cd -
-cd ../sc-web
-pip3 install -r requirements.txt
-
-npm install
-npm run build
+  "${SC_WEB_PATH}/scripts/build_sc_web.sh"
 fi
 
-if (( $build_kb == 1 )); then
-	stage "Build knowledge base"
-	cd ../scripts
-	./build_kb.sh
+if (( ${build_kb} == 1 )); then
+  stage "Build knowledge base"
+  "${PLATFORM_PATH}/scripts/build_kb.sh"
 fi
