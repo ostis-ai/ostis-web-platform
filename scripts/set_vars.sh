@@ -18,3 +18,13 @@ export SC_WEB_REPO="${SC_WEB_REPO:-https://github.com/ostis-ai/sc-web.git}"
 export SC_WEB_BRANCH="${SC_WEB_BRANCH:-release/0.8.0}"
 export SC_WEB_PATH="${SC_WEB_PATH:-${PLATFORM_PATH}/sc-web}"
 export SC_WEB_NAME="${SC_WEB_NAME:-sc-web}"
+
+if [ -d "${SC_MACHINE_PATH}" ];
+then
+  source "${SC_MACHINE_PATH}/scripts/set_vars.sh"
+fi
+
+if [ -d "${SC_WEB_PATH}" ];
+then
+  source "${SC_WEB_PATH}/scripts/set_vars.sh"
+fi
