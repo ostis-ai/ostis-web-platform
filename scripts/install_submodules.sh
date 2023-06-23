@@ -4,7 +4,8 @@ set -eo pipefail
 CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
 source "${CURRENT_DIR}/formats.sh"
 
-if [[ -z "${APP_ROOT_PATH}" || -z "${PLATFORM_PATH}" ]];
+if [[ -z "${PLATFORM_PATH}" || -z "${SC_MACHINE_REPO}" || -z "${SC_WEB_REPO}" \
+  || -z "${SC_MACHINE_NAME}" || -z "${SC_WEB_NAME}" || -z "${SC_MACHINE_BRANCH}" || -z "${SC_WEB_BRANCH}" ]];
 then
   source "${CURRENT_DIR}/set_vars.sh"
 fi
@@ -66,10 +67,10 @@ done
 
 stage "Clone submodules"
 
-cd "${APP_ROOT_PATH}"
+cd "${PLATFORM_PATH}"
 
 clone_project "${SC_MACHINE_REPO}" "${SC_MACHINE_NAME}" "${SC_MACHINE_BRANCH}"
 clone_project "${SC_WEB_REPO}" "${SC_WEB_NAME}" "${SC_WEB_BRANCH}"
-cd "${PLATFORM_PATH}" && git submodule update --init --recursive
+git submodule update --init --recursive
 
 stage "Submodules cloned successfully"
