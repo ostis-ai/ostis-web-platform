@@ -5,7 +5,7 @@ CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
 source "${CURRENT_DIR}/formats.sh"
 
 if [[ -z "${PLATFORM_PATH}" || -z "${SC_MACHINE_REPO}" || -z "${SC_WEB_REPO}" \
-  || -z "${SC_MACHINE_NAME}" || -z "${SC_WEB_NAME}" || -z "${SC_MACHINE_BRANCH}" || -z "${SC_WEB_BRANCH}" ]];
+  || -z "${SC_MACHINE_BRANCH}" || -z "${SC_WEB_BRANCH}" ]];
 then
   source "${CURRENT_DIR}/set_vars.sh"
 fi
@@ -19,14 +19,19 @@ This script is used to download sources of ostis-web-platform and submodules
 and install them. The exact behavior is configured via run arguments.
 
 Options:
-  update: Remove ostis-web-platform and submodules sources and download
-          them from scratch.
+  update: Remove ostis-web-platform submodules sources and download them from scratch.
 USAGE
   exit 1
 }
 
 clone_project()
 {
+  if [ -z "$2" ];
+  then
+    printf "Empty paths are dangerous in use. Use another path instead for submodules installation or update.\n"
+    exit 1
+  fi
+
   if [[ ! -d "$2" || ${update} == 1 ]]; then
     if (( ${update} == 1 ));
     then
