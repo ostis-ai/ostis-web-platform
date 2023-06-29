@@ -27,11 +27,11 @@ USAGE
 
 clone_project()
 {
-  if [[ ! -d "${PLATFORM_PATH}/$2" || ${update} == 1 ]]; then
+  if [[ ! -d "$2" || ${update} == 1 ]]; then
     if (( ${update} == 1 ));
     then
       printf "Remove submodule %s (%s) %s \n" "$1" "$3" "$2"
-      rm -rf "${PLATFORM_PATH}/$2"
+      rm -rf "$2"
       git pull
     fi
 

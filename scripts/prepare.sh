@@ -35,7 +35,7 @@ done
 
 clone_project()
 {
-  if [ ! -d "${PLATFORM_PATH}/$2" ]; then
+  if [ ! -d "$2" ]; then
     printf "Clone submodule %s (%s) into %s\n" "$1" "$3" "$2"
     git clone "$1" --branch "$3" --single-branch "$2" --recursive
   else
