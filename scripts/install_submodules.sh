@@ -27,7 +27,7 @@ USAGE
 
 clone_project()
 {
-  if [ ! -d "${PLATFORM_PATH}/$2" ]; then
+  if [[ ! -d "${PLATFORM_PATH}/$2" || ${update} == 1 ]]; then
     if (( ${update} == 1 ));
     then
       printf "Remove submodule %s (%s) %s \n" "$1" "$3" "$2"
@@ -69,8 +69,8 @@ stage "Clone submodules"
 
 cd "${PLATFORM_PATH}"
 
-clone_project "${SC_MACHINE_REPO}" "${SC_MACHINE_NAME}" "${SC_MACHINE_BRANCH}"
-clone_project "${SC_WEB_REPO}" "${SC_WEB_NAME}" "${SC_WEB_BRANCH}"
+clone_project "${SC_MACHINE_REPO}" "${SC_MACHINE_PATH}" "${SC_MACHINE_BRANCH}"
+clone_project "${SC_WEB_REPO}" "${SC_WEB_PATH}" "${SC_WEB_BRANCH}"
 git submodule update --init --recursive
 
 stage "Submodules cloned successfully"

@@ -23,7 +23,6 @@ USAGE
 stage "Install dependencies"
 
 args=()
-
 while [ "$1" != "" ]; do
   case $1 in
   --dev)
@@ -37,10 +36,10 @@ while [ "$1" != "" ]; do
     exit 1
     ;;
   esac
-  shift # remove the current value for `$1` and use the next
+  shift 1 # remove the current value for `$1` and use the next
 done
 
-"${SC_MACHINE_PATH}/scripts/install_deps_ubuntu.sh" ${args}
+"${SC_MACHINE_PATH}/scripts/install_deps_ubuntu.sh" "${args[@]}"
 "${SC_WEB_PATH}/scripts/install_deps_ubuntu.sh"
 
 stage "Dependencies installed successfully"

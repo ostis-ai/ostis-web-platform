@@ -36,20 +36,17 @@ done
 clone_project()
 {
   if [ ! -d "${PLATFORM_PATH}/$2" ]; then
-    printf "Clone %s\n" "$1"
-    git clone "$1" "../$2"
-    cd "${PLATFORM_PATH}/$2"
-    git checkout "$3"
-    cd -
+    printf "Clone submodule %s (%s) into %s\n" "$1" "$3" "$2"
+    git clone "$1" --branch "$3" --single-branch "$2" --recursive
   else
-    echo -e "You can update $2 manualy\n"
+    printf "You can update %s manually.\n" "$2"
   fi
 }
 
 stage "Clone projects"
 
-clone_project "${SC_MACHINE_REPO}" "${SC_MACHINE_NAME}" "${SC_MACHINE_BRANCH}"
-clone_project "${SC_WEB_REPO}" "${SC_WEB_NAME}" "${SC_WEB_BRANCH}"
+clone_project "${SC_MACHINE_REPO}" "${SC_MACHINE_PATH}" "${SC_MACHINE_BRANCH}"
+clone_project "${SC_WEB_REPO}" "${SC_WEB_PATH}" "${SC_WEB_BRANCH}"
 
 git submodule update --init --recursive
 
