@@ -49,7 +49,8 @@ clone_project()
 
 update=0
 
-while [ "$1" != "" ]; do
+while [ "$1" != "" ];
+do
   case $1 in
     "update" )
       update=1
