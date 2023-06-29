@@ -10,11 +10,11 @@ export CONFIG_PATH="${CONFIG_PATH:-${PLATFORM_PATH}/ostis-web-platform.ini}"
 export REPO_PATH="${REPO_PATH:-${PLATFORM_PATH}/repo.path}"
 
 export SC_MACHINE_REPO="${SC_MACHINE_REPO:-https://github.com/ostis-ai/sc-machine.git}"
-export SC_MACHINE_BRANCH="${SC_MACHINE_BRANCH:-main}"
+export SC_MACHINE_BRANCH="${SC_MACHINE_BRANCH:-release/0.8.0}"
 export SC_MACHINE_PATH="${SC_MACHINE_PATH:-${PLATFORM_PATH}/sc-machine}"
 
 export SC_WEB_REPO="${SC_WEB_REPO:-https://github.com/ostis-ai/sc-web.git}"
-export SC_WEB_BRANCH="${SC_WEB_BRANCH:-main}"
+export SC_WEB_BRANCH="${SC_WEB_BRANCH:-release/0.8.0}"
 export SC_WEB_PATH="${SC_WEB_PATH:-${PLATFORM_PATH}/sc-web}"
 
 if [ -d "${SC_MACHINE_PATH}" ];
