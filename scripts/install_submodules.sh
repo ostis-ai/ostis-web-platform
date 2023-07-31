@@ -38,7 +38,6 @@ clone_project()
     then
       printf "Remove submodule %s (%s) %s \n" "$1" "$3" "$2"
       rm -rf "$2"
-      git pull
     fi
 
     if [ -n "$4" ];
