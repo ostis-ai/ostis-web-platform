@@ -13,13 +13,13 @@ fi
 
 usage() {
   cat <<USAGE
-Usage: $0 [update]
+Usage: $0 [--update]
 
 This script is used to download sources of ostis-web-platform and submodules
 and install them. The exact behavior is configured via run arguments.
 
 Options:
-  update: Remove ostis-web-platform submodules sources and download them from scratch.
+  --update: Remove ostis-web-platform submodules sources and download them from scratch.
 USAGE
   exit 1
 }
@@ -61,23 +61,17 @@ update=0
 while [ "$1" != "" ];
 do
   case $1 in
-    "update" )
+    "--update" )
       update=1
       ;;
-    "--help" )
-      usage
-      ;;
-    "help" )
-      usage
-      ;;
-    "-h" )
+    "--help" | "-h" )
       usage
       ;;
     * )
       usage
       ;;
-      esac
-      shift
+  esac
+  shift 1
 done
 
 stage "Clone submodules"
