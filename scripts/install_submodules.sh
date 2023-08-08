@@ -52,7 +52,7 @@ clone_project()
       cd "$2" && git checkout "$4"
     fi
   else
-    printf "You can update %s manually. Use this script with \"update\" parameter.\n" "$2"
+    printf "You can update %s manually. Use this script with \"--update\" option.\n" "$2"
   fi
 }
 
