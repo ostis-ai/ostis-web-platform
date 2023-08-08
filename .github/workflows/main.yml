@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-20.04, ubuntu-22.04 ]
+        os: [ubuntu-20.04, ubuntu-22.04, macos-latest]
 
     steps:
       - name: Checkout
@@ -23,7 +23,10 @@ jobs:
 
       - name: Update
         run: |
-          sudo apt-get update
+          if [[ $(lsb_release -i) == *'Ubuntu'* ]]; 
+          then
+            sudo apt-get update
+          fi
 
       - name: Restore build caches
         uses: hendrikmuhs/ccache-action@v1.2
