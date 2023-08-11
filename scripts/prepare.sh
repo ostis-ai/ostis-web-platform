@@ -57,7 +57,7 @@ prepare()
   echo -en "$1\n"
 }
 
-if (( ${build_sc_machine} == 1 ));
+if (( build_sc_machine == 1 ));
 then
   prepare "SC-machine"
 
@@ -69,7 +69,7 @@ then
 fi
 
 
-if (( ${build_sc_web} == 1 )); then
+if (( build_sc_web == 1 )); then
   prepare "SC-web"
 
   "${SC_WEB_PATH}/scripts/install_deps_ubuntu.sh"
@@ -77,7 +77,7 @@ if (( ${build_sc_web} == 1 )); then
   "${SC_WEB_PATH}/scripts/build_sc_web.sh"
 fi
 
-if (( ${build_kb} == 1 )); then
+if (( build_kb == 1 )); then
   stage "Build knowledge base"
   "${PLATFORM_PATH}/scripts/build_kb.sh"
 fi

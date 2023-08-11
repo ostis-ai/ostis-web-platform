@@ -11,11 +11,10 @@ fi
 
 function usage() {
   cat <<USAGE
+Usage: $0 [--dev]
 
-  Usage: $0 [--dev]
-
-  Options:
-      --dev:          installs dependencies required to compile sc-machine and sc-web
+Options:
+  --dev:          installs dependencies required to compile sc-machine and sc-web
 USAGE
   exit 1
 }
@@ -39,7 +38,7 @@ while [ "$1" != "" ]; do
   shift 1 # remove the current value for `$1` and use the next
 done
 
-"${SC_MACHINE_PATH}/scripts/install_deps_ubuntu.sh" "${args[@]}"
-"${SC_WEB_PATH}/scripts/install_deps_ubuntu.sh"
+"${SC_MACHINE_PATH}/scripts/install_dependencies.sh" "${args[@]}"
+"${SC_WEB_PATH}/scripts/install_dependencies.sh"
 
 stage "Dependencies installed successfully"
