@@ -17,7 +17,7 @@ To learn more about the platform, check out our [documentation](https://github.c
 - Quick start using Docker Compose
 
   <details>
-  
+
   <summary><b>Additional steps for Windows users</b></summary>
 
   Make sure you are using UNIX line endings inside the repository and `longpaths` are enabled, otherwise you may face problems during build or installation process. Use the commands below to reconfigure Git on your machine:
@@ -32,12 +32,10 @@ To learn more about the platform, check out our [documentation](https://github.c
   Requirements: you will need [Docker](https://docs.docker.com/get-docker/) installed and running on your machine.
 
   ```sh
-  git clone https://github.com/ostis-ai/ostis-web-platform
+  git clone https://github.com/ostis-ai/ostis-web-platform --recursive
   cd ostis-web-platform
   # download images from Docker Hub
   docker compose pull
-  # download KB and LaTeX docs plugin
-  git submodule update --init --recursive
   # build knowledge base
   docker compose run machine build
   # launch web platform stack
@@ -57,11 +55,9 @@ To learn more about the platform, check out our [documentation](https://github.c
   ### Build process
 
   ```sh
-  git clone https://github.com/ostis-ai/ostis-web-platform
-  git submodule update --init --recursive
-  cd scripts
-  ./install_submodules.sh # download all submodules without compilation.
-  cd ..
+  git clone https://github.com/ostis-ai/ostis-web-platform --recursive
+  cd ostis-web-platform
+  ./scripts/install_submodules.sh # download all submodules without compilation.
   docker compose build
   ```
 
@@ -69,11 +65,12 @@ To learn more about the platform, check out our [documentation](https://github.c
 
 - Natively
 
-  Note: Currently, only Ubuntu is supported by this installation method. If you're going to use it, it might take a while to download dependencies and compile the components. Use it only if you know what you're doing!
+  Note: Currently, only Linux (Ubuntu-20.04, Ubuntu-22.04) and macOS are supported by this installation method. If you're going to use it, it might take a while to download dependencies and compile the components. Use it only if you know what you're doing!
 
   ```sh
-  cd ostis-web-platform/scripts/
-  ./install_platform.sh
+  git clone https://github.com/ostis-ai/ostis-web-platform --recursive
+  cd ostis-web-platform
+  ./scripts/install_platform.sh
   ```
 
 ## Usage
@@ -92,15 +89,12 @@ To learn more about the platform, check out our [documentation](https://github.c
 
   ```sh
   # Build knowledge base
-  cd ostis-web-platform/scripts/
-  ./build_kb.sh
+  ./scripts/build_kb.sh
   # Launch knowledge processing machine
-  cd ostis-web-platform/scripts/
-  ./run_sc_server.sh
+  ./scripts/run_sc_server.sh
   # *in another terminal*
   # Launch semantic web interface at localhost:8000
-  cd ostis-web-platform/scripts/
-  ./run_sc_web.sh
+  ./scripts/run_sc_web.sh
   ```
 
 ## Documentation
@@ -117,21 +111,19 @@ the help of LaTeX tools in SCn-code representation. To build documentation manua
 
 ```sh
 # feel free to skip this step if the platform is already installed natively
-cd ostis-web-platform/scripts
-./install_submodules.sh
+./scripts/install_submodules.sh
 ```
 
 - ### Build steps (using LaTeX)
 
   ```sh
-  cd ostis-web-platform/docs
+  cd docs
   TEXINPUTS=./scn: latexmk -pdf -bibtex main.tex
   ```
 
 - ### Build steps (using Docker)
 
   ```sh
-  cd ostis-web-platform
   docker run -v ${PWD}:/workdir --rm -it ostis/scn-latex-plugin:latest "docs/main.tex"
   ```
 
