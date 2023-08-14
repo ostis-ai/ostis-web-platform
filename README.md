@@ -88,8 +88,6 @@ To learn more about the platform, check out our [documentation](https://github.c
 - Native installation
 
   ```sh
-  # Build knowledge base
-  ./scripts/build_kb.sh
   # Launch knowledge processing machine
   ./scripts/run_sc_server.sh
   # *in another terminal*
