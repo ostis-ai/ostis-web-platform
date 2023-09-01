@@ -11,8 +11,8 @@ fi
 
 stage "Install ostis-web-platform"
 
-"${PLATFORM_PATH}/scripts/install_core_submodules.sh"
-"${PLATFORM_PATH}/scripts/install_core_dependencies.sh" --dev
+"${PLATFORM_PATH}/scripts/install_sc_machine_submodule.sh"
+"${PLATFORM_PATH}/scripts/install_sc_machine_dependencies.sh" --dev
 "${PLATFORM_PATH}/scripts/build_sc_machine.sh" -cm
 
 stage "OSTIS-web-platform installed successfully"
