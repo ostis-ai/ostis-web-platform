@@ -11,6 +11,6 @@ fi
 
 stage "Install sc-web dependencies"
 
-"${SC_WEB_PATH}/scripts/install_dependencies.sh" "$1"
+"${SC_WEB_PATH}/scripts/install_dependencies.sh" "$@"
 
 stage "Dependencies of sc-web installed successfully"

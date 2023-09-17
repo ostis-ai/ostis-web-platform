@@ -41,8 +41,8 @@ stage "Clone submodules"
 
 cd "${PLATFORM_PATH}" && git submodule update --init --recursive
 
-"${PLATFORM_PATH}/scripts/install_sc_machine_submodule.sh" "$1"
-"${PLATFORM_PATH}/scripts/install_sc_web_submodule.sh" "$1"
-"${PLATFORM_PATH}/scripts/install_ims_kb_submodule.sh" "$1"
+"${PLATFORM_PATH}/scripts/install_sc_machine_submodule.sh" "$@"
+"${PLATFORM_PATH}/scripts/install_sc_web_submodule.sh" "$@"
+"${PLATFORM_PATH}/scripts/install_ims_kb_submodule.sh" "$@"
 
 stage "Submodules cloned successfully"

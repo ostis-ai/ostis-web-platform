@@ -11,6 +11,6 @@ fi
 
 stage "Install sc-machine dependencies"
 
-"${SC_MACHINE_PATH}/scripts/install_deps_ubuntu.sh" "$1"
+"${SC_MACHINE_PATH}/scripts/install_deps_ubuntu.sh" "$@"
 
 stage "Dependencies of sc-machine installed successfully"

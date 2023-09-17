@@ -79,7 +79,7 @@ To learn more about the platform, check out our [documentation](https://github.c
   git clone https://github.com/ostis-ai/ostis-web-platform
   cd ostis-web-platform/scripts
   git checkout feature/component_manager
-  ./install_component_manager_platform.sh
+  ./install_platform_with_component_manager.sh
   ./build_kb.sh
   cd ../sc-machine/scripts
   ./run_sc_component_manager.sh -c ../../ostis-web-platform.ini
