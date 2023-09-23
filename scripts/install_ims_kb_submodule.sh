@@ -12,4 +12,4 @@ fi
 
 cd "${PLATFORM_PATH}"
 
-clone_update_submodule --repo "${IMS_KB_REPO}" --path "${IMS_KB_PATH}" --branch "${IMS_KB_BRANCH}" "$@"
+clone_update_submodule --repo "${IMS_KB_REPO}" --path "${IMS_KB_PATH}" --branch "${IMS_KB_BRANCH}" --commit "${IMS_KB_COMMIT}" "$@"

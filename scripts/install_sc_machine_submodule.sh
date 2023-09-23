@@ -12,4 +12,4 @@ fi
 
 cd "${PLATFORM_PATH}"
 
-clone_update_submodule --repo "${SC_MACHINE_REPO}" --path "${SC_MACHINE_PATH}" --branch "${SC_MACHINE_BRANCH}" "$@"
+clone_update_submodule --repo "${SC_MACHINE_REPO}" --path "${SC_MACHINE_PATH}" --branch "${SC_MACHINE_BRANCH}" --commit "${SC_MACHINE_COMMIT}" "$@"

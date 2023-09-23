@@ -12,4 +12,4 @@ fi
 
 cd "${PLATFORM_PATH}"
 
-clone_update_submodule --repo "${SC_WEB_REPO}" --path "${SC_WEB_PATH}" --branch "${SC_WEB_BRANCH}" "${SC_WEB_COMMIT}" "$@"
+clone_update_submodule --repo "${SC_WEB_REPO}" --path "${SC_WEB_PATH}" --branch "${SC_WEB_BRANCH}" --commit "${SC_WEB_COMMIT}" "$@"

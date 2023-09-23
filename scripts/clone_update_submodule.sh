@@ -21,6 +21,10 @@ clone_update_submodule()
         shift 1
         UPDATE=true
         ;;
+      --commit)
+        shift 1
+        COMMIT="$1"
+        ;;
     esac
     shift 1
   done
@@ -40,7 +44,10 @@ clone_update_submodule()
 
     printf "Clone submodule %s (%s) into %s\n" "$REPO" "$BRANCH" "$SUBMODULE_PATH"
     git clone "$REPO" --branch "$BRANCH" --single-branch "$SUBMODULE_PATH" --recursive
-    git submodule update --init --recursive
+    if [ -n "$COMMIT" ];
+      then
+        cd "$SUBMODULE_PATH" && git checkout "$COMMIT"
+    fi
   else
     printf "You can update %s manually. Use this script with \"update\" parameter.\n" "$SUBMODULE_PATH"
   fi
