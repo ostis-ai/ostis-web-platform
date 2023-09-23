@@ -4,8 +4,10 @@ set -eo pipefail
 CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
 source "${CURRENT_DIR}/formats.sh"
 
-if [[ -z "${PLATFORM_PATH}" || -z "${SC_MACHINE_PATH}" || -z "${SC_WEB_PATH}" || -z "${SC_MACHINE_REPO}" || -z "${SC_WEB_REPO}" \
-  || -z "${SC_MACHINE_BRANCH}" || -z "${SC_WEB_BRANCH}" || -z "${SC_MACHINE_COMMIT}" || -z "${SC_WEB_COMMIT}" ]];
+if [[ -z "${PLATFORM_PATH}" || -z "${SC_MACHINE_PATH}" || -z "${SC_WEB_PATH}" || -z "${SCP_MACHINE_PATH}" \
+  || -z "${SC_MACHINE_REPO}" || -z "${SC_WEB_REPO}" || -z "${SCP_MACHINE_REPO}" \
+  || -z "${SC_MACHINE_BRANCH}" || -z "${SC_WEB_BRANCH}" || -z "${SCP_MACHINE_BRANCH}" \
+  || -z "${SC_MACHINE_COMMIT}" || -z "${SC_WEB_COMMIT}" || -z "${SCP_MACHINE_COMMIT}" ]];
 then
   source "${CURRENT_DIR}/set_vars.sh"
 fi
@@ -79,6 +81,7 @@ stage "Clone submodules"
 cd "${PLATFORM_PATH}" && git submodule update --init --recursive
 
 clone_project "${SC_MACHINE_REPO}" "${SC_MACHINE_PATH}" "${SC_MACHINE_BRANCH}" "${SC_MACHINE_COMMIT}"
+clone_project "${SCP_MACHINE_REPO}" "${SCP_MACHINE_PATH}" "${SCP_MACHINE_BRANCH}" "${SCP_MACHINE_COMMIT}"
 clone_project "${SC_WEB_REPO}" "${SC_WEB_PATH}" "${SC_WEB_BRANCH}" "${SC_WEB_COMMIT}"
 
 stage "Submodules cloned successfully"

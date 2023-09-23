@@ -1,2 +1,5 @@
 # common
 ims.ostis.kb
+scp-machine/kb
+
+!ims.ostis.kb/ui/menu/ui_main_menu.scs

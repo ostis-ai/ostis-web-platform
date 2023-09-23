@@ -14,6 +14,7 @@ stage "Install ostis-web-platform"
 "${PLATFORM_PATH}/scripts/install_submodules.sh"
 "${PLATFORM_PATH}/scripts/install_dependencies.sh" --dev
 "${PLATFORM_PATH}/scripts/build_sc_machine.sh"
+"${PLATFORM_PATH}/scripts/build_scp_machine.sh"
 "${PLATFORM_PATH}/scripts/build_sc_web.sh"
 "${PLATFORM_PATH}/scripts/build_kb.sh"
 
