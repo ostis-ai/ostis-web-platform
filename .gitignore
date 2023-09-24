@@ -6,10 +6,13 @@ ims.ostis.kb_copy
 geometry.drawings
 web-scn-editor
 prepared_kb
+bin
+build
 
 *.*~
 .idea
 __pycache__
+.vscode
 
 # texstudio
 *.aux

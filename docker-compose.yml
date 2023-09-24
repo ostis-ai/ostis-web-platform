@@ -1,6 +1,6 @@
 services:
   web:
-    image: ostis/sc-web:0.7.0-Rebirth
+    image: ostis/sc-web:0.8.0-Fusion
     build:
       context: ./sc-web
     restart: unless-stopped
@@ -15,7 +15,7 @@ services:
         condition: service_healthy
 
   machine:
-    image: ostis/sc-machine:0.7.0-Rebirth
+    image: ostis/sc-machine:0.8.0-Fusion
     build:
       context: ./sc-machine
     restart: unless-stopped
@@ -36,6 +36,8 @@ services:
       # Use the commented env variable if you need to rebuild KB every startup.
       #- "REBUILD_KB=1"
       - "KB_PATH=/kb/repo.path"
+      - "BINARY_PATH=/sc-machine/bin"
+      - "CONFIG_PATH=/kb/ostis-web-platform.ini"
     command:
       - "serve"
 
