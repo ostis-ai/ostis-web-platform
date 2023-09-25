@@ -11,7 +11,7 @@ fi
 
 install_component_manager_dependencies=false
 while [ "$1" != "" ]; do
-	case $1 in
+  case $1 in
     "-cm"|"--component-manager" )
       install_component_manager_dependencies=true
       ;;
