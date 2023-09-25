@@ -15,8 +15,8 @@ while [ "$1" != "" ]; do
     "-cm"|"--component-manager" )
       install_component_manager_dependencies=true
       ;;
-	esac
-	shift 1
+  esac
+  shift 1
 done
 
 stage "Install sc-machine dependencies"
