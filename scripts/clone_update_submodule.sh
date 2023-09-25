@@ -45,7 +45,7 @@ clone_update_submodule()
     printf "Clone submodule %s (%s) into %s\n" "$REPO" "$BRANCH" "$SUBMODULE_PATH"
     git clone "$REPO" --branch "$BRANCH" --single-branch "$SUBMODULE_PATH" --recursive
     if [ -n "$COMMIT" ];
-      then
+    then
         cd "$SUBMODULE_PATH" && git checkout "$COMMIT"
     fi
   else
