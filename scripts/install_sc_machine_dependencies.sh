@@ -9,23 +9,22 @@ then
   source "${CURRENT_DIR}/set_vars.sh"
 fi
 
+args=()
 install_component_manager_dependencies=false
-while [ "$1" != "" ]; do
-  case $1 in
-    "-cm"|"--component-manager" )
-      install_component_manager_dependencies=true
-      ;;
-  esac
-  shift 1
+for arg in "$@"; do
+  if [ "$arg" != "-cm" ]; then
+      args+=("$arg")
+  else install_component_manager_dependencies=true
+  fi
 done
 
 stage "Install sc-machine dependencies"
 
-"${SC_MACHINE_PATH}/scripts/install_deps_ubuntu.sh" "$@"
+"${SC_MACHINE_PATH}/scripts/install_deps_ubuntu.sh" "${args[@]}"
 
 if [ $install_component_manager_dependencies ]; 
 then
-  "${SC_MACHINE_PATH}/scripts/install_sc_component_manager_dependencies.sh" "$@"
+  "${SC_MACHINE_PATH}/scripts/install_sc_component_manager_dependencies.sh" "${args[@]}"
 fi
 
 stage "Dependencies of sc-machine installed successfully"
