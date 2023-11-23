@@ -38,7 +38,7 @@ while [ "$1" != "" ]; do
   shift 1 # remove the current value for `$1` and use the next
 done
 
-"${SC_MACHINE_PATH}/scripts/install_dependencies.sh" "${args[@]}"
-"${SC_WEB_PATH}/scripts/install_dependencies.sh"
+"${PLATFORM_PATH}/scripts/install_sc_machine_dependencies.sh" "${args[@]}"
+"${PLATFORM_PATH}/scripts/install_sc_web_dependencies.sh" "${args[@]}"
 
 stage "Dependencies installed successfully"
