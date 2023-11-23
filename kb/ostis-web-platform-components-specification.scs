@@ -51,7 +51,7 @@ ostis_web_platform_repository
 				-> rrel_1:
 					...
 					(*
-						-> [https://github.com/PetrochukKsenija/part_1_specification]
+						-> [https://github.com/PetrochukKsenija/part_1_component]
 							(*
 								<- concept_github_url;;
 							*);;
