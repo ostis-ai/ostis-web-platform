@@ -57,9 +57,142 @@ ostis_web_platform_repository
 							*);;
 					*);;
 			*);;
+		*);
+	-> part_2_specification
+		(*
+			<- concept_reusable_component_specification;;
+			=> nrel_alternative_addresses:
+			...
+			(*
+				<- sc_node_tuple;;
+				<- singletone;;
+				-> rrel_1:
+					...
+					(*
+						-> [https://github.com/PetrochukKsenija/part_2_component]
+							(*
+								<- concept_github_url;;
+							*);;
+					*);;
+			*);;
+		*);
+	-> part_3_specification
+		(*
+			<- concept_reusable_component_specification;;
+			=> nrel_alternative_addresses:
+			...
+			(*
+				<- sc_node_tuple;;
+				<- singletone;;
+				-> rrel_1:
+					...
+					(*
+						-> [https://github.com/PetrochukKsenija/part_3_component]
+							(*
+								<- concept_github_url;;
+							*);;
+					*);;
+			*);;
+		*);
+	-> part_4_specification
+		(*
+			<- concept_reusable_component_specification;;
+			=> nrel_alternative_addresses:
+			...
+			(*
+				<- sc_node_tuple;;
+				<- singletone;;
+				-> rrel_1:
+					...
+					(*
+						-> [https://github.com/PetrochukKsenija/part_4_component]
+							(*
+								<- concept_github_url;;
+							*);;
+					*);;
+			*);;
+		*);
+	-> part_5_specification
+		(*
+			<- concept_reusable_component_specification;;
+			=> nrel_alternative_addresses:
+			...
+			(*
+				<- sc_node_tuple;;
+				<- singletone;;
+				-> rrel_1:
+					...
+					(*
+						-> [https://github.com/PetrochukKsenija/part_5_component]
+							(*
+								<- concept_github_url;;
+							*);;
+					*);;
+			*);;
+		*);
+	-> part_6_specification
+		(*
+			<- concept_reusable_component_specification;;
+			=> nrel_alternative_addresses:
+			...
+			(*
+				<- sc_node_tuple;;
+				<- singletone;;
+				-> rrel_1:
+					...
+					(*
+						-> [https://github.com/PetrochukKsenija/part_6_component]
+							(*
+								<- concept_github_url;;
+							*);;
+					*);;
+			*);;
+		*);
+	-> part_7_specification
+		(*
+			<- concept_reusable_component_specification;;
+			=> nrel_alternative_addresses:
+			...
+			(*
+				<- sc_node_tuple;;
+				<- singletone;;
+				-> rrel_1:
+					...
+					(*
+						-> [https://github.com/PetrochukKsenija/part_7_component]
+							(*
+								<- concept_github_url;;
+							*);;
+					*);;
+			*);;
+		*);
+	-> part_8_specification
+		(*
+			<- concept_reusable_component_specification;;
+			=> nrel_alternative_addresses:
+			...
+			(*
+				<- sc_node_tuple;;
+				<- singletone;;
+				-> rrel_1:
+					...
+					(*
+						-> [https://github.com/PetrochukKsenija/part_8_component]
+							(*
+								<- concept_github_url;;
+							*);;
+					*);;
+			*);;
 		*);;
 
 concept_need_to_install_components
 -> knowledge_base_ims;
 -> sc_web;
--> part_1_component;;
+-> part_1_introduction_to_next_generation_intelligent_computer_systems;
+-> part_2_semantic_representation_and_ontological_systematization_of_knowledge_in_intelligent_computer_systems_of_the_new_generation;
+-> part_3_multiagent_problem_solvers_of_intelligent_computer_systems_of_the_new_generation;
+-> part_4_ontological_models_of_interfaces_of_intelligent_computer_systems_of_the_new_generation;
+-> part_5_methods_and_tools_of_engineering_of_intelligent_computer_systems_new_generation;
+-> part_6_intelligent_computer_systems_new_generation_implementation_platforms;
+-> part_7_methods_and_tools_of_reengineering_and_use_of_intelligent_computer_systems_new_generation;
+-> part_8_ecosystem_of_intelligent_computer_systems_of_the_new_generation_and_their_users;;
