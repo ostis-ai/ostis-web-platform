@@ -13,7 +13,7 @@ ostis_web_platform_repository
 				<- sc_node_tuple;;
 				<- singletone;;
 				-> rrel_1:
-					... 
+					...
 					(*
 						-> [https://github.com/ostis-ai/ims.ostis.kb]
 							(*
@@ -22,7 +22,7 @@ ostis_web_platform_repository
 					*);;
 			*);;
 		*);
-	-> sc_web_specification 	
+	-> sc_web_specification
 		(*
 			<- concept_reusable_component_specification;;
 			=> nrel_alternative_addresses:
@@ -31,7 +31,7 @@ ostis_web_platform_repository
 				<- sc_node_tuple;;
 				<- singletone;;
 				-> rrel_1:
-					... 
+					...
 					(*
 						-> [https://github.com/ostis-ai/sc-web]
 							(*

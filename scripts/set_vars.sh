@@ -10,7 +10,7 @@ export CONFIG_PATH="${CONFIG_PATH:-${PLATFORM_PATH}/ostis-web-platform.ini}"
 export REPO_PATH="${REPO_PATH:-${PLATFORM_PATH}/repo.path}"
 
 export SC_MACHINE_REPO="${SC_MACHINE_REPO:-https://github.com/ostis-ai/sc-machine.git}"
-export SC_MACHINE_BRANCH="${SC_MACHINE_BRANCH:-main}"
+export SC_MACHINE_BRANCH="${SC_MACHINE_BRANCH:-component_manager}"
 export SC_MACHINE_COMMIT="${SC_MACHINE_COMMIT:-""}"
 export SC_MACHINE_PATH="${SC_MACHINE_PATH:-${PLATFORM_PATH}/sc-machine}"
 
@@ -18,6 +18,11 @@ export SC_WEB_REPO="${SC_WEB_REPO:-https://github.com/ostis-ai/sc-web.git}"
 export SC_WEB_BRANCH="${SC_WEB_BRANCH:-main}"
 export SC_WEB_COMMIT="${SC_WEB_COMMIT:-""}"
 export SC_WEB_PATH="${SC_WEB_PATH:-${PLATFORM_PATH}/sc-web}"
+
+export IMS_KB_REPO="${IMS_KB_REPO:-https://github.com/ostis-ai/ims.ostis.kb.git}"
+export IMS_KB_BRANCH="${IMS_KB_BRANCH:-main}"
+export IMS_KB_COMMIT="${IMS_KB_COMMIT:-""}"
+export IMS_KB_PATH="${IMS_KB_PATH:-${PLATFORM_PATH}/kb/ims.ostis.kb}"
 
 if [ -d "${SC_MACHINE_PATH}" ];
 then
