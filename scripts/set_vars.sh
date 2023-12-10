@@ -9,13 +9,13 @@ export PROBLEM_SOLVER_PATH="${PROBLEM_SOLVER_PATH:-${PLATFORM_PATH}/sc-machine}"
 export CONFIG_PATH="${CONFIG_PATH:-${PLATFORM_PATH}/ostis-web-platform.ini}"
 export REPO_PATH="${REPO_PATH:-${PLATFORM_PATH}/repo.path}"
 
-export SC_MACHINE_REPO="${SC_MACHINE_REPO:-https://github.com/NikitaZotov/sc-machine-1.git}"
-export SC_MACHINE_BRANCH="${SC_MACHINE_BRANCH:-fix/deadlocks}"
+export SC_MACHINE_REPO="${SC_MACHINE_REPO:-https://github.com/ostis-ai/sc-machine.git}"
+export SC_MACHINE_BRANCH="${SC_MACHINE_BRANCH:-main}"
 export SC_MACHINE_COMMIT="${SC_MACHINE_COMMIT:-""}"
 export SC_MACHINE_PATH="${SC_MACHINE_PATH:-${PLATFORM_PATH}/sc-machine}"
 
 export SCP_MACHINE_REPO="${SCP_MACHINE_REPO:-https://github.com/ostis-ai/scp-machine.git}"
-export SCP_MACHINE_BRANCH="${SCP_MACHINE_BRANCH:-main}"
+export SCP_MACHINE_BRANCH="${SCP_MACHINE_BRANCH:-fix/check_action_class_for_initiated_agent}"
 export SCP_MACHINE_COMMIT="${SCP_MACHINE_COMMIT:-""}"
 export SCP_MACHINE_PATH="${SCP_MACHINE_PATH:-${PLATFORM_PATH}/scp-machine}"
 
