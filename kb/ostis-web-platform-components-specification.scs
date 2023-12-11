@@ -51,7 +51,7 @@ ostis_web_platform_repository
 				-> rrel_1:
 					...
 					(*
-						-> [https://github.com/PetrochukKsenija/part_1_component]
+						-> [https://github.com/ostis-ai/ostis-standard/tree/main/translated_scs/part_intro]
 							(*
 								<- concept_github_url;;
 							*);;
@@ -69,7 +69,7 @@ ostis_web_platform_repository
 				-> rrel_1:
 					...
 					(*
-						-> [https://github.com/PetrochukKsenija/part_2_component]
+						-> [https://github.com/ostis-ai/ostis-standard/tree/main/translated_scs/part_kb]
 							(*
 								<- concept_github_url;;
 							*);;
@@ -87,7 +87,7 @@ ostis_web_platform_repository
 				-> rrel_1:
 					...
 					(*
-						-> [https://github.com/PetrochukKsenija/part_3_component]
+						-> [https://github.com/ostis-ai/ostis-standard/tree/main/translated_scs/part_ps]
 							(*
 								<- concept_github_url;;
 							*);;
@@ -105,7 +105,7 @@ ostis_web_platform_repository
 				-> rrel_1:
 					...
 					(*
-						-> [https://github.com/PetrochukKsenija/part_4_component]
+						-> [https://github.com/ostis-ai/ostis-standard/tree/main/translated_scs/part_ui]
 							(*
 								<- concept_github_url;;
 							*);;
@@ -123,7 +123,7 @@ ostis_web_platform_repository
 				-> rrel_1:
 					...
 					(*
-						-> [https://github.com/PetrochukKsenija/part_5_component]
+						-> [https://github.com/ostis-ai/ostis-standard/tree/main/translated_scs/part_methods_tools]
 							(*
 								<- concept_github_url;;
 							*);;
@@ -141,7 +141,7 @@ ostis_web_platform_repository
 				-> rrel_1:
 					...
 					(*
-						-> [https://github.com/PetrochukKsenija/part_6_component]
+						-> [https://github.com/ostis-ai/ostis-standard/tree/main/translated_scs/part_platform]
 							(*
 								<- concept_github_url;;
 							*);;
@@ -159,7 +159,7 @@ ostis_web_platform_repository
 				-> rrel_1:
 					...
 					(*
-						-> [https://github.com/PetrochukKsenija/part_7_component]
+						-> [https://github.com/ostis-ai/ostis-standard/tree/main/translated_scs/part_support]
 							(*
 								<- concept_github_url;;
 							*);;
@@ -177,7 +177,7 @@ ostis_web_platform_repository
 				-> rrel_1:
 					...
 					(*
-						-> [https://github.com/PetrochukKsenija/part_8_component]
+						-> [https://github.com/ostis-ai/ostis-standard/tree/main/translated_scs/part_ecosystem]
 							(*
 								<- concept_github_url;;
 							*);;
