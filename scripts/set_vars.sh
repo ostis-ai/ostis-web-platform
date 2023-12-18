@@ -15,7 +15,7 @@ export SC_MACHINE_COMMIT="${SC_MACHINE_COMMIT:-""}"
 export SC_MACHINE_PATH="${SC_MACHINE_PATH:-${PLATFORM_PATH}/sc-machine}"
 
 export SCP_MACHINE_REPO="${SCP_MACHINE_REPO:-https://github.com/ostis-ai/scp-machine.git}"
-export SCP_MACHINE_BRANCH="${SCP_MACHINE_BRANCH:-fix/check_action_class_for_initiated_agent}"
+export SCP_MACHINE_BRANCH="${SCP_MACHINE_BRANCH:-main}"
 export SCP_MACHINE_COMMIT="${SCP_MACHINE_COMMIT:-""}"
 export SCP_MACHINE_PATH="${SCP_MACHINE_PATH:-${PLATFORM_PATH}/scp-machine}"
 
