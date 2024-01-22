@@ -1,6 +1,6 @@
 services:
   web:
-    image: ostis/sc-web:0.8.0-Fusion
+    image: ostis/sc-web:0.8.1-Unlock
     build:
       context: ./sc-web
     restart: unless-stopped
@@ -15,7 +15,7 @@ services:
         condition: service_healthy
 
   machine:
-    image: ostis/sc-machine:0.8.0-Fusion
+    image: ostis/sc-machine:0.9.0-Unlock
     build:
       context: ./sc-machine
     restart: unless-stopped
