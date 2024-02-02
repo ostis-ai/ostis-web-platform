@@ -79,7 +79,7 @@ To learn more about the platform, check out our [documentation](https://github.c
   git clone https://github.com/ostis-ai/ostis-web-platform
   cd ostis-web-platform/scripts
   ./install_platform_with_component_manager.sh
-  ./run_sc_component_manager.sh -c ../ostis-web-platform.ini
+  ./run_sc_component_manager.sh
   ```
 
 ## Usage
