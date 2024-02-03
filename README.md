@@ -63,6 +63,15 @@ To learn more about the platform, check out our [documentation](https://github.c
 
    </details>
 
+- Natively (using sc-component-manager)
+
+  ```sh
+  git clone https://github.com/ostis-ai/ostis-web-platform
+  cd ostis-web-platform/scripts
+  ./install_platform_with_component_manager.sh
+  ./run_sc_component_manager.sh
+  ```
+
 - Natively
 
   Note: Currently, only Linux (Ubuntu-20.04, Ubuntu-22.04) and macOS are supported by this installation method. If you're going to use it, it might take a while to download dependencies and compile the components. Use it only if you know what you're doing!
@@ -71,15 +80,6 @@ To learn more about the platform, check out our [documentation](https://github.c
   git clone https://github.com/ostis-ai/ostis-web-platform --recursive
   cd ostis-web-platform
   ./scripts/install_platform.sh
-  ```
-
-- Natively (using sc-component-manager)
-
-  ```sh
-  git clone https://github.com/ostis-ai/ostis-web-platform
-  cd ostis-web-platform/scripts
-  ./install_platform_with_component_manager.sh
-  ./run_sc_component_manager.sh
   ```
 
 ## Usage
