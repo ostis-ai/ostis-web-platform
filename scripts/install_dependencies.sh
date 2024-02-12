@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
-source "${CURRENT_DIR}/formats.sh"
+SCRIPTS_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
+source "${SCRIPTS_DIR}/formats.sh"
 
 if [[ -z "${SC_MACHINE_PATH}" || -z "${SC_WEB_PATH}" ]];
 then
-  source "${CURRENT_DIR}/set_vars.sh"
+  source "${SCRIPTS_DIR}/set_vars.sh"
 fi
 
 function usage() {
@@ -22,7 +22,8 @@ USAGE
 stage "Install dependencies"
 
 args=()
-while [ "$1" != "" ]; do
+while [ "$1" != "" ];
+do
   case $1 in
   --dev)
     args+=("--dev")
@@ -38,7 +39,7 @@ while [ "$1" != "" ]; do
   shift 1 # remove the current value for `$1` and use the next
 done
 
-"${PLATFORM_PATH}/scripts/install_sc_machine_dependencies.sh" "${args[@]}"
-"${PLATFORM_PATH}/scripts/install_sc_web_dependencies.sh" "${args[@]}"
+"${SCRIPTS_DIR}/install_sc_machine_dependencies.sh" "${args[@]}"
+"${SCRIPTS_DIR}/install_sc_web_dependencies.sh" "${args[@]}"
 
 stage "Dependencies installed successfully"
