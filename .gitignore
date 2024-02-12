@@ -2,7 +2,8 @@ kb.bin
 sc-machine
 scp-machine
 sc-web
-ims.ostis.kb_copy
+sc-component-manager
+ims.ostis.kb
 geometry.drawings
 web-scn-editor
 prepared_kb
