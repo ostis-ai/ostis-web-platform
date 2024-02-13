@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-CURRENT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
-source "${CURRENT_DIR}/formats.sh"
+SCRIPTS_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
+SUBMODULE_SCRIPTS_DIR="${SCRIPTS_DIR}/submodule-scripts"
+source "${SCRIPTS_DIR}/formats.sh"
 
-if [[ -z "${PLATFORM_PATH}" || -z "${SC_MACHINE_PATH}" || -z "${SC_WEB_PATH}" || -z "${SC_COMPONENT_MANAGER_PATH}" \
-  || -z "${SC_MACHINE_REPO}" || -z "${SC_WEB_REPO}" || -z "${SC_COMPONENT_MANAGER_REPO}" \
-  || -z "${SC_MACHINE_BRANCH}" || -z "${SC_WEB_BRANCH}" || -z "${SC_COMPONENT_MANAGER_BRANCH}" \
-  || -z "${SC_MACHINE_COMMIT}" || -z "${SC_WEB_COMMIT}" || -z "${SC_COMPONENT_MANAGER_COMMIT}" ]];
+if [[ -z "${PLATFORM_PATH}" ]];
 then
-  source "${CURRENT_DIR}/set_vars.sh"
+  source "${SCRIPTS_DIR}/set_vars.sh"
 fi
-
 
 usage() {
   cat <<USAGE
@@ -26,11 +23,16 @@ USAGE
   exit 1
 }
 
+UPDATE=0
+
 while [ "$1" != "" ];
 do
   case $1 in
     "--help" | "-h" )
       usage
+      ;;
+    "--update" )
+      UPDATE=1
       ;;
     * )
       usage
@@ -39,13 +41,20 @@ do
   shift 1
 done
 
-stage "Clone submodules"
+if (( UPDATE == 1 ));
+then
+  warning "The option \"--update\" is deprecated. Use \"update_submodules.sh\" instead."
 
-cd "${PLATFORM_PATH}" && git submodule update --init --recursive
+  "${SCRIPTS_DIR}/update_submodules.sh"
+else
+  stage "Clone submodules"
 
-"${PLATFORM_PATH}/scripts/install_sc_machine_submodule.sh" "$@"
-"${PLATFORM_PATH}/scripts/install_sc_component_manager_submodule.sh" "$@"
-"${PLATFORM_PATH}/scripts/install_sc_web_submodule.sh" "$@"
-"${PLATFORM_PATH}/scripts/install_ims_kb_submodule.sh" "$@"
+  cd "${PLATFORM_PATH}" && git submodule update --init --recursive
 
-stage "Submodules cloned successfully"
+  "${SUBMODULE_SCRIPTS_DIR}/install_sc_machine.sh"
+  "${SUBMODULE_SCRIPTS_DIR}/install_sc_component_manager.sh"
+  "${SUBMODULE_SCRIPTS_DIR}/install_sc_web.sh"
+  "${SUBMODULE_SCRIPTS_DIR}/install_ims_ostis_kb.sh"
+
+  stage "Submodules cloned successfully"
+fi

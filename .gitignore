@@ -1,11 +1,10 @@
-kb.bin
 sc-machine
+sc-component-manager
 scp-machine
 sc-web
-ims.ostis.kb_copy
-geometry.drawings
-web-scn-editor
-prepared_kb
+ims.ostis.kb
+
+kb.bin
 bin
 build
 

@@ -8,7 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Scripts `update_submodules.sh`
 - Add sc-component-manager
+
+### Changed
+
+- Separate installation and update submodules scripts
+
+### Deprecated
+
+- Option `--update` in `install_submodules.sh`
 
 ## [0.9.0-Unlock] - 22.01.2024
 
