@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Scripts `update_submodules.sh`
+- Script `build_platform.sh`
+- Script `update_submodules.sh`
 - Add sc-component-manager
 
 ### Changed
