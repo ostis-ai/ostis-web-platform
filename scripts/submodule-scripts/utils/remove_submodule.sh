@@ -19,19 +19,19 @@ do
   shift 1
 done
 
-if [ -z "$SUBMODULE_PATH" ];
+if [ -z "${SUBMODULE_PATH}" ];
 then
   warning "Empty paths are dangerous in use. Use another path instead for submodules installation or update.\n"
   exit 2
 fi
 
-if [[ ! -d "$SUBMODULE_PATH" ]];
+if [[ ! -d "${SUBMODULE_PATH}" ]];
 then
-  warning "Submodule \"$SUBMODULE_PATH\" is not installed yet."
+  warning "Submodule \"${SUBMODULE_PATH}\" is not installed yet."
   exit 1
 fi
 
-printf "Remove submodule %s \n" "$REPO"
-rm -rf "$SUBMODULE_PATH"
+printf "Remove submodule %s \n" "${REPO}"
+rm -rf "${SUBMODULE_PATH}"
 
 exit 0
