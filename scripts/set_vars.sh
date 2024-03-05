@@ -3,9 +3,8 @@ set -eo pipefail
 
 ROOT_PATH=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && cd .. && pwd)
 
-export APP_ROOT_PATH="${APP_ROOT_PATH:-${ROOT_PATH}}"
-export PLATFORM_PATH="${PLATFORM_PATH:-${APP_ROOT_PATH}}"
-export PROBLEM_SOLVER_PATH="${PROBLEM_SOLVER_PATH:-${PLATFORM_PATH}/sc-machine}"
+export PLATFORM_PATH="${PLATFORM_PATH:-${ROOT_PATH}}"
+
 export CONFIG_PATH="${CONFIG_PATH:-${PLATFORM_PATH}/ostis-web-platform.ini}"
 export REPO_PATH="${REPO_PATH:-${PLATFORM_PATH}/repo.path}"
 
