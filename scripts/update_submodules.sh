@@ -40,6 +40,7 @@ stage "Update submodules"
 cd "${PLATFORM_PATH}" && git submodule update --init --recursive
 
 "${SUBMODULE_SCRIPTS_DIR}/update_sc_machine.sh"
+"${SUBMODULE_SCRIPTS_DIR}/update_scp_machine.sh"
 "${SUBMODULE_SCRIPTS_DIR}/update_sc_component_manager.sh"
 "${SUBMODULE_SCRIPTS_DIR}/update_sc_web.sh"
 "${SUBMODULE_SCRIPTS_DIR}/update_ims_ostis_kb.sh"

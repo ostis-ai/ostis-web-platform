@@ -52,6 +52,7 @@ else
   cd "${PLATFORM_PATH}" && git submodule update --init --recursive
 
   "${SUBMODULE_SCRIPTS_DIR}/install_sc_machine.sh"
+  "${SUBMODULE_SCRIPTS_DIR}/install_scp_machine.sh"
   "${SUBMODULE_SCRIPTS_DIR}/install_sc_component_manager.sh"
   "${SUBMODULE_SCRIPTS_DIR}/install_sc_web.sh"
   "${SUBMODULE_SCRIPTS_DIR}/install_ims_ostis_kb.sh"
