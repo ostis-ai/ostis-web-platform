@@ -1,13 +1,13 @@
-# OSTIS Web Platform
+# ostis-web-platform
 
 <img src="https://github.com/ostis-ai/ostis-web-platform/actions/workflows/main.yml/badge.svg?branch=develop"> [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-This repository is a web-oriented software platform of the [OSTIS Technology](https://github.com/ostis-ai) and is intended to be a solid framework to help you deploy existing and create new ostis-systems.
+This repository is a storage of the Platform of the [OSTIS Technology](https://github.com/ostis-ai). Platform OSTIS is intended to be a solid framework to help you deploy existing and create new ostis-systems.
 
-OSTIS Web platform contains:
+OSTIS Platform contains:
 
 1. [Knowledge base with top-level ontologies](https://github.com/ostis-ai/ims.ostis.kb) to help you develop a broad variety of information models
-2. [Knowledge processing machine](https://github.com/ostis-ai/sc-machine) with semantic network storage and agent-based knowledge processing
+2. [Semantic network storage](https://github.com/ostis-ai/sc-machine) for agent-based knowledge processing
 3. [Web-oriented semantic interface](https://github.com/ostis-ai/sc-web) for users to interact with the intelligent system.
 
 To learn more about the platform, check out our [documentation](https://github.com/ostis-ai/ostis-web-platform/blob/develop/docs/main.pdf).
@@ -67,9 +67,9 @@ To learn more about the platform, check out our [documentation](https://github.c
 
   ```sh
   git clone https://github.com/ostis-ai/ostis-web-platform
-  cd ostis-web-platform/scripts
-  ./install_platform_with_component_manager.sh
-  ./run_sc_component_manager.sh
+  cd ostis-web-platform
+  ./scripts/install_platform_with_component_manager.sh
+  ./scripts/run_sc_component_manager.sh
   ```
 
 - Natively

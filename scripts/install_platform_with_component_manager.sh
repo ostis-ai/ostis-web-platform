@@ -14,4 +14,4 @@ stage "Install ostis-web-platform"
 "${SCRIPTS_DIR}/build_sc_component_manager.sh"
 "${SCRIPTS_DIR}/build_kb.sh"
 
-stage "OSTIS-web-platform installed successfully"
+stage "ostis-web-platform is installed successfully"
