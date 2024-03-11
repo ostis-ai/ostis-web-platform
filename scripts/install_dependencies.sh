@@ -14,7 +14,7 @@ function usage() {
 Usage: $0 [--dev]
 
 Options:
-  --dev:          installs dependencies required to compile sc-machine and sc-web
+  --dev:          Installs dependencies required to compile sc-machine and sc-web
 USAGE
   exit 1
 }
