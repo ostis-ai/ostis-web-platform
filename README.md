@@ -1,14 +1,16 @@
 # ostis-web-platform
 
 <img src="https://github.com/ostis-ai/ostis-web-platform/actions/workflows/main.yml/badge.svg?branch=develop"> [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-This repository is a storage of the Platform of the [OSTIS Technology](https://github.com/ostis-ai). Platform OSTIS is intended to be a solid framework to help you deploy existing and create new ostis-systems.
+ 
+It is the repository of the Platform of the [OSTIS Technology](https://github.com/ostis-ai). Platform OSTIS is intended to be a solid framework to help you deploy existing and create new ostis-systems.
 
 OSTIS Platform contains:
 
-1. [Knowledge base with top-level ontologies](https://github.com/ostis-ai/ims.ostis.kb) to help you develop a broad variety of information models
-2. [Semantic network storage](https://github.com/ostis-ai/sc-machine) for agent-based knowledge processing
-3. [Web-oriented semantic interface](https://github.com/ostis-ai/sc-web) for users to interact with the intelligent system.
+1. [Knowledge base with top-level ontologies](https://github.com/ostis-ai/ims.ostis.kb)
+2. [Semantic network storage for intelligent systems](https://github.com/ostis-ai/sc-machine)
+3. [Interpreter of semantic network programs of intelligent systems](https://github.com/ostis-ai/scp-machine)
+4. [Component manager for intelligent systems](https://github.com/ostis-ai/sc-component-manager)
+5. [Interpreter of web-oriented semantic interfaces of intelligent systems](https://github.com/ostis-ai/sc-web)
 
 To learn more about the platform, check out our [documentation](https://github.com/ostis-ai/ostis-web-platform/blob/develop/docs/main.pdf).
 
