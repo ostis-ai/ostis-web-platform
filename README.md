@@ -70,7 +70,7 @@ To learn more about the platform, check out our [documentation](https://github.c
   ```sh
   git clone https://github.com/ostis-ai/ostis-web-platform
   cd ostis-web-platform
-  ./scripts/install_platform_with_component_manager.sh
+  ./scripts/install_minimal_platform.sh
   ./scripts/run_sc_component_manager.sh
   ```
 
@@ -89,8 +89,8 @@ To learn more about the platform, check out our [documentation](https://github.c
 - Docker Compose
 
   ```sh
-  # build the Knowledge Base.
-  # Required before the first startup (or if you've made updates to KB sources)
+  # build the knowledge base
+  # required before the first startup (or if you've made updates to KB sources)
   docker compose run machine build
   # start platform services and run web interface at localhost:8000
   docker compose up
@@ -99,10 +99,10 @@ To learn more about the platform, check out our [documentation](https://github.c
 - Native installation
 
   ```sh
-  # Launch knowledge processing machine
-  ./scripts/run_sc_server.sh
+  # launch semantic network processing machine
+  ./scripts/run_sc_machine.sh
   # *in another terminal*
-  # Launch semantic web interface at localhost:8000
+  # launch semantic interfaces interpreter at localhost:8000
   ./scripts/run_sc_web.sh
   ```
 
