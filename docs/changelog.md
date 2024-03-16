@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Script run_sc_machine.sh
 - Add scp-machine
 - Script `build_platform.sh`
 - Script `update_submodules.sh`
