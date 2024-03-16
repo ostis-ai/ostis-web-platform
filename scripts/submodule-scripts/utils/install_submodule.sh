@@ -27,23 +27,23 @@ do
   shift 1
 done
 
-if [ -z "$SUBMODULE_PATH" ];
+if [ -z "${SUBMODULE_PATH}" ];
 then
   warning "Empty paths are dangerous in use. Use another path instead for submodules installation.\n"
   exit 2
 fi
 
-if [[ -d "$SUBMODULE_PATH" ]];
+if [[ -d "${SUBMODULE_PATH}" ]];
 then
-  warning "Submodule \"$SUBMODULE_PATH\" is already installed."
+  warning "Submodule \"${SUBMODULE_PATH}\" is already installed."
   exit 1
 fi
 
-printf "Clone submodule %s (%s) into %s\n" "$REPO" "$BRANCH" "$SUBMODULE_PATH"
-git clone "$REPO" --branch "$BRANCH" --single-branch "$SUBMODULE_PATH" --recursive
-if [ -n "$COMMIT" ];
+printf "Clone submodule %s (%s) into %s\n" "${REPO}" "${BRANCH}" "${SUBMODULE_PATH}"
+git clone "${REPO}" --branch "${BRANCH}" --single-branch "${SUBMODULE_PATH}" --recursive
+if [ -n "${COMMIT}" ];
 then
-  cd "$SUBMODULE_PATH" && git checkout "$COMMIT"
+  cd "${SUBMODULE_PATH}" && git checkout "${COMMIT}"
 fi
 
 exit 0

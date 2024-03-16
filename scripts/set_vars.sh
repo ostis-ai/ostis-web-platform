@@ -3,15 +3,14 @@ set -eo pipefail
 
 ROOT_PATH=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && cd .. && pwd)
 
-export APP_ROOT_PATH="${APP_ROOT_PATH:-${ROOT_PATH}}"
-export PLATFORM_PATH="${PLATFORM_PATH:-${APP_ROOT_PATH}}"
-export PROBLEM_SOLVER_PATH="${PROBLEM_SOLVER_PATH:-${PLATFORM_PATH}/sc-machine}"
+export PLATFORM_PATH="${PLATFORM_PATH:-${ROOT_PATH}}"
+
 export CONFIG_PATH="${CONFIG_PATH:-${PLATFORM_PATH}/ostis-web-platform.ini}"
 export REPO_PATH="${REPO_PATH:-${PLATFORM_PATH}/repo.path}"
 
 export SC_MACHINE_REPO="${SC_MACHINE_REPO:-https://github.com/ostis-ai/sc-machine.git}"
 export SC_MACHINE_BRANCH="${SC_MACHINE_BRANCH:-main}"
-export SC_MACHINE_COMMIT="${SC_MACHINE_COMMIT:-"b31f0bcb2fb07d9c4e1551b1eafc329f9f1384a5"}"
+export SC_MACHINE_COMMIT="${SC_MACHINE_COMMIT:-""}"
 export SC_MACHINE_PATH="${SC_MACHINE_PATH:-${PLATFORM_PATH}/sc-machine}"
 
 export SCP_MACHINE_REPO="${SCP_MACHINE_REPO:-https://github.com/ostis-ai/scp-machine.git}"
@@ -25,12 +24,12 @@ export SC_COMPONENT_MANAGER_COMMIT="${SC_COMPONENT_MANAGER_COMMIT:-""}"
 export SC_COMPONENT_MANAGER_PATH="${SC_COMPONENT_MANAGER_PATH:-${PLATFORM_PATH}/sc-component-manager}"
 
 export SC_WEB_REPO="${SC_WEB_REPO:-https://github.com/ostis-ai/sc-web.git}"
-export SC_WEB_BRANCH="${SC_WEB_BRANCH:-0.8.1-Unlock}"
+export SC_WEB_BRANCH="${SC_WEB_BRANCH:-main}"
 export SC_WEB_COMMIT="${SC_WEB_COMMIT:-""}"
 export SC_WEB_PATH="${SC_WEB_PATH:-${PLATFORM_PATH}/interface/sc-web}"
 
 export IMS_KB_REPO="${IMS_KB_REPO:-https://github.com/ostis-ai/ims.ostis.kb.git}"
-export IMS_KB_BRANCH="${IMS_KB_BRANCH:-0.3.0}"
+export IMS_KB_BRANCH="${IMS_KB_BRANCH:-main}"
 export IMS_KB_COMMIT="${IMS_KB_COMMIT:-""}"
 export IMS_KB_PATH="${IMS_KB_PATH:-${PLATFORM_PATH}/kb/ims.ostis.kb}"
 

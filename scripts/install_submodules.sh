@@ -18,7 +18,7 @@ This script is used to download sources of ostis-web-platform and submodules
 and install them. The exact behavior is configured via run arguments.
 
 Options:
-  --update: Remove ostis-web-platform submodules sources and download them from scratch.
+  --update: Removes ostis-web-platform submodules sources and download them from scratch.
 USAGE
   exit 1
 }

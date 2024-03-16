@@ -1,4 +1,4 @@
-name: CI
+name: Install
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Prepare on ${{ matrix.os }}
+    name: Install on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -31,7 +31,7 @@ jobs:
         with:
           key: ${{ github.job }}
 
-      - name: Preparing platform
+      - name: Install platform
         env:
           TERM: linux
         run: |

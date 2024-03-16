@@ -1,14 +1,16 @@
-# OSTIS Web Platform
+# ostis-web-platform
 
 <img src="https://github.com/ostis-ai/ostis-web-platform/actions/workflows/main.yml/badge.svg?branch=develop"> [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+ 
+It is the repository of the Platform of the [OSTIS Technology](https://github.com/ostis-ai). Platform OSTIS is intended to be a solid framework to help you deploy existing and create new ostis-systems.
 
-This repository is a web-oriented software platform of the [OSTIS Technology](https://github.com/ostis-ai) and is intended to be a solid framework to help you deploy existing and create new ostis-systems.
+OSTIS Platform contains:
 
-OSTIS Web platform contains:
-
-1. [Knowledge base with top-level ontologies](https://github.com/ostis-ai/ims.ostis.kb) to help you develop a broad variety of information models
-2. [Knowledge processing machine](https://github.com/ostis-ai/sc-machine) with semantic network storage and agent-based knowledge processing
-3. [Web-oriented semantic interface](https://github.com/ostis-ai/sc-web) for users to interact with the intelligent system.
+1. [Knowledge base with top-level ontologies](https://github.com/ostis-ai/ims.ostis.kb)
+2. [Semantic network storage for intelligent systems](https://github.com/ostis-ai/sc-machine)
+3. [Interpreter of semantic network programs of intelligent systems](https://github.com/ostis-ai/scp-machine)
+4. [Component manager for intelligent systems](https://github.com/ostis-ai/sc-component-manager)
+5. [Interpreter of web-oriented semantic interfaces of intelligent systems](https://github.com/ostis-ai/sc-web)
 
 To learn more about the platform, check out our [documentation](https://github.com/ostis-ai/ostis-web-platform/blob/develop/docs/main.pdf).
 
@@ -67,9 +69,9 @@ To learn more about the platform, check out our [documentation](https://github.c
 
   ```sh
   git clone https://github.com/ostis-ai/ostis-web-platform
-  cd ostis-web-platform/scripts
-  ./install_platform_with_component_manager.sh
-  ./run_sc_component_manager.sh
+  cd ostis-web-platform
+  ./scripts/install_minimal_platform.sh
+  ./scripts/run_sc_component_manager.sh
   ```
 
 - Natively
@@ -87,8 +89,8 @@ To learn more about the platform, check out our [documentation](https://github.c
 - Docker Compose
 
   ```sh
-  # build the Knowledge Base.
-  # Required before the first startup (or if you've made updates to KB sources)
+  # build the knowledge base
+  # required before the first startup (or if you've made updates to KB sources)
   docker compose run machine build
   # start platform services and run web interface at localhost:8000
   docker compose up
@@ -97,10 +99,10 @@ To learn more about the platform, check out our [documentation](https://github.c
 - Native installation
 
   ```sh
-  # Launch knowledge processing machine
-  ./scripts/run_sc_server.sh
+  # launch semantic network processing machine
+  ./scripts/run_sc_machine.sh
   # *in another terminal*
-  # Launch semantic web interface at localhost:8000
+  # launch semantic interfaces interpreter at localhost:8000
   ./scripts/run_sc_web.sh
   ```
 
