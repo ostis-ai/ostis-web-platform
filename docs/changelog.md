@@ -8,11 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Script run_sc_machine.sh
-- Add scp-machine
+- Script `run_sc_machine.sh`
+- Script `build_scp_machine.sh`
+- Install scp-machine
+- Script `install_minimal_platform.sh`
 - Script `build_platform.sh`
 - Script `update_submodules.sh`
-- Add sc-component-manager
+- Script `build_sc_component_manager.sh`
+- Install sc-component-manager
 
 ### Changed
 
