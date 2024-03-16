@@ -1,4 +1,4 @@
-name: CI
+name: Minimal install
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Install with component manager on ${{ matrix.os }}
+    name: Minimal install on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -31,11 +31,11 @@ jobs:
         with:
           key: ${{ github.job }}
 
-      - name: Installing platform
+      - name: Install platform
         env:
           TERM: linux
         run: |
           cd scripts
           ./set_vars.sh
-          ./install_platform_with_component_manager.sh
+          ./install_minimal_platform.sh
           ./run_sc_component_manager.sh
