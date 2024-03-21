@@ -1,0 +1,9 @@
+lang_uk
+<-sc_node_not_relation;
+<-languages;
+=> nrel_main_idtf:
+   [Украинский язык] (* <- lang_ru;; *);
+   [Ukrainian language] (* <- lang_en;; *);
+   [Українська мова] (* <- lang_uk;; *);
+   [Ukrainische Sprache] (* <- lang_de;; *);;
+

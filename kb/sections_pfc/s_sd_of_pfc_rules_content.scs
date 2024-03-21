@@ -1,0 +1,57 @@
+s_sd_of_pfc_rules =  [*
+sd_of_pfc_rules 
+=> nrel_main_idtf:
+	[Предметная область правил языка PFC]
+	(* <- lang_ru;; *);
+	[Subject Area of PFC Language Rules]
+	(* <- lang_en;; *);
+	[Предметна область правил мови PFC]
+	(* <- lang_uk;; *);
+<- subject_domain;
+<- sc_node_struct;
+<- structure;
+-> rrel_maximum_studied_object_class: pfc_rule;
+-> rrel_explored_relation:
+	nrel_mapping;		//не описано
+	nrel_isomorphic;;	//не описано
+
+sc_node_not_relation -> pfc_rule;;
+pfc_rule
+=> nrel_main_idtf:
+	[правило языка PFC]
+	(* <- lang_ru;; *);
+	[правило мови PFC]
+	(* <- lang_en;; *);
+	[PFC language rule]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Правило языка PFC — sc-текст, являющийся описанием переходов от семантики языка PFC к соответствующим 
+			синтаксическим текстам, основанных на графических примитивах.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[PFC language rule - sc-text, which is a description of transitions from the semantics of the PFC language to the corresponding
+			syntactic texts based on graphic primitives.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Правило мови PFC - sc-текст, який є описом переходів від семантики мови PFC до відповідних
+			синтаксичних текстів, заснованих на графічних примітивах.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_norole_relation -> nrel_mapping;;
+
+sc_node_norole_relation -> nrel_isomorphic;;
+
+
+
+*];;

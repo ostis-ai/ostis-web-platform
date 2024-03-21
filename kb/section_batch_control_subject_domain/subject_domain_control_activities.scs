@@ -1,0 +1,6 @@
+subject_domain_control_activities
+<- sc_node_struct;
+=> nrel_main_idtf: 
+	[Предметная область деятельности по управлению рецептурным производством] (* <- lang_ru;; *);
+ 	[Subject domain of batch control activities] (* <- lang_en;; *);
+	[Предметна область діяльності по керуванню порційним виробництвом] (* <- lang_uk;; *);;

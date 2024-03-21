@@ -1,0 +1,7 @@
+lang_de
+<-languages;
+=> nrel_main_idtf:
+   [Немецкий язык] (* <- lang_ru;; *);
+   [German language] (* <- lang_en;; *);
+   [Німецька мова] (* <- lang_uk;; *);
+   [Deutsche Sprache] (* <- lang_de;; *);;

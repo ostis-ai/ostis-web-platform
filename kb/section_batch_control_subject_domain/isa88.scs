@@ -1,0 +1,83 @@
+section_isa88
+<- ui_start_sc_element;
+<- sc_node_struct;
+=> nrel_main_idtf:
+	[Раздел. Предметная область предприятий рецептурного производства]
+	(* <- lang_ru;; *);
+	[Section. Subject domain of batch manufacturing enterprises]
+	(* <- lang_en;; *);
+	[Розділ. Предметна область підприємств рецептурного виробництва]
+	(* <- lang_uk;; *);
+	[Sektion. Themenbereich chargenorientierte Produktionsunternehmen]
+	(* <- lang_de;; *);
+<= nrel_section_decomposition: {
+section_isa88_physical_models
+(* => nrel_section_base_order: section_isa88_process_models;; *);
+section_isa88_process_models
+(* => nrel_section_base_order: section_isa88_procedural_control_models;; *);
+section_isa88_procedural_control_models
+(* => nrel_section_base_order: section_control_activities;; *);
+section_control_activities
+};
+
+=> nrel_summary:
+	[Целью проекта является создание распределенным сообществом разработчиков полной, структурированной и объективной базы знаний по стандарту рецептурного производства S88 на основе открытой технологии OSTIS (Open Semantic Technology for Intelligent Systems)]
+	(* <- lang_ru;; *);
+	[The aim of the project is to create a complete, structured and objective knowledge base for the S88 batch manufacturing standard by the distributed community of developers, based on the OSTIS technology (Open Semantic Technology for Intelligent Systems)]
+	(* <- lang_en;; *);
+	[Метою проекту є створення розподіленою спільнотою розробників повної, структурованої і об'єктивної бази знань за стандартом рецептурного виробництва S88 на основі відкритої технології OSTIS (Open Semantic Technology for Intelligent Systems)]
+	(* <- lang_uk;; *);
+	[Ziel des Projekts ist es, mit einer dezentralen Entwicklergemeinschaft eine vollständige, strukturierte und objektive Wissensbasis auf dem Standard der chargenorientierten Produktion S88 auf der Basis der offenen Technologie OSTIS (Open Semantic Technology for Intelligent Systems) zu entwickeln]
+	(* <- lang_de;; *);;
+
+rrel_key_sc_element -> (section_isa88 -> subject_domain_isa88); (section_isa88_physical_models -> subject_domain_isa88_physical);
+(section_isa88_process_models -> subject_domain_isa88_process); (section_isa88_procedural_control_models -> subject_domain_isa88_procedural);
+(section_control_activities -> subject_domain_control_activities);;
+
+section_isa88_physical_models
+<- sc_node_struct;
+=> nrel_main_idtf:
+	[Раздел. Предметная область физических моделей рецептурных производств]
+	(* <- lang_ru;; *);
+	[Section. Subject domain of physical models of batch manufacturing enterprises]
+	(* <- lang_en;; *);
+	[Розділ. Предметна область фізичних моделей рецептурних виробництв]
+	(* <- lang_uk;; *);
+	[Sektion. Themenbereich physische Modelle chargenorientierter Produktionsunternehmen]
+	(* <- lang_de;; *);;
+
+section_isa88_process_models
+<- sc_node_struct;
+=> nrel_main_idtf:
+	[Раздел. Предметная область процессных моделей рецептурных производств]
+	(* <- lang_ru;; *);
+	[Section. Subject domain of process models of batch manufacturing enterprises]
+	(* <- lang_en;; *);
+	[Розділ. Предметна область процесних моделей рецептурних виробництв]
+	(* <- lang_uk;; *);
+	[Sektion. Themenbereich Prozess-Modelle chargenorientierter Produktionsunternehmen]
+	(* <- lang_de;; *);;
+
+section_isa88_procedural_control_models
+<- sc_node_struct;
+=> nrel_main_idtf:
+	[Раздел. Предметная область моделей процедурного управления оборудованием рецептурных производств]
+	(* <- lang_ru;; *);
+	[Section. Subject domain of procedural control models of batch manufacturing enterprises]
+	(* <- lang_en;; *);
+	[Розділ. Предметна область моделей процедурного управління обладнанням рецептурних виробництв]
+	(* <- lang_uk;; *);
+	[Sektion. Themenbereich Modelle für das prozedurale Management von Geräten und Anlagen chargenorientierter Produktionsunternehmen]
+	(* <- lang_de;; *);;
+
+section_control_activities
+<- sc_node_struct;
+=> nrel_main_idtf:
+	[Раздел. Предметная область деятельности по управлению рецептурным производством]
+	(* <- lang_ru;; *);
+	[Section. Subject domain of batch control activities]
+	(* <- lang_en;; *);
+	[Розділ. Предметна область діяльності з управління рецептурним виробництвом]
+	(* <- lang_uk;; *);
+	[Sektion. Themenbereich Produktions-Management chargenorientierter Produktionsunternehmen]
+	(* <- lang_de;; *);;

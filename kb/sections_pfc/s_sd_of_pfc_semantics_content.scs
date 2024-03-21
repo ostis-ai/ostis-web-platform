@@ -1,0 +1,1295 @@
+s_sd_of_pfc_semantics =  [*
+sd_of_pfc_semantics
+=> nrel_main_idtf:
+	[Предметная область семантики языка PFC]
+	(* <- lang_ru;; *);
+	[Subject area of PFC semantics]
+	(* <- lang_en;; *);
+	[Предметна область семантики мови PFC]
+	(* <- lang_uk;; *);
+<- subject_domain;
+<- sc_node_struct;
+<- structure;
+-> rrel_maximum_studied_object_class: pfc_element;
+-> rrel_not_maximum_studied_object_class:
+	allocation_element;
+	structural_element;
+	synchronization_element;
+	procedural_element;
+	phase;
+	non_atomic_procedural_element;
+	collapsed_procedural_element;
+	expanded_procedural_element;
+	operation;
+	unit_procedure;
+	procedure_starting;
+	starting_of_sequence_execution_choice;
+	starting_of_parallel_sequence_execution;
+	procedure_finishing;
+	finishing_of_sequence_execution_choice;
+	finishing_of_parallel_sequence_execution;
+	recipe_procedure;
+	preparation_cottage_cheese_Khutorok;
+	preparation_of_milk_mixture;
+	preparation_of_curd_mass;
+	forming_of_curd_mass;		
+	filling_the_curd_mass;		
+	recipe_procedure_preparation_curd_mass;		
+	selection_of_equipment;		
+	supply_line;		
+	coagulator;		
+	filling;		
+	cooking;		
+	delivery;		
+	washing;		
+	operational_procedure_serum_separation;		
+	operational_procedure_serum_pumping;		
+	operational_procedure;		
+	heating;		
+	mixing;		
+	temperature;		
+	direction;		
+	time;		
+	required_temperature_check;		
+	unit_procedure_preparation_curd_mass;		
+	overtemperature_check;		
+	leaven_introduction;		
+	leavening;		
+	souring;		
+	cutting;		
+	decision_about_necessity_mixing;		
+	readiness_for_delivery;
+-> rrel_explored_relation: 
+	nrel_pfc_relation;
+	nrel_order_of_execution;
+	nrel_synchronization_element_link;
+	nrel_one_way_link;
+	nrel_two_way_link;
+	nrel_transition_condition;
+	nrel_explicit_transition;
+	nrel_implisit_transition;;
+
+sc_node_not_relation -> pfc_element;;
+pfc_element
+=> nrel_main_idtf:
+	[элемент языка PFC]
+	(* <- lang_ru;; *);
+	[PFC language element]
+	(* <- lang_en;; *);
+	[елемент мови PFC]
+	(* <- lang_uk;; *); 
+=> nrel_strict_inclusion: 
+	structural_element;
+	procedural_element;
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Элемент языка PFC — атомарный элемент текста на языке PFC.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[A PFC element is an atomic element of PFC text.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Елемент мови PFC - атомарний елемент тексту на мові PFC.]
+			(* <- lang_uk;; *);;
+		
+		*);;
+	*);;
+
+sc_node_not_relation -> allocation_element;;
+allocation_element
+=> nrel_main_idtf:
+	[элемент размещения ресурсов]
+	(* <- lang_ru;; *);
+	[resource allocation element]
+	(* <- lang_en;; *);
+	[елемент розміщення ресурсів]
+	(* <- lang_uk;; *); 
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Элемент размещения ресурсов — структурный элемент языка PFC, указывающий на распределение и согласование использования 			общих ресурсов (сырья, оборудования и др.).]
+			(* <- lang_ru;; *);;
+			-> rrel_example: 
+			[The resource allocation element is a structural element of the PFC language, indicating the distribution and coordination of the use of common resources (raw materials, equipment, etc.). ]
+			(* <- lang_en;; *);;
+			-> rrel_example: 
+			[Елемент надання ресурсу - структурний елемент мови PFC, який вказує на розподіл і узгодження використання спільних ресурсів (сировини, устатковання та ін.).]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> structural_element;;
+structural_element
+=> nrel_main_idtf:
+	[структурный элемент]
+	(* <- lang_ru;; *);
+	[structural element]
+	(* <- lang_en;; *);
+	[cтруктурний елемент]
+	(* <- lang_uk;; *);
+=> nrel_strict_inclusion: 
+	allocation_element;
+	synchronization_element;
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Структурный элемент — элемент языка PFC, который вместе со множеством процедурных элементов образует диаграмму языка 				PFC.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[Structural element is a PFC language element that, together with many procedural elements, forms a PFC language diagram.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Структурний елемент - елемент мови PFC, який разом з багатьма процедурними елементами утворює діаграму мови PFC]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> synchronization_element;;
+synchronization_element
+=> nrel_main_idtf:
+	[элемент синхронизации]
+	(* <- lang_ru;; *);
+	[synchronization element]
+	(* <- lang_en;; *);
+	[Елемент синхронізації ]
+	(* <- lang_uk;; *); 
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Элемент синхронизации — структурный элемент языка PFC, обозначающий точку отправления или прибытия при движении 				продукта от одного процедурного элемента к другому, или просто процедурный элемент, выполнение 	которого опосредованно 				зависит от выполнения другого процедурного элемента.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[A synchronization element is a structural element of the PFC language that designates the point of departure or arrival when a product moves from one procedural element to another, or simply a procedural element, the execution of which indirectly depends on the execution of another procedural element.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Елемент синхронізації - структурний елемент мови PFC, що позначає точку відправлення або прибуття при русі продукту від одного процедурного елемента до іншого, або просто процедурний елемент, виконання якого опосередковано залежить від виконання іншого процедурного елемента.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> procedural_element;;
+procedural_element
+=> nrel_main_idtf:
+	[процедурный элемент]
+	(* <- lang_ru;; *);
+	[procedural element]
+	(* <- lang_en;; *);
+	[процедурний елемент]
+	(* <- lang_uk;; *);
+<= nrel_subdividing:
+{
+	phase;
+	non_atomic_procedural_element	
+};
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Процедурный элемент — элемент процедурной иерархии.]
+			(* <- lang_ru;; *);;
+		-> rrel_example: 
+			[Procedural element - an element of the procedural hierarchy.]
+			(* <- lang_en;; *);;
+		-> rrel_example: 
+			[Процедурний елемент - елемент процедурної ієрархії.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> phase;;
+phase
+=> nrel_main_idtf:
+	[атомарный процедурный элемент]
+	(* <- lang_ru;; *);
+	[atomic procedural element]
+	(* <- lang_en;; *);
+	[атомарний процедурний елемент]
+	(* <- lang_uk;; *);
+=> nrel_idtf:
+	[фаза]
+	(* <- lang_ru;; *);
+	[phase]
+	(* <- lang_en;; *);
+	[етап]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Атомарный процедурный элемент — процедурный элемент, который не содержит внутри себя другие процедурные элементы.]
+			(* <- lang_ru;; *);;
+		
+		-> rrel_example: 
+			[An atomic procedural element is a procedural element that does not contain any other procedural elements.]
+			(* <- lang_en;; *);;
+			
+		-> rrel_example: 
+			[Атомарний процедурний елемент - процедурний елемент, який не містить в собі інші процедурні елементи. ]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> non_atomic_procedural_element;;
+non_atomic_procedural_element
+=> nrel_main_idtf:
+	[неатомарный процедурный элемент]
+	(* <- lang_ru;; *);
+	[non-atomic procedural element]
+	(* <- lang_en;; *);
+	[неатомарний процедурний елемент]
+	(* <- lang_uk;; *);
+<= nrel_subdividing:
+{
+	collapsed_procedural_element;
+	expanded_procedural_element
+};
+=> nrel_strict_inclusion: 
+	operation;
+	unit_procedure;
+	recipe_procedure;
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Неатомарный процедурный элемент — процедурный элемент, который содержит внутри себя другие процедурные элементы.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[Non-atomic procedural element - a procedural element that contains other procedural elements within it.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Неатомарний процедурний елемент - процедурний елемент, який містить в собі інші процедурні елементи.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> collapsed_procedural_element;;
+collapsed_procedural_element
+=> nrel_main_idtf:
+	[свёрнутый процедурный элемент]
+	(* <- lang_ru;; *);
+	[collapsed procedural element]
+	(* <- lang_en;; *);
+	[згорнутий процедурний елемент]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Свёрнутый процедурный элемент — такое состояние процедурного элемента, когда его содержимое не указано явно на 			диаграмме.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[A collapsed procedural element is a state of a procedural element when its contents are not explicitly indicated in the diagram.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Згорнутий процедурний елемент - такий стан процедурного елемента, коли його вміст не вказано явно на діаграмі.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> expanded_procedural_element;;
+expanded_procedural_element
+=> nrel_main_idtf:
+	[развёрнутый процедурный элемент]
+	(* <- lang_ru;; *);
+	[expanded procedural element]
+	(* <- lang_en;; *);
+	[розгорнутий процедурний елемент ]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Развёрнутый процедурный элемент — такое состояние процедурного элемента, когда его содержимое указано явно в виде 				совокупности процедурных элементов и связей между ними.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[An expanded procedural element is a state of a procedural element when its contents are explicitly specified as a set of procedural elements and links between them. ]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Розгорнутий процедурний елемент - такий стан процедурного елемента, коли його вміст зазначено явно в вигляді сукупності процедурних елементів і зв'язків між ними.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> operation;;
+operation
+=> nrel_main_idtf:
+	[операция]
+	(* <- lang_ru;; *);
+	[operation]
+	(* <- lang_en;; *);
+	[операція]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Операция — второй уровень процедурной иерархии.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[Operation is the second level of the procedural hierarchy.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Операція - другий рівень процедурної ієрархії.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> unit_procedure;;
+unit_procedure
+=> nrel_main_idtf:
+	[процедура технологической установки]
+	(* <- lang_ru;; *);
+	[process setup procedure]
+	(* <- lang_en;; *);
+	[процедура технологічного встановлення]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Процедура технологической установки — третий уровень процедурной иерархии.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[The process setup procedure is the third level of the procedural hierarchy.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Процедура технологічної установки - третій рівень процедурної ієрархії.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> procedure_starting;;
+procedure_starting
+=> nrel_main_idtf:
+	[начало выполнения процедуры]
+	(* <- lang_ru;; *);
+	[Procedure execution start]
+	(* <- lang_en;; *);
+	[Початок виконання процедури]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Начало выполнения процедуры — каждый элемент множества начала выполнения процедуры представляет собой класс временных 				сущностей, у которых совпадает момент начала выполнения процедурного элемента.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[Procedure execution start - each element of the procedure execution start set is a class of temporary entities, which coincide with the start of the procedure element execution.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Початок виконання процедури - кожен елемент набору початку виконання процедури є клас тимчасових сутностей, у яких збігається момент початку виконання процедурного елемента.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> starting_of_sequence_execution_choice;;
+starting_of_sequence_execution_choice
+=> nrel_main_idtf:
+	[начало выбора последовательности исполнения]
+	(* <- lang_ru;; *);
+	[start selection of the performance sequence]
+	(* <- lang_en;; *);
+	[початок вибору послідовності виконання]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Начало выбора последовательности исполнения — каждый элемент множества начало выбора последовательности выполнения 				представляет собой класс временных сущностей, у которых совпадает момент начала выбора одной из ветвей исполнения 				процедурного элемента.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[Beginning of the selection of the execution sequence - each element of the set, the beginning of the selection of the execution sequence is a class of temporary entities, which coincide with the start of the selection of one of the execution branches of a procedural element. ]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Початок вибору послідовності виконання - кожен елемент безлічі початок вибору послідовності виконання являє собою клас тимчасових сутностей, у яких збігається момент початку вибору однієї з гілок виконання процедурного елемента.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> starting_of_parallel_sequence_execution;;
+starting_of_parallel_sequence_execution
+=> nrel_main_idtf:
+	[начало параллельного исполнения последовательности]
+	(* <- lang_ru;; *);
+	[start of parallel execution of the sequence]
+	(* <- lang_en;; *);
+	[початок паралельного виконання послідовності]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+
+		-> rrel_example: 
+			[Начало параллельного выполнения последовательности — каждый элемент множества начало параллельного выполнения 				последовательности представляет собой класс временных сущностей, у которых совпадает момент начала параллельного 				исполнения множества процедурных элементов.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[Beginning of parallel execution of a sequence - each element of the set, the beginning of parallel execution of a sequence is a class of temporary entities, which coincide with the start of parallel execution of a set of procedural elements.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Початок паралельного виконання послідовності - кожен елемент безлічі початок паралельного виконання послідовності являє собою клас тимчасових сутностей, у яких збігається момент початку паралельного виконання безлічі процедурних елементів.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> procedure_finishing;;
+procedure_finishing
+=> nrel_main_idtf:
+	[конец выполнения процедуры]
+	(* <- lang_ru;; *);
+	[end of procedure]
+	(* <- lang_en;; *);
+	[кінець виконання процедури]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Конец выполнения процедуры — каждый элемент множества конец выполнения процедуры представляет собой класс временных 				сущностей, у которых совпадает момент конца выполнения процедурного элемента.]
+			(* <- lang_ru;; *);;
+			
+		-> rrel_example: 
+			[The end of the procedure execution - each element of the set the end of the procedure execution is a class of temporary entities, which coincide with the end of the execution of the procedural element. ]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Кінець виконання процедури - кожен елемент безлічі кінець виконання процедури є клас тимчасових сутностей, у яких збігається момент кінця виконання процедурного елемента.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> finishing_of_sequence_execution_choice;;
+finishing_of_sequence_execution_choice
+=> nrel_main_idtf:
+	[конец выбора последовательности выполнения]
+	(* <- lang_ru;; *);
+	[End of the selection of the execution sequence]
+	(* <- lang_en;; *);
+	[Кінець вибору послідовності виконання]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Конец выбора последовательности выполнения — каждый элемент множества конец выбора последовательности выполнения 				представляет собой класс временных сущностей, у которых совпадает момент конца выполнения одной из выбранных ветвей 				исполнения процедурного элемента.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[End of the selection of the execution sequence - each element of the set the end of the selection of the execution sequence is a class of temporary entities, which coincide with the end of execution of one of the selected branches of the execution of a procedural element.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Кінець вибору послідовності виконання - кожен елемент безлічі кінець вибору послідовності виконання являє собою клас тимчасових сутностей, у яких збігається момент кінця виконання однієї з обраних гілок виконання процедурного елемента. ]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> finishing_of_parallel_sequence_execution;;
+finishing_of_parallel_sequence_execution
+=> nrel_main_idtf:
+	[конец параллельного исполнения последовательности]
+	(* <- lang_ru;; *);
+	[end of parallel execution of the sequence]
+	(* <- lang_en;; *);
+	[кінець паралельного виконання послідовності]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Конец параллельного исполнения последовательности — каждый элемент множества конец параллельного исполнения 				последовательности представляет собой класс временных сущностей, у которых совпадает момент конца параллельного 			исполнения множества процедурных элементов.]
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			[End of parallel execution of a sequence - each element of the set end of parallel execution of a sequence is a class of temporary entities, which coincide with the end of parallel execution of a set of procedural elements.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Кінець паралельного виконання послідовності - кожен елемент безлічі кінець паралельного виконання послідовності являє собою клас тимчасових сутностей, у яких збігається момент кінця паралельного виконання безлічі процедурних елементів.]
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+sc_node_not_relation -> recipe_procedure;;
+recipe_procedure
+=> nrel_main_idtf:
+	[процедура]
+	(* <- lang_ru;; *);
+	[procedure]
+	(* <- lang_en;; *);
+	[процедура]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			[Процедура — наивысший (четвёртый) уровень процедурной иерархии.]
+			(* <- lang_ru;; *);;
+
+
+		-> rrel_example: 
+			[Procedure is the highest (fourth) level of the procedural hierarchy.]
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			[Процедура - найвищий (четвертий) рівень процедурної ієрархії.]
+			(* <- lang_uk;; *);;
+
+		*);;
+	*);;
+
+sc_node_norole_relation -> nrel_pfc_relation;;
+nrel_pfc_relation
+=> nrel_main_idtf:
+	[связь языка PFC*]
+	(* <- lang_ru;; *);
+	[PFC language link*]
+	(* <- lang_en;; *);
+	[зв'язок мови PFC*]
+	(* <- lang_uk;; *);
+=> nrel_strict_inclusion: 
+	nrel_order_of_execution;
+	nrel_synchronization_element_link;
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example:
+			"file://content_html/explanation_for_nrel_pfc_relation_ru.html"
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_pfc_relation_en.html"
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_pfc_relation_uk.html"
+			(* <- lang_uk;; *);;
+
+		*);;
+	*);
+=> nrel_first_domain: nrel_second_domain: pfc_element;
+=> nrel_definitional_domain: pfc_element;;
+2 <= nrel_measurement: ...
+(*
+	<- sc_node_not_relation;;
+	-> nrel_pfc_relation;;
+	<- arity;;
+*);;
+oriented_relation -> nrel_pfc_relation;;
+reflexive_relation -|> nrel_pfc_relation;;
+transitive_relation -|> nrel_pfc_relation;;
+symmetric_relation -|> nrel_pfc_relation;;
+
+sc_node_norole_relation -> nrel_order_of_execution;;
+nrel_order_of_execution
+=> nrel_main_idtf:
+	[порядок выполнения*]
+	(* <- lang_ru;; *);
+	[order of execution*]
+	(* <- lang_en;; *);
+	[порядок виконання*]
+	(* <- lang_uk;; *);
+<= nrel_subdividing:
+{
+	nrel_explicit_transition;
+	nrel_implisit_transition
+};
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_order_of_execution_ru.html"
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_order_of_execution_en.html"
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_order_of_execution_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);
+=> nrel_first_domain: nrel_second_domain: pfc_element;
+=> nrel_definitional_domain: pfc_element;;
+2 <= nrel_measurement: ...
+(*
+	<- sc_node_not_relation;;
+	-> nrel_order_of_execution;;
+	<- arity;;
+*);;
+oriented_relation -> nrel_order_of_execution;;
+reflexive_relation -|> nrel_order_of_execution;;
+transitive_relation -> nrel_order_of_execution;;
+symmetric_relation -|> nrel_order_of_execution;;
+
+sc_node_norole_relation -> nrel_synchronization_element_link;;
+nrel_synchronization_element_link
+=> nrel_main_idtf:
+	[ссылка на элемент синхронизации*]
+	(* <- lang_ru;; *);
+	[sync item reference*]
+	(* <- lang_en;; *);
+	[посилання на елемент синхронізації*]
+	(* <- lang_uk;; *);
+=> nrel_strict_inclusion: 
+	nrel_one_way_link;
+	nrel_two_way_link;
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_synchronization_element_link_ru.html"
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_synchronization_element_link_en.html"
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_synchronization_element_link_uk.html"
+			(* <- lang_uk;; *);;
+
+		*);;
+	*);
+=> nrel_first_domain: nrel_second_domain: synchronization_element;
+=> nrel_definitional_domain: synchronization_element;;
+2 <= nrel_measurement: ...
+(*
+	<- sc_node_not_relation;;
+	-> nrel_synchronization_element_link;;
+	<- arity;;
+*);;
+oriented_relation -> nrel_synchronization_element_link;;
+reflexive_relation -|> nrel_synchronization_element_link;;
+transitive_relation -|> nrel_synchronization_element_link;;
+symmetric_relation -|> nrel_synchronization_element_link;;
+
+sc_node_norole_relation -> nrel_one_way_link;;
+nrel_one_way_link
+=> nrel_main_idtf:
+	[односторонняя ссылка*]
+	(* <- lang_ru;; *);
+	[one-way link*]
+	(* <- lang_en;; *);
+	[одностороннє посилання*]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_one_way_link_ru.html"
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_one_way_link_en.html"
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_one_way_link_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);
+=> nrel_first_domain: nrel_second_domain: synchronization_element;
+=> nrel_definitional_domain: synchronization_element;;
+2 <= nrel_measurement: ...
+(*
+	<- sc_node_not_relation;;
+	-> nrel_one_way_link;;
+	<- arity;;
+*);;
+oriented_relation -> nrel_one_way_link;;
+reflexive_relation -|> nrel_one_way_link;;
+transitive_relation -|> nrel_one_way_link;;
+symmetric_relation -|> nrel_one_way_link;;
+
+sc_node_norole_relation -> nrel_two_way_link;;
+nrel_two_way_link
+=> nrel_main_idtf:
+	[двусторонняя ссылка*]
+	(* <- lang_ru;; *);
+	[two-way link*]
+	(* <- lang_en;; *);
+	[двостороннє посилання*]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_two_way_link_ru.html"
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_two_way_link_uk.html"
+			(* <- lang_uk;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_two_way_link_en.html"
+			(* <- lang_en;; *);;
+			
+		*);;
+	*);
+=> nrel_first_domain: nrel_second_domain: synchronization_element;
+=> nrel_definitional_domain: synchronization_element;;
+2 <= nrel_measurement: ...
+(*
+	<- sc_node_not_relation;;
+	-> nrel_two_way_link;;
+	<- arity;;
+*);;
+oriented_relation -|> nrel_two_way_link;;
+reflexive_relation -|> nrel_two_way_link;;
+transitive_relation -> nrel_two_way_link;;
+symmetric_relation -> nrel_two_way_link;;
+
+sc_node_norole_relation -> nrel_transition_condition;;
+nrel_transition_condition
+=> nrel_main_idtf:
+	[условие перехода*]
+	(* <- lang_ru;; *);
+	[transition condition*]
+	(* <- lang_en;; *);
+	[умова переходу*]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_transition_condition_ru.html"
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_transition_condition_en.html"
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_transition_condition_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+2 <= nrel_measurement: ...
+(*
+	<- sc_node_not_relation;;
+	-> nrel_transition_condition;;
+	<- arity;;
+*);;
+oriented_relation -> nrel_transition_condition;;
+reflexive_relation -|> nrel_transition_condition;;
+transitive_relation -|> nrel_transition_condition;;
+symmetric_relation -|> nrel_transition_condition;;
+
+sc_node_norole_relation -> nrel_explicit_transition;;
+nrel_explicit_transition
+=> nrel_main_idtf:
+	[явный переход*]
+	(* <- lang_ru;; *);
+	[explicit transition]
+	(* <- lang_en;; *);
+	[явний перехід]
+	(* <- lang_uk;; *);
+=> nrel_idtf:
+	[условный переход*]
+	(* <- lang_ru;; *);
+	[conditional transition]
+	(* <- lang_en;; *);
+	[умовний перехід]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_explicit_transition_ru.html"
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_explicit_transition_en.html"
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_explicit_transition_uk.html"
+			(* <- lang_uk;; *);;
+		
+		*);;
+	*);
+=> nrel_first_domain: nrel_second_domain: procedural_element;
+=> nrel_definitional_domain: procedural_element;;
+2 <= nrel_measurement: ...
+(*
+	<- sc_node_not_relation;;
+	-> nrel_explicit_transition;;
+	<- arity;;
+*);;
+oriented_relation -> nrel_explicit_transition;;
+reflexive_relation -|> nrel_explicit_transition;;
+transitive_relation -|> nrel_explicit_transition;;
+symmetric_relation -|> nrel_explicit_transition;;
+
+sc_node_norole_relation -> nrel_implisit_transition;;
+nrel_implisit_transition
+=> nrel_main_idtf:
+	[неявный переход*]
+	(* <- lang_ru;; *);
+	[implicit transition]
+	(* <- lang_en;; *);
+	[неявний перехід]
+	(* <- lang_uk;; *);
+	
+=> nrel_idtf:
+	[безусловный переход*]
+	(* <- lang_ru;; *);
+	[unconditional transition*]
+	(* <- lang_en;; *);
+	[безумовний перехід]
+	(* <- lang_uk;; *);
+
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation: 
+		...
+		(*
+		-> rrel_example:
+			"file://content_html/explanation_for_nrel_implisit_transition_ru.html"
+			(* <- lang_ru;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_implisit_transition_en.html"
+			(* <- lang_en;; *);;
+
+		-> rrel_example: 
+			"file://content_html/explanation_for_nrel_implisit_transition_uk.html"
+			(* <- lang_uk;; *);;
+		
+		*);;
+	*);
+=> nrel_first_domain: nrel_second_domain: procedural_element;
+=> nrel_definitional_domain: procedural_element;;
+2 <= nrel_measurement: ...
+(*
+	<- sc_node_not_relation;;
+	-> nrel_implisit_transition;;
+	<- arity;;
+*);;
+oriented_relation -> nrel_implisit_transition;;
+reflexive_relation -|> nrel_implisit_transition;;
+transitive_relation -|> nrel_implisit_transition;;
+symmetric_relation -|> nrel_implisit_transition;;
+
+sc_node_not_relation -> preparation_cottage_cheese_Khutorok;;
+preparation_cottage_cheese_Khutorok
+=> nrel_main_idtf:
+	[мастер-рецепт для приготовления творога Хуторок]
+	(* <- lang_ru;; *);
+	[preparation cottage cheese Khutorok]
+	(* <- lang_en;; *);
+	[майстер-рецепт для приготування сиру Хуторок]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> preparation_of_milk_mixture;;
+preparation_of_milk_mixture
+=> nrel_main_idtf:
+	[приготовление молочной смеси]
+	(* <- lang_ru;; *);
+	[preparation of milk mixture]
+	(* <- lang_en;; *);
+	[приготування молочної суміші]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> preparation_of_curd_mass;;
+preparation_of_curd_mass
+=> nrel_main_idtf:
+	[приготовление творожной массы]
+	(* <- lang_ru;; *);
+	[preparation of curd mass]
+	(* <- lang_en;; *);
+	[приготування сирної маси]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> forming_of_curd_mass;;
+forming_of_curd_mass
+=> nrel_main_idtf:
+	[формовка творожной массы]
+	(* <- lang_ru;; *);
+	[forming of curd mass]
+	(* <- lang_en;; *);
+	[формування сирної маси ]
+	(* <- lang_uk;; *);;
+		
+sc_node_not_relation -> filling_the_curd_mass;;
+filling_the_curd_mass
+=> nrel_main_idtf:
+	[фасовка творожной массы]
+	(* <- lang_ru;; *);
+	[filling the curd mass]
+	(* <- lang_en;; *);
+	[фасування сирної маси]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> recipe_procedure_preparation_curd_mass;;
+recipe_procedure_preparation_curd_mass
+=> nrel_main_idtf:
+	[рецептурная процедура для приготовления творожной массы]
+	(* <- lang_ru;; *);
+	[recipe procedure preparation curd mass]
+	(* <- lang_en;; *);
+	[рецептурна процедура для приготування сирної маси]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> selection_of_equipment;;
+selection_of_equipment
+=> nrel_main_idtf:
+	[выбор оборудования]
+	(* <- lang_ru;; *);
+	[selection of equipment]
+	(* <- lang_en;; *);
+	[вибір устатковання]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> supply_line;;
+supply_line
+=> nrel_main_idtf:
+	[линия подачи]
+	(* <- lang_ru;; *);
+	[supply line]
+	(* <- lang_en;; *);
+	[лінія подачі]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> coagulator;;
+coagulator
+=> nrel_main_idtf:
+	[коагулятор]
+	(* <- lang_ru;; *);
+	[coagulator]
+	(* <- lang_en;; *);
+	[коагулятор]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> filling;;
+filling
+=> nrel_main_idtf:
+	[наполнение]
+	(* <- lang_ru;; *);
+	[filling]
+	(* <- lang_en;; *);
+	[наповнення]
+	(* <- lang_uk;; *);;
+		
+sc_node_not_relation -> cooking;;
+cooking
+=> nrel_main_idtf:
+	[приготовление]
+	(* <- lang_ru;; *);
+	[cooking]
+	(* <- lang_en;; *);
+	[приготування]
+	(* <- lang_uk;; *);;
+		
+sc_node_not_relation -> delivery;;
+delivery
+=> nrel_main_idtf:
+	[выдача]
+	(* <- lang_ru;; *);
+	[delivery]
+	(* <- lang_en;; *);
+	[видача]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> washing;;
+washing
+=> nrel_main_idtf:
+	[мойка]
+	(* <- lang_ru;; *);
+	[washing]
+	(* <- lang_en;; *);
+	[мийка]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> operational_procedure_serum_separation;;
+operational_procedure_serum_separation
+=> nrel_main_idtf:
+	[операционная процедура для операции "Отделение сыворотки"]
+	(* <- lang_ru;; *);
+	[operational procedure "Serum separation"]
+	(* <- lang_en;; *);
+	[операційна процедура для операції "Відділення сироватки"]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> operational_procedure_serum_pumping;;
+operational_procedure_serum_pumping
+=> nrel_main_idtf:
+	[операционная процедура для операции "Откачка сыворотки"]
+	(* <- lang_ru;; *);
+	[operational procedure "Serum pumping"]
+	(* <- lang_en;; *);
+	[операційна процедура для операції "Відкачування сироватки"]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> operational_procedure;;
+operational_procedure
+=> nrel_main_idtf:
+	[операционная процедура]
+	(* <- lang_ru;; *);
+	[operational procedure]
+	(* <- lang_en;; *);
+	[операційна процедура]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> heating;;
+heating
+=> nrel_main_idtf:
+	[подогрев]
+	(* <- lang_ru;; *);
+	[heating]
+	(* <- lang_en;; *);
+	[підігрівання]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> mixing;;
+mixing
+=> nrel_main_idtf:
+	[перемешивание]
+	(* <- lang_ru;; *);
+	[mixing]
+	(* <- lang_en;; *);
+	[перемішування]
+	(* <- lang_uk;; *);;		
+
+sc_node_not_relation -> temperature;;
+temperature
+=> nrel_main_idtf:
+	[температура]
+	(* <- lang_ru;; *);
+	[temperature]
+	(* <- lang_en;; *);
+	[температура]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> direction;;
+direction
+=> nrel_main_idtf:
+	[направление]
+	(* <- lang_ru;; *);
+	[direction]
+	(* <- lang_en;; *);
+	[напрямок]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> time;;
+time
+=> nrel_main_idtf:
+	[время]
+	(* <- lang_ru;; *);
+	[time]
+	(* <- lang_en;; *);
+	[час]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> required_temperature_check;;
+required_temperature_check
+=> nrel_main_idtf:
+	[проверка температуры]
+	(* <- lang_ru;; *);
+	[required temperature check]
+	(* <- lang_en;; *);
+	[перевірка температури]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> unit_procedure_preparation_curd_mass;;
+unit_procedure_preparation_curd_mass
+=> nrel_main_idtf:
+	[аппаратная процедура для приготовления творожной массы]
+	(* <- lang_ru;; *);
+	[unit procedure preparation curd mass]
+	(* <- lang_en;; *);
+	[процедура технологічного вузла для приготування сирної маси]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> overtemperature_check;;
+overtemperature_check
+=> nrel_main_idtf:
+	[проверка на превышение температуры]
+	(* <- lang_ru;; *);
+	[overtemperature check]
+	(* <- lang_en;; *);
+	[перевірка на перевищення температури]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> leaven_introduction;;
+leaven_introduction
+=> nrel_main_idtf:
+	[внесение закваски]
+	(* <- lang_ru;; *);
+	[leaven introduction]
+	(* <- lang_en;; *);
+	[внесення закваски ]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> leavening;;
+leavening
+=> nrel_main_idtf:
+	[заквашивание]
+	(* <- lang_ru;; *);
+	[leavening]
+	(* <- lang_en;; *);
+	[заквашування]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> cutting;;
+cutting
+=> nrel_main_idtf:
+	[разрезка]
+	(* <- lang_ru;; *);
+	[cutting]
+	(* <- lang_en;; *);
+	[розрізання]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> decision_about_necessity_mixing;;
+decision_about_necessity_mixing
+=> nrel_main_idtf:
+	[решение о необходимости вымешивать]
+	(* <- lang_ru;; *);
+	[the decision to knead]
+	(* <- lang_en;; *);
+	[рішення про необхідність вимішувати]
+	(* <- lang_uk;; *);;
+
+sc_node_not_relation -> readiness_for_delivery;;
+readiness_for_delivery
+=> nrel_main_idtf:
+	[готов к выдаче]
+	(* <- lang_ru;; *);
+	[ready to issue]
+	(* <- lang_en;; *);
+	[готове до видання]
+	(* <- lang_uk;; *);;
+
+*];;

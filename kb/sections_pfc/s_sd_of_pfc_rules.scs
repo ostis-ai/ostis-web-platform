@@ -1,0 +1,19 @@
+s_sd_of_pfc_rules 
+=> nrel_main_idtf:
+	[Раздел. Предметная область правил языка PFC]
+	(* <- lang_ru;; *);
+	[Section. Subject Area of PFC Language Rules]
+	(* <- lang_en;; *);
+	[Розділ. Предметна область правил мови PFC]
+	(* <- lang_uk;; *);
+=> nrel_idtf:
+	[Раздел базы знаний, описывающий Предметную область правил языка PFC]
+	(* <- lang_ru;; *);
+	[Knowledge Base section describing the PFC Rules Subject Area]
+	(* <- lang_en;; *);
+	[Розділ бази знань, що описує предметну область правил мови PFC ]
+	(* <- lang_uk;; *);
+
+<- not_enough_formed_structure;;
+
+rrel_key_sc_element -> (s_sd_of_pfc_rules -> sd_of_pfc_rules);;

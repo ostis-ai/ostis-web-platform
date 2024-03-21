@@ -1,0 +1,137 @@
+subject_domain_isa88_process
+<- sc_node_struct;
+=> nrel_main_idtf: 
+	[Предметная область процессных моделей рецептурного производства] (* <- lang_ru;; *);
+	[Subject domain of process models of batch manufacturing enterprises] (* <- lang_en;; *);
+	[Предметна область технологічних моделей порційного виробництва] (* <- lang_uk;; *);
+-> rrel_maximum_studied_object_class:
+process_element;
+-> rrel_not_maximum_studied_object_class:
+process_stage; 
+process_operation; 
+process_action;
+-> rrel_explored_relation:
+nrel_process_element_link;;
+
+process_element
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[элемент процесса]
+	(* <- lang_ru;; *);
+	[process element]
+	(* <- lang_en;; *);
+	[елемент процесу]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_process_element_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_process_element_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_process_element_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);
+=> nrel_inclusion: process_stage; process_operation; process_action;;
+
+process_stage
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[стадия процесса]
+	(* <- lang_ru;; *);
+	[process stage]
+	(* <- lang_en;; *);
+	[технологічна стадія ]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_process_stage_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_process_stage_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_process_stage_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+process_operation
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+[операция процесса]
+(* <- lang_ru;; *);
+[process operation]
+(* <- lang_en;; *);
+[технологічна операція]
+(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+...
+(*
+	<- explanation;;
+	<= nrel_sc_text_translation:
+	...
+	(*
+	-> rrel_example:
+			"file://content_html/explanation_for_process_operation_ru.html"
+		(* <- lang_ru;;	*);
+			"file://content_html/explanation_for_process_operation_en.html"
+		(* <- lang_en;; *);
+			"file://content_html/explanation_for_process_operation_uk.html"
+		(* <- lang_uk;; *);;
+	*);;
+*);;
+
+process_action
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[действие процесса]
+	(* <- lang_ru;; *);
+	[process action]
+	(* <- lang_en;; *);
+	[технологічна дія]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_process_action_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_process_action_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_process_action_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- note;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/note_for_process_action_ru.html"
+			(* <- lang_ru;; *);
+				"file://content_html/note_for_process_action_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/note_for_process_action_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+

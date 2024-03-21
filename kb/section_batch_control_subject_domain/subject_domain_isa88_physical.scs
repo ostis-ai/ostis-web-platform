@@ -1,0 +1,409 @@
+subject_domain_isa88_physical
+<- sc_node_struct;
+=> nrel_main_idtf: 
+	[Предметная область физических моделей рецептурного производства] (* <- lang_ru;; *);
+ 	[Subject domain of physical models of batch manufacturing enterprises] (* <- lang_en;; *);
+	[Предметна область фізичних моделей порційного виробництва] (* <- lang_uk;; *);
+-> rrel_maximum_studied_object_class: equipment_entity;
+-> rrel_not_maximum_studied_object_class:
+process_cell; 
+unit; 
+equipment_module;
+control_module; 
+enterprise; 
+site; 
+area;
+equipment_relation;
+-> rrel_explored_relation:
+nrel_contains;
+
+=> nrel_private_subject_domain:
+sb_d_of_p_id_semantics;
+sb_d_of_p_id_rules;
+sb_d_of_p_id_texts;;
+
+equipment_entity
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[объект оборудования]
+	(* <- lang_ru;; *);
+	[equipment_entity]
+	(* <- lang_en;; *);
+	[апаратурний об’єкт]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_equipment_entity_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_equipment_entity_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_equipment_entity_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);
+=> nrel_inclusion: process_cell; unit; equipment_module; control_module; enterprise; site; area;;
+
+process_cell
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[ячейка процесса]
+	(* <- lang_ru;; *);
+	[process cell]
+	(* <- lang_en;; *);
+	[технологічна комірка]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_process_cell_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_process_cell_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_process_cell_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- note;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/note_for_process_cell_ru.html"
+			(* <- lang_ru;; *);
+				"file://content_html/note_for_process_cell_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/note_for_process_cell_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+unit
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[аппарат]
+	(* <- lang_ru;; *);
+	[unit]
+	(* <- lang_en;; *);
+	[технологічний вузол]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_unit_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_unit_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_unit_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- note;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/note_for_unit_ru.html"
+			(* <- lang_ru;; *);
+				"file://content_html/note_for_unit_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/note_for_unit_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+equipment_module
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[агрегат]
+	(* <- lang_ru;; *);
+	[equipment module]
+	(* <- lang_en;; *);
+	[модуль технологічного устатковання]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_equipment_module_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_equipment_module_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_equipment_module_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- note;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/note_for_equipment_module_ru.html"
+			(* <- lang_ru;; *);
+				"file://content_html/note_for_equipment_module_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/note_for_equipment_module_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+control_module
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[блок управления]
+	(* <- lang_ru;; *);
+	[control module]
+	(* <- lang_en;; *);
+	[модуль керування]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_control_module_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_control_module_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_control_module_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- note;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/note_for_control_module_ru.html"
+			(* <- lang_ru;; *);
+				"file://content_html/note_for_control_module_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/note_for_control_module_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+enterprise
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[предприятие]
+	(* <- lang_ru;; *);
+	[enterprise]
+	(* <- lang_en;; *);
+	[підприємство]
+	(* <- lang_uk;; *);
+=> nrel_idtf:
+	[промышленное предприятие]
+	(* <- lang_ru;; *);
+	[industrial enterprise]
+	(* <- lang_en;; *);
+	[промислове підприємство]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_enterprise_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_enterprise_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_enterprise_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+site
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[производство]
+	(* <- lang_ru;; *);
+	[site]
+	(* <- lang_en;; *);
+	[виробничий майданчик]
+	(* <- lang_uk;; *);
+=> nrel_idtf:
+	[завод]
+	(* <- lang_ru;; *);
+	[plant]
+	(* <- lang_en;; *);
+	[завод]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_site_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_site_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_site_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- note;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/note_for_site_ru.html"
+			(* <- lang_ru;; *);
+				"file://content_html/note_for_site_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/note_for_site_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+area
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[производственный участок]
+	(* <- lang_ru;; *);
+	[manufactoring area]
+	(* <- lang_en;; *);
+	[цех]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_area_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_area_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_area_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- note;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/note_for_area_ru.html"
+			(* <- lang_ru;; *);
+				"file://content_html/note_for_area_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/note_for_area_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+equipment_relation
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[связь оборудования]
+	(* <- lang_ru;; *);
+	[equipment relation]
+	(* <- lang_en;; *);
+	[зв'язок устаткування]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_equipment_relation_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_equipment_relation_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_equipment_relation_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);;
+
+nrel_contains
+<- sc_node_norole_relation;
+<- taxonomy_relation;
+=> nrel_main_idtf:
+	[содержать*]
+	(* <- lang_ru;; *);
+	[contains*]
+	(* <- lang_en;; *);
+	[містити*]
+	(* <- lang_uk;; *);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- explanation;;
+		<= nrel_sc_text_translation:
+		...
+		(*
+		-> rrel_example:
+				"file://content_html/explanation_for_nrel_contains_ru.html"
+			(* <- lang_ru;;	*);
+				"file://content_html/explanation_for_nrel_contains_en.html"
+			(* <- lang_en;; *);
+				"file://content_html/explanation_for_nrel_contains_uk.html"
+			(* <- lang_uk;; *);;
+		*);;
+	*);
+=> nrel_first_domain: nrel_second_domain: equipment_entity;
+=> nrel_definitional_domain: equipment_entity;;
+
+2 <= nrel_measurement: ...
+(*
+	<- sc_node_not_relation;;
+	-> nrel_contains;;
+	<- arity;;
+*);;
+
+oriented_relation -> nrel_contains;;
+reflexive_relation -|> nrel_contains;;
+transitive_relation -> nrel_contains;;
+symmetric_relation -|> nrel_contains;;

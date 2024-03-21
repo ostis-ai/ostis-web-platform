@@ -1,0 +1,56 @@
+lang_de
+<-sc_node_not_relation;;
+
+lang_ru
+=> nrel_main_idtf:
+   [Russisch Sprache] (* <- lang_de;; *);;
+
+lang_en
+=> nrel_main_idtf:
+   [Englische Sprache] (* <- lang_de;; *);;
+
+lang_uk
+=> nrel_main_idtf:
+   [Ukrainisch] (* <- lang_de;; *);;
+
+nrel_summary
+=> nrel_main_idtf:
+   [Überblick*] (* <- lang_de;; *);;
+
+rrel_key_sc_element
+=> nrel_main_idtf:
+   [schlüssel-sc-element'] (* <- lang_de;; *);; 
+
+ui_start_sc_element
+=> nrel_main_idtf:
+   [start-sc-element] (* <- lang_de;; *);;
+
+nrel_main_idtf
+=> nrel_main_idtf:
+   [Hauptkennung*] (* <- lang_de;; *);;
+
+nrel_section_decomposition
+=> nrel_main_idtf:
+   [Bereichsteilung*] (* <- lang_de;; *);;
+
+ui_expert_mode
+=> nrel_main_idtf:
+   [Expertenmodus] (* <- lang_de;; *);;
+
+ui_control_search
+=> nrel_main_idtf:
+   [Suche] (* <- lang_de;; *);;
+
+ui_menu_na_view_kb_extended
+=> nrel_main_idtf:
+   [Erweiterte Anzeigebefehle in der KB] (* <- lang_de;; *);;
+
+ui_menu_na_keynodes
+=> nrel_main_idtf:
+   [Key-Navigationsknoten] (* <- lang_de;; *);;
+
+ui_menu_view_full_semantic_neighborhood
+=> nrel_main_idtf:
+ 	[Was ist das?]
+ 	(* <- lang_de;; *);
+=> ui_nrel_command_lang_template: [Was ist $ui_arg_1] (* <- lang_de;; *);;

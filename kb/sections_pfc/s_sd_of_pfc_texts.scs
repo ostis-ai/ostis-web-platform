@@ -1,0 +1,19 @@
+s_sd_of_pfc_texts 
+=> nrel_main_idtf:
+	[Раздел. Предметная область текстов языка PFC]
+	(* <- lang_ru;; *);
+	[Розділ. Предметна область текстів мови PFC]
+	(* <- lang_en;; *);
+	[Section. Subject area of PFC language texts]
+	(* <- lang_uk;; *);
+=> nrel_idtf:
+	[Раздел базы знаний, описывающий Предметную область текстов языка PFC]
+	(* <- lang_ru;; *);
+	[Knowledge base section describing the Subject Area of PFC Language Texts]
+	(* <- lang_en;; *);
+	[Розділ бази знань, що описує предметну область текстів мови PFC]
+	(* <- lang_uk;; *);
+
+<- not_enough_formed_structure;;
+
+rrel_key_sc_element -> (s_sd_of_pfc_texts -> sd_of_pfc_texts);;
