@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Use common scripts to install submodules and build project from ostis-scripts
 - Separate installation and update submodules scripts
 
 ### Deprecated

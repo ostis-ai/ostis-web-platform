@@ -1,19 +1,17 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-SCRIPTS_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
-SUBMODULE_SCRIPTS_DIR="${SCRIPTS_DIR}/submodule-scripts"
-source "${SCRIPTS_DIR}/formats.sh"
+CURRENT_DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
+OSTIS_SCRIPTS_DIR="${CURRENT_DIR}/ostis-scripts"
+source "${OSTIS_SCRIPTS_DIR}/message-scripts/messages.sh"
 
-stage "Install ostis-web-platform"
+info "Install ostis-web-platform"
 
-"${SUBMODULE_SCRIPTS_DIR}/install_sc_machine.sh"
-"${SCRIPTS_DIR}/install_sc_machine_dependencies.sh" --dev
-"${SUBMODULE_SCRIPTS_DIR}/install_scp_machine.sh"
-"${SUBMODULE_SCRIPTS_DIR}/install_sc_component_manager.sh"
-"${SCRIPTS_DIR}/build_sc_machine.sh"
-"${SCRIPTS_DIR}/build_scp_machine.sh"
-"${SCRIPTS_DIR}/build_sc_component_manager.sh"
-"${SCRIPTS_DIR}/build_kb.sh"
+"${CURRENT_DIR}/install_minimal_submodules.sh"
+"${CURRENT_DIR}/install_sc_machine_dependencies.sh" --dev
+"${CURRENT_DIR}/build_sc_machine.sh"
+"${CURRENT_DIR}/build_scp_machine.sh"
+"${CURRENT_DIR}/build_sc_component_manager.sh"
+"${CURRENT_DIR}/build_kb.sh"
 
-stage "ostis-web-platform is installed successfully"
+info "ostis-web-platform is installed successfully"

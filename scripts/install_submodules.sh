@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-SCRIPTS_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
-SUBMODULE_SCRIPTS_DIR="${SCRIPTS_DIR}/submodule-scripts"
-source "${SCRIPTS_DIR}/formats.sh"
+CURRENT_DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
+OSTIS_SCRIPTS_DIR="${CURRENT_DIR}/ostis-scripts"
+source "${OSTIS_SCRIPTS_DIR}/message-scripts/messages.sh"
+
+SUBMODULE_SCRIPTS_DIR="${CURRENT_DIR}/submodule-scripts"
 
 if [[ -z "${PLATFORM_PATH}" ]];
 then
-  source "${SCRIPTS_DIR}/set_vars.sh"
+  source "${CURRENT_DIR}/set_vars.sh"
 fi
 
 usage() {
@@ -47,7 +49,7 @@ then
 
   "${SCRIPTS_DIR}/update_submodules.sh"
 else
-  stage "Clone submodules"
+  info "Clone submodules"
 
   cd "${PLATFORM_PATH}" && git submodule update --init --recursive
 
@@ -57,5 +59,5 @@ else
   "${SUBMODULE_SCRIPTS_DIR}/install_sc_web.sh"
   "${SUBMODULE_SCRIPTS_DIR}/install_ims_ostis_kb.sh"
 
-  stage "Submodules cloned successfully"
+  info "Submodules is cloned successfully"
 fi

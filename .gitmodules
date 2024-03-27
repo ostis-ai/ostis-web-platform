@@ -1,3 +1,7 @@
+[submodule "scripts/ostis-scripts"]
+	path = scripts/ostis-scripts
+	url = https://github.com/ostis-ai/ostis-scripts.git
+
 [submodule "docs/scn"]
 	path = docs/scn
 	url = https://github.com/ostis-ai/scn-latex-plugin
