@@ -5,7 +5,7 @@ CURRENT_DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 OSTIS_SCRIPTS_DIR="${CURRENT_DIR}/ostis-scripts"
 source "${OSTIS_SCRIPTS_DIR}/message-scripts/messages.sh"
 
-SUBMODULE_SCRIPTS_DIR="${SCRIPTS_DIR}/submodule-scripts"
+SUBMODULE_SCRIPTS_DIR="${CURRENT_DIR}/submodule-scripts"
 
 if [[ -z "${PLATFORM_PATH}" ]];
 then
@@ -59,5 +59,5 @@ else
   "${SUBMODULE_SCRIPTS_DIR}/install_sc_web.sh"
   "${SUBMODULE_SCRIPTS_DIR}/install_ims_ostis_kb.sh"
 
-  info "Submodules cloned successfully"
+  info "Submodules is cloned successfully"
 fi

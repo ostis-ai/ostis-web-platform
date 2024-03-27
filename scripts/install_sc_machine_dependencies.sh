@@ -14,4 +14,4 @@ info "Install sc-machine dependencies"
 
 "${SC_MACHINE_PATH}/scripts/install_dependencies.sh" "$@"
 
-info "Dependencies of sc-machine installed successfully"
+info "Dependencies of sc-machine is installed successfully"

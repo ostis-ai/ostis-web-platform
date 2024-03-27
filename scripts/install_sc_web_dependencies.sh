@@ -14,4 +14,4 @@ info "Install sc-web dependencies"
 
 "${SC_WEB_PATH}/scripts/install_dependencies.sh" "$@"
 
-info "Dependencies of sc-web installed successfully"
+info "Dependencies of sc-web is installed successfully"
