@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-SCRIPTS_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
-source "${SCRIPTS_DIR}/formats.sh"
+CURRENT_DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
+OSTIS_SCRIPTS_DIR="${CURRENT_DIR}/ostis-scripts"
+source "${OSTIS_SCRIPTS_DIR}/message-scripts/messages.sh"
 
-stage "Install ostis-web-platform"
+info "Install ostis-web-platform"
 
 "${SCRIPTS_DIR}/install_submodules.sh"
 "${SCRIPTS_DIR}/install_dependencies.sh" --dev
@@ -14,4 +15,4 @@ stage "Install ostis-web-platform"
 "${SCRIPTS_DIR}/build_sc_web.sh"
 "${SCRIPTS_DIR}/build_kb.sh"
 
-stage "ostis-web-platform is installed successfully"
+info "ostis-web-platform is installed successfully"

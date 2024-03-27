@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-SCRIPTS_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
-source "${SCRIPTS_DIR}/formats.sh"
+CURRENT_DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
+OSTIS_SCRIPTS_DIR="${CURRENT_DIR}/ostis-scripts"
+source "${OSTIS_SCRIPTS_DIR}/message-scripts/messages.sh"
 
 if [[ -z "${SC_MACHINE_PATH}" || -z "${SC_WEB_PATH}" ]];
 then
@@ -19,7 +20,7 @@ USAGE
   exit 1
 }
 
-stage "Install dependencies"
+info "Install dependencies"
 
 args=()
 while [ "$1" != "" ];
@@ -42,4 +43,4 @@ done
 "${SCRIPTS_DIR}/install_sc_machine_dependencies.sh" "${args[@]}"
 "${SCRIPTS_DIR}/install_sc_web_dependencies.sh" "${args[@]}"
 
-stage "Dependencies installed successfully"
+info "Dependencies installed successfully"
