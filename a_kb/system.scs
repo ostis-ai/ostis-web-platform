@@ -1,0 +1,3 @@
+sc_node_tuple
+<- sc_node_class;
+=> nrel_main_idtf: [sc-связка](* <- lang_ru;; *);;

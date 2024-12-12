@@ -7,58 +7,77 @@
 		.system_element_2
 		=> .system_element_3: 
 			.system_element_4;
-			.system_element_5;
+			.system_element_5
+			(*
+				=> .system_element_7: .system_element_6;;
+			*)
+		;
 		=> nrel_explanation: [<p>Особенности правового регулирования вопросов нормотворческой деятельности могут устанавливаться Президентом Республики Беларусь</p>]
 		(*
 			<- lang_ru;;
 			=> nrel_format: format_html;;
 		*);;
 
-		.system_element_7
-		=> .system_element_3: .system_element_8;;
+		.system_element_6
+		=> nrel_inclusion: [*
+
+			.system_element_5
+			<= nrel_inclusion: .system_element_8;
+			=> .system_element_10: .system_element_9;;
+		*];;
+
+		.system_element_11
+		=> .system_element_3: .system_element_12;;
 
 		.system_element_5
-		<= nrel_inclusion: .system_element_9;
-		=> .system_element_11: .system_element_10;;
+		<= nrel_inclusion: .system_element_8;
+		=> .system_element_10: .system_element_9;;
 
-		.system_element_12
+		.system_element_13
 		=> nrel_idtf: [<p>скоординированность нормотворческой деятельности в системе республиканских органов государственного управления, подчиненных Совету Министров Республики Беларусь</p>]
 		(*
 			<- lang_ru;;
 			=> nrel_format: format_html;;
 		*);
-		=> .system_element_3: .system_element_13;;
-	*];;
-
-	.system_element_14
-	=> nrel_inclusion: [*
-		=> nrel_explanation: [<p>(можно оформить в виде логического правила) Изменение законодательного акта допускается, как правило, не чаще одного раза в два года, а изменение иного нормативного правового акта - не чаще одного раза в год, за исключением случаев, когда внесение изменений необходимо для оперативного регулирования наиболее важных вопросов, а также на основании требований нормативных правовых актов большей юридической силы.</p>]
-		(*
-			<- lang_ru;;
-			=> nrel_format: format_html;;
-		*);;
+		=> .system_element_3: .system_element_14;;
 	*];;
 
 	.system_element_15
 	=> nrel_inclusion: [*
 
 		.system_element_16
+		=> .system_element_18: .system_element_17;;
+
+		.system_element_19
+		=> .system_element_18: .system_element_20
+		(*
+			=> .system_element_21:
+				.system_element_22;
+				.system_element_23
+			;;
+		*);;
+	*];;
+
+	.system_element_24
+	=> nrel_inclusion: [*
+
+		.system_element_25
 		=> nrel_explanation: [<p>Нормотворческий процесс - процедура осуществления нормотворческой деятельности.</p>]
 		(*
 			<- lang_ru;;
 			=> nrel_format: format_html;;
 		*);
-		=> .system_element_17: <
-			.system_element_18;
-			.system_element_19;
-			.system_element_20
+		=> .system_element_26: <
+			.system_element_27;
+			.system_element_28;
+			.system_element_29
 			(*
-				=> .system_element_21: {
-					.system_element_22;
-					.system_element_23
+				=> .system_element_30: {
+					.system_element_31;
+					.system_element_32
 				};;
 			*);
-			.system_element_24
+			.system_element_33
 			(*
 				=> nrel_idtf: [<p>издание нормативного правового акта</p>]
 				(*
@@ -66,62 +85,66 @@
 					=> nrel_format: format_html;;
 				*);;
 			*);
-			.system_element_25
+			.system_element_34
 			(*
-				=> .system_element_6: .system_element_26;;
+				=> .system_element_7: .system_element_35;;
 			*);
-			.system_element_27;
-			.system_element_28
+			.system_element_36;
+			.system_element_37
 		>;;
 
-		.system_element_26
-		=> .system_element_29: 
-			.system_element_30;
-			.system_element_31;
-			.system_element_32;
-			.system_element_33;
-			.system_element_34;
-			.system_element_35;
-			.system_element_36;
-			.system_element_37;
-			.system_element_38;
-			.system_element_39;
-			.system_element_40;
-			.system_element_41;
-			.system_element_42;
-			.system_element_43;
-			.system_element_44;
-			.system_element_45
-		;;
+		.system_element_35
+		=> nrel_inclusion: [*
 
-		.system_element_46
+			.system_element_19
+			=> .system_element_38:
+				.system_element_39;
+				.system_element_40;
+				.system_element_41;
+				.system_element_42;
+				.system_element_43;
+				.system_element_44;
+				.system_element_45;
+				.system_element_46;
+				.system_element_47;
+				.system_element_48;
+				.system_element_49;
+				.system_element_50;
+				.system_element_51;
+				.system_element_52;
+				.system_element_53;
+				.system_element_54
+			;;
+		*];;
+
+		.system_element_55
 		=> nrel_explanation: [<p>Нормотворческая деятельность - государственно-властная деятельность по планированию, реализации нормотворческой инициативы, подготовке, проведению экспертиз, принятию (изданию), официальному опубликованию, изменению, официальному толкованию, приостановлению, возобновлению, продлению и прекращению действия нормативных правовых актов.</p>]
 		(*
 			<- lang_ru;;
 			=> nrel_format: format_html;;
 		*);;
 
-		.system_element_47
+		.system_element_56
 		=> nrel_explanation: [<p>Законотворческий - это процесс процедура осуществления законотворческой деятельности.</p>]
 		(*
 			<- lang_ru;;
 			=> nrel_format: format_html;;
 		*);
-		=> .system_element_17: <
-			.system_element_48;
-			.system_element_49
+		=> .system_element_26: <
+			.system_element_57;
+			.system_element_58
 			(*
-				=> nrel_inclusion: .system_element_50;;
-				=> nrel_inclusion: .system_element_23;;
+				=> nrel_inclusion: .system_element_59;;
+				=> nrel_inclusion: .system_element_32;;
 			*);
-			.system_element_51;
-			.system_element_52;
-			.system_element_53;
-			.system_element_54;
-			.system_element_55
+			.system_element_60;
+			.system_element_61;
+			.system_element_62;
+			.system_element_63;
+			.system_element_64
 		>;;
 
-		.system_element_56
+		.system_element_65
 		=> nrel_explanation: [<p>Законотворческая деятельность - государственно-властная деятельность по планированию, реализации права законодательной инициативы, подготовке, проведению экспертиз, принятию, официальному опубликованию, изменению, официальному толкованию, приостановлению, возобновлению, продлению и прекращению действия законов.</p>]
 		(*
 			<- lang_ru;;

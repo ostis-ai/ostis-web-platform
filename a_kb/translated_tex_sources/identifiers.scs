@@ -1,95 +1,110 @@
-.system_element_56 => nrel_main_idtf: [законотворческая деятельность] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_65 => nrel_main_idtf: [законотворческая деятельность] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_65 <- sc_node;;
+
+.system_element_63 => nrel_main_idtf: [включение закона в Национальный реестр правовых актов] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_63 <- sc_node;;
+
+.system_element_60 => nrel_main_idtf: [законодательная инициатива] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_60 <- sc_node;;
+
+.system_element_59 => nrel_main_idtf: [согласования законопроекта] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_59 <- sc_node;;
+
+.system_element_57 => nrel_main_idtf: [планирование подготовки законопроекта] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_57 <- sc_node;;
+
+.system_element_56 => nrel_main_idtf: [законотворческий  процесс] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_56 <- sc_node;;
 
-.system_element_54 => nrel_main_idtf: [включение закона в Национальный реестр правовых актов] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_54 => nrel_main_idtf: [распорядительный орган базового территориального уровня] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_54 <- sc_node;;
 
-.system_element_51 => nrel_main_idtf: [законодательная инициатива] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_53 => nrel_main_idtf: [исполнительный орган базового территориального уровня] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_53 <- sc_node;;
+
+.system_element_51 => nrel_main_idtf: [Минский городской исполнительный комитет] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_51 <- sc_node;;
 
-.system_element_50 => nrel_main_idtf: [согласования законопроекта] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_50 => nrel_main_idtf: [областной исполнительных комитет] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_50 <- sc_node;;
 
-.system_element_48 => nrel_main_idtf: [планирование подготовки законопроекта] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_49 => nrel_main_idtf: [Минский городской Совет депутатов] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_49 <- sc_node;;
+
+.system_element_48 => nrel_main_idtf: [областной Совет депутатов] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_48 <- sc_node;;
 
-.system_element_47 => nrel_main_idtf: [законотворческий  процесс] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_47 => nrel_main_idtf: [республиканский орган государственного управления] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_47 <- sc_node;;
 
-.system_element_45 => nrel_main_idtf: [распорядительный орган базового территориального уровня] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_45 <- sc_node;;
+.system_element_46 => nrel_main_idtf: [министерство] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_46 <- sc_node;;
 
-.system_element_44 => nrel_main_idtf: [исполнительный орган базового территориального уровня] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_44 => nrel_main_idtf: [Комитет государственной безопасности] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_44 <- sc_node;;
 
-.system_element_42 => nrel_main_idtf: [Минский городской исполнительный комитет] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_42 => nrel_main_idtf: [Следственный комитет] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_42 <- sc_node;;
 
-.system_element_41 => nrel_main_idtf: [областной исполнительных комитет] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_41 <- sc_node;;
-
-.system_element_40 => nrel_main_idtf: [Минский городской Совет депутатов] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_40 => nrel_main_idtf: [Комитет государственного контроля] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_40 <- sc_node;;
 
-.system_element_39 => nrel_main_idtf: [областной Совет депутатов] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_39 => nrel_main_idtf: [Национальный банк] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_39 <- sc_node;;
 
-.system_element_38 => nrel_main_idtf: [республиканский орган государственного управления] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_38 <- sc_node;;
-
-.system_element_37 => nrel_main_idtf: [министерство] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_37 => nrel_main_idtf: [официальное опубликование нормативного правового акта] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_37 <- sc_node;;
 
-.system_element_35 => nrel_main_idtf: [Комитет государственной безопасности] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_35 => nrel_main_idtf: [условие проведение обязательной юридической экспертизы нормативного правового акта] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_35 <- sc_node;;
 
-.system_element_33 => nrel_main_idtf: [Следственный комитет] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_33 => nrel_main_idtf: [принятие нормативного правового акта] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_33 <- sc_node;;
 
-.system_element_31 => nrel_main_idtf: [Комитет государственного контроля] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_31 <- sc_node;;
+.system_element_32 => nrel_main_idtf: [экспертиза] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_32 <- sc_node;;
 
-.system_element_30 => nrel_main_idtf: [Национальный банк] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_30 <- sc_node;;
+.system_element_29 => nrel_main_idtf: [подготовка проекта нормативного правового акта] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_29 <- sc_node;;
 
-.system_element_28 => nrel_main_idtf: [официальное опубликование нормативного правового акта] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_28 <- sc_node;;
+.system_element_27 => nrel_main_idtf: [планирование нормотворческой деятельности] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_27 <- sc_node;;
 
-.system_element_26 => nrel_main_idtf: [нормативный правовой акт] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_26 <- sc_node;;
+.system_element_26 => nrel_main_idtf: [обобщённая декомпозиция*] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_26 <- sc_node_norole_relation;;
 
-.system_element_24 => nrel_main_idtf: [принятие нормативного правового акта] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_24 <- sc_node;;
+.system_element_25 => nrel_main_idtf: [нормотворческий процесс] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_25 <- sc_node;;
 
-.system_element_23 => nrel_main_idtf: [экспертиза] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_23 => nrel_main_idtf: [требование нормативных правовых актов большей юридической силы] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_23 <- sc_node;;
 
-.system_element_20 => nrel_main_idtf: [подготовка проекта нормативного правового акта] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_20 <- sc_node;;
+.system_element_21 => nrel_main_idtf: [исключение*] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_21 <- sc_node_norole_relation;;
 
-.system_element_18 => nrel_main_idtf: [планирование нормотворческой деятельности] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_18 <- sc_node;;
+.system_element_19 => nrel_main_idtf: [нормативный правовой акт] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_19 <- sc_node;;
 
-.system_element_17 => nrel_main_idtf: [обобщённая декомпозиция*] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_17 <- sc_node_norole_relation;;
-
-.system_element_16 => nrel_main_idtf: [нормотворческий процесс] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_16 => nrel_main_idtf: [законодательный акт] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_16 <- sc_node;;
 
-.system_element_14 => nrel_main_idtf: [Статья 35. Меры по обеспечению стабильности правовой системы] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_14 <- sc_node;;
+.system_element_15 => nrel_main_idtf: [Статья 35. Меры по обеспечению стабильности правовой системы] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_15 <- sc_node;;
 
-.system_element_12 => nrel_main_idtf: [скоординированность нормотворческой деятельности в Совете Министров Республики Беларусь] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_12 <- sc_node;;
+.system_element_13 => nrel_main_idtf: [скоординированность нормотворческой деятельности в Совете Министров Республики Беларусь] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_13 <- sc_node;;
 
-.system_element_10 => nrel_main_idtf: [в рамках полномочий] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_10 <- sc_node;;
-
-.system_element_9 => nrel_main_idtf: [орган, уполномоченный Президентом Республики Беларусь] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_9 => nrel_main_idtf: [в рамках полномочий] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_9 <- sc_node;;
 
-.system_element_6 => nrel_main_idtf: [условие*] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_6 <- sc_node_norole_relation;;
+.system_element_8 => nrel_main_idtf: [орган, уполномоченный Президентом Республики Беларусь] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_8 <- sc_node;;
+
+.system_element_7 => nrel_main_idtf: [условие*] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_7 <- sc_node_norole_relation;;
+
+.system_element_6 => nrel_main_idtf: [условие государственной координации нормотворческой деятельности государственный органом] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_6 <- sc_node;;
 
 .system_element_5 => nrel_main_idtf: [государственный орган] (* <- lang_ru;; => nrel_format: format_html;; *);;
 .system_element_5 <- sc_node;;
@@ -274,14 +289,14 @@ project_IMS <- sc_node;;
 project_ims_knowledge_base => nrel_main_idtf: [Проект База знаний IMS] (* <- lang_ru;; => nrel_format: format_html;; *);;
 project_ims_knowledge_base <- sc_node;;
 
-.system_element_34 => nrel_main_idtf: [Государственный комитет судебных экспертиз] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_34 <- sc_node;;
+.system_element_43 => nrel_main_idtf: [Государственный комитет судебных экспертиз] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_43 <- sc_node;;
 
 project_core_ui => nrel_main_idtf: [Проект Ядро пользовательских интерфейсов] (* <- lang_ru;; => nrel_format: format_html;; *);;
 project_core_ui <- sc_node;;
 
-.system_element_53 => nrel_main_idtf: [подписание закона Президентом Республики Беларусь] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_53 <- sc_node;;
+.system_element_62 => nrel_main_idtf: [подписание закона Президентом Республики Беларусь] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_62 <- sc_node;;
 
 project_scg_environment => nrel_main_idtf: [Проект SCg-среда] (* <- lang_ru;; => nrel_format: format_html;; *);;
 project_scg_environment <- sc_node;;
@@ -750,6 +765,9 @@ section_the_unification_of_semantic_models_of_user_interfaces <- sc_node;;
 
 nrel_symmetric_sets_difference => nrel_main_idtf: [симметрическая разность множеств*] (* <- lang_ru;; => nrel_format: format_html;; *);;
 nrel_symmetric_sets_difference <- sc_node_norole_relation;;
+
+.system_element_20 => nrel_main_idtf: [не чаще одного раза в год] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_20 <- sc_node;;
 
 nrel_cartesian_product => nrel_main_idtf: [декартово произведение*] (* <- lang_ru;; => nrel_format: format_html;; *);;
 nrel_cartesian_product <- sc_node_norole_relation;;
@@ -1273,8 +1291,8 @@ library_of_reusable_components_of_knowledge_bases <- sc_node;;
 question_finding_theorems => nrel_main_idtf: [действие. найти теоремы] (* <- lang_ru;; => nrel_format: format_html;; *);;
 question_finding_theorems <- sc_node_class;;
 
-.system_element_22 => nrel_main_idtf: [согласования правового акта] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_22 <- sc_node;;
+.system_element_31 => nrel_main_idtf: [согласования правового акта] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_31 <- sc_node;;
 
 nrel_user => nrel_main_idtf: [пользователь*] (* <- lang_ru;; => nrel_format: format_html;; *);;
 nrel_user <- sc_node_norole_relation;;
@@ -2455,8 +2473,8 @@ rrel_number_of_day_in_month <- sc_node_role_relation;;
 lib_component_agent_of_checking_existence_of_any_main_identifier => nrel_main_idtf: [Компонент библиотеки. sc-агент проверки наличия sc-элементов, имеющих системный идентификатор, но не имеющих ни одного основного в рамках заданной структуры] (* <- lang_ru;; => nrel_format: format_html;; *);;
 lib_component_agent_of_checking_existence_of_any_main_identifier <- sc_node;;
 
-.system_element_21 => nrel_main_idtf: [обобщённая часть*] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_21 <- sc_node_norole_relation;;
+.system_element_30 => nrel_main_idtf: [обобщённая часть*] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_30 <- sc_node_norole_relation;;
 
 user_interface_command_class => nrel_main_idtf: [класс интерфейсных пользовательских команд] (* <- lang_ru;; => nrel_format: format_html;; *);;
 user_interface_command_class <- sc_node_class;;
@@ -2557,8 +2575,8 @@ sc_agent_of_searchSetStr5_operator_interpretation <- sc_node_class;;
 abstract_sc_agent_of_search_all_operators_within_scp_program => nrel_main_idtf: [Абстрактный sc-агент поиска всех scp-операторов в рамках scp-программы] (* <- lang_ru;; => nrel_format: format_html;; *);;
 abstract_sc_agent_of_search_all_operators_within_scp_program <- sc_node_class;;
 
-.system_element_19 => nrel_main_idtf: [нормотворческая инициатива] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_19 <- sc_node;;
+.system_element_28 => nrel_main_idtf: [нормотворческая инициатива] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_28 <- sc_node;;
 
 sc_agent_of_calculation_average_value_of_outbound_connections_vertex_of_ontology => nrel_main_idtf: [sc-агент вычисления среднего числа различных типов исходящих связей вершины онтологии] (* <- lang_ru;; => nrel_format: format_html;; *);;
 sc_agent_of_calculation_average_value_of_outbound_connections_vertex_of_ontology <- sc_node;;
@@ -2806,8 +2824,8 @@ sc_agent_of_finding_theorems <- sc_node;;
 scs_nrel_representation_scg_code => nrel_main_idtf: [отображение в SCg-коде*] (* <- lang_ru;; => nrel_format: format_html;; *);;
 scs_nrel_representation_scg_code <- sc_node_norole_relation;;
 
-.system_element_13 => nrel_main_idtf: [Министерство юстиции] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_13 <- sc_node;;
+.system_element_14 => nrel_main_idtf: [Министерство юстиции] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_14 <- sc_node;;
 
 structure_of_cardinality_and_arity_of_relation_discrepancy => nrel_main_idtf: [несоответствие мощности связки арности отношения] (* <- lang_ru;; => nrel_format: format_html;; *);;
 structure_of_cardinality_and_arity_of_relation_discrepancy <- sc_node_class;;
@@ -3073,8 +3091,8 @@ action_of_expert_of_knowledge_base <- sc_node_class;;
 technology_OSTIS => nrel_main_idtf: [Технология OSTIS] (* <- lang_ru;; => nrel_format: format_html;; *);;
 technology_OSTIS <- sc_node_class;;
 
-.system_element_7 => nrel_main_idtf: [методологическое руководство нормотворческой деятельности] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_7 <- sc_node;;
+.system_element_11 => nrel_main_idtf: [методологическое руководство нормотворческой деятельности] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_11 <- sc_node;;
 
 sc_agent_of_search_of_full_semantic_neighborhood => nrel_main_idtf: [sc-агент поиска полной семантической окрестности заданного элемента] (* <- lang_ru;; => nrel_format: format_html;; *);;
 sc_agent_of_search_of_full_semantic_neighborhood <- sc_node;;
@@ -3220,8 +3238,8 @@ command <- sc_node_class;;
 lib_component_ui_menu_file_for_adding_new_draft => nrel_main_idtf: [Компонент библиотеки. Команда пользовательского интерфейса добавления нового черновика] (* <- lang_ru;; => nrel_format: format_html;; *);;
 lib_component_ui_menu_file_for_adding_new_draft <- sc_node_struct;;
 
-.system_element_27 => nrel_main_idtf: [включение нормативного правового акта в Национальный реестр правовых актов] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_27 <- sc_node;;
+.system_element_36 => nrel_main_idtf: [включение нормативного правового акта в Национальный реестр правовых актов] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_36 <- sc_node;;
 
 abstract_sc_metaagent_lock_setting_in_sc_element => nrel_main_idtf: [Абстрактный sc-метаагент установки блокировки заданного типа для заданного процесса на заданный sc-элемент] (* <- lang_ru;; => nrel_format: format_html;; *);;
 abstract_sc_metaagent_lock_setting_in_sc_element <- sc_node_class;;
@@ -3988,8 +4006,8 @@ project_scn_environment <- sc_node;;
 logical_formula_and_uniqueness => nrel_main_idtf: [логическая формула и единственность] (* <- lang_ru;; => nrel_format: format_html;; *);;
 logical_formula_and_uniqueness <- sc_node_class;;
 
-.system_element_43 => nrel_main_idtf: [местный Совет депутатов] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_43 <- sc_node;;
+.system_element_52 => nrel_main_idtf: [местный Совет депутатов] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_52 <- sc_node;;
 
 nrel_pairwise_intersecting_sets => nrel_main_idtf: [попарно пересекающиеся множества*] (* <- lang_ru;; => nrel_format: format_html;; *);;
 nrel_pairwise_intersecting_sets <- sc_node_norole_relation;;
@@ -4084,8 +4102,8 @@ library_of_reusable_scp_programs_for_validation <- sc_node;;
 sc_agent_of_contAssign_operator_interpretation => nrel_main_idtf: [sc-агент интерпретации scp-оператора копирования содержимого файла] (* <- lang_ru;; => nrel_format: format_html;; *);;
 sc_agent_of_contAssign_operator_interpretation <- sc_node_class;;
 
-.system_element_25 => nrel_main_idtf: [проведение обязательной юридической экспертизы] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_25 <- sc_node;;
+.system_element_34 => nrel_main_idtf: [проведение обязательной юридической экспертизы] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_34 <- sc_node;;
 
 ui_control_print_window_content => nrel_main_idtf: [Элемент управления вывода содержимого активного окна на печать] (* <- lang_ru;; => nrel_format: format_html;; *);;
 ui_control_print_window_content <- sc_node;;
@@ -4117,8 +4135,8 @@ lib_component_ui_menu_na_kb_evaluation <- sc_node_struct;;
 lib_component_ui_menu_file_for_checking_existence_of_any_main_identifier_with_context => nrel_main_idtf: [Компонент библиотеки. Команда пользовательского интерфейса для проверки наличия sc-элементов, имеющих системный идентификатор, но не имеющих ни одного основного в рамках контекста] (* <- lang_ru;; => nrel_format: format_html;; *);;
 lib_component_ui_menu_file_for_checking_existence_of_any_main_identifier_with_context <- sc_node_struct;;
 
-.system_element_8 => nrel_main_idtf: [Национальный центр законодательства и правовой информации] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_8 <- sc_node;;
+.system_element_12 => nrel_main_idtf: [Национальный центр законодательства и правовой информации] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_12 <- sc_node;;
 
 semantic_network => nrel_main_idtf: [Семантическая сеть] (* <- lang_ru;; => nrel_format: format_html;; *);;
 semantic_network <- sc_node_class;;
@@ -4636,6 +4654,9 @@ sc_agent_of_check_for_crossing_from_one_subdividing_elements <- sc_node;;
 scs_divider_var_neg_stat_accessory_arc => nrel_main_idtf: [переменная негативная стационарная sc.s-дуга принадлежности] (* <- lang_ru;; => nrel_format: format_html;; *);;
 scs_divider_var_neg_stat_accessory_arc <- sc_node_class;;
 
+.system_element_17 => nrel_main_idtf: [не чаще одного раза в два года] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_17 <- sc_node;;
+
 nrel_temporal_concurrence => nrel_main_idtf: [темпоральное совпадение*] (* <- lang_ru;; => nrel_format: format_html;; *);;
 nrel_temporal_concurrence <- sc_node_norole_relation;;
 
@@ -4819,8 +4840,8 @@ ui_user_command_class_view_kb <- sc_node;;
 section_tools_ostis => nrel_main_idtf: [Раздел. Средства, входящие в состав Технологии OSTIS] (* <- lang_ru;; => nrel_format: format_html;; *);;
 section_tools_ostis <- sc_node;;
 
-.system_element_15 => nrel_main_idtf: [Статья 36. Стадии нормотворческого, законотворческого процессов] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_15 <- sc_node;;
+.system_element_24 => nrel_main_idtf: [Статья 36. Стадии нормотворческого, законотворческого процессов] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_24 <- sc_node;;
 
 searchSetStr3 => nrel_main_idtf: [scp-оператор поиска трехэлементной структуры с формированием множеств] (* <- lang_ru;; => nrel_format: format_html;; *);;
 searchSetStr3 <- sc_node_class;;
@@ -4921,8 +4942,8 @@ strict_order_relation <- sc_node_class;;
 class_of_tasks => nrel_main_idtf: [класс задач] (* <- lang_ru;; => nrel_format: format_html;; *);;
 class_of_tasks <- sc_node_class;;
 
-.system_element_52 => nrel_main_idtf: [рассмотрение законопроекта палатами Национального собрания Республики Беларусь] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_52 <- sc_node;;
+.system_element_61 => nrel_main_idtf: [рассмотрение законопроекта палатами Национального собрания Республики Беларусь] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_61 <- sc_node;;
 
 procedural_formulation_of_task => nrel_main_idtf: [процедурная формулировка задачи] (* <- lang_ru;; => nrel_format: format_html;; *);;
 procedural_formulation_of_task <- sc_node_class;;
@@ -5170,8 +5191,8 @@ sc_variable_mixed_order <- sc_node_class;;
 abstract_entity_terminal => nrel_main_idtf: [абстрактная терминальная сущность] (* <- lang_ru;; => nrel_format: format_html;; *);;
 abstract_entity_terminal <- sc_node_class;;
 
-.system_element_11 => nrel_main_idtf: [координация*] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_11 <- sc_node_norole_relation;;
+.system_element_10 => nrel_main_idtf: [координация*] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_10 <- sc_node_norole_relation;;
 
 actions_class => nrel_main_idtf: [класс действий] (* <- lang_ru;; => nrel_format: format_html;; *);;
 actions_class <- sc_node_class;;
@@ -5200,6 +5221,9 @@ genEl <- sc_node_class;;
 sc_models_interpretation_platform => nrel_main_idtf: [Библиотека платформ реализации sc-моделей компьютерных систем] (* <- lang_ru;; => nrel_format: format_html;; *);;
 sc_models_interpretation_platform <- sc_node;;
 
+.system_element_18 => nrel_main_idtf: [частота изменений*] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_18 <- sc_node_norole_relation;;
+
 section_concept_of_sc_models_interpretation_platform => nrel_main_idtf: [Раздел. Понятие платформы интерпретации sc-моделей компьютерных систем] (* <- lang_ru;; => nrel_format: format_html;; *);;
 section_concept_of_sc_models_interpretation_platform <- sc_node_struct;;
 
@@ -5224,8 +5248,8 @@ action_to_develop_scp_program <- sc_node_class;;
 action_to_develop_platform_independent_atomic_abstract_sc_agent => nrel_main_idtf: [действие. разработать платформенно-независимый атомарный абстрактный sc-агент] (* <- lang_ru;; => nrel_format: format_html;; *);;
 action_to_develop_platform_independent_atomic_abstract_sc_agent <- sc_node_class;;
 
-.system_element_55 => nrel_main_idtf: [официальное опубликование закона] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_55 <- sc_node;;
+.system_element_64 => nrel_main_idtf: [официальное опубликование закона] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_64 <- sc_node;;
 
 action_to_verify_atomic_sc_agent => nrel_main_idtf: [действие. верифицировать атомарный sc-агент] (* <- lang_ru;; => nrel_format: format_html;; *);;
 action_to_verify_atomic_sc_agent <- sc_node_class;;
@@ -5953,8 +5977,8 @@ ui_menu_file_for_calculation_normalized_number_of_vertexes_with_normal_degree <-
 action_of_finding_initiated_signs_of_actions_for_specific_class_of_actions => nrel_main_idtf: [действие. найти инициированные действия, относящиеся к определённому классу действий] (* <- lang_ru;; => nrel_format: format_html;; *);;
 action_of_finding_initiated_signs_of_actions_for_specific_class_of_actions <- sc_node_class;;
 
-.system_element_46 => nrel_main_idtf: [нормотворческая деятельность] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_46 <- sc_node;;
+.system_element_55 => nrel_main_idtf: [нормотворческая деятельность] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_55 <- sc_node;;
 
 sc_agent_of_finding_initiated_signs_of_actions_for_specific_class_of_actions => nrel_main_idtf: [sc-агент поиска инициированных знаков действий, относящихся к определённому классу действий] (* <- lang_ru;; => nrel_format: format_html;; *);;
 sc_agent_of_finding_initiated_signs_of_actions_for_specific_class_of_actions <- sc_node;;
@@ -6742,8 +6766,8 @@ ui_rejection_verification_result_of_offer <- sc_node;;
 ui_menu_navigation_by_initiated_signs_for_eekb => nrel_main_idtf: [Поиск инициированных действий] (* <- lang_ru;; => nrel_format: format_html;; *);;
 ui_menu_navigation_by_initiated_signs_for_eekb <- sc_node;;
 
-.system_element_36 => nrel_main_idtf: [Национальная академия наук Беларуси] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_36 <- sc_node;;
+.system_element_45 => nrel_main_idtf: [Национальная академия наук Беларуси] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_45 <- sc_node;;
 
 scp_operator_of_information_output_to_consol => nrel_main_idtf: [scp-оператор вывода информации в консоль] (* <- lang_ru;; => nrel_format: format_html;; *);;
 scp_operator_of_information_output_to_consol <- sc_node_class;;
@@ -6880,8 +6904,8 @@ sc_identifier_operation <- sc_node_class;;
 ui_nrel_command_template => nrel_main_idtf: [обобщенная формулировка команды пользовательского интерфейса*] (* <- lang_ru;; => nrel_format: format_html;; *);;
 ui_nrel_command_template <- sc_node_norole_relation;;
 
-.system_element_29 => nrel_main_idtf: [возможный создатель*] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_29 <- sc_node_norole_relation;;
+.system_element_38 => nrel_main_idtf: [возможный создатель*] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_38 <- sc_node_norole_relation;;
 
 action_to_calculate_max_value_of_ontology_depths => nrel_main_idtf: [действие. подсчитать максимальную глубину онтологии] (* <- lang_ru;; => nrel_format: format_html;; *);;
 action_to_calculate_max_value_of_ontology_depths <- sc_node_class;;
@@ -7135,8 +7159,8 @@ lib_component_ui_menu_file_for_finding_definitions <- sc_node_struct;;
 lib_component_ui_menu_file_for_finding_constants => nrel_main_idtf: [Компонент библиотеки. Команда пользовательского интерфейса для поиска понятий, через которые определяется заданное понятие] (* <- lang_ru;; => nrel_format: format_html;; *);;
 lib_component_ui_menu_file_for_finding_constants <- sc_node_struct;;
 
-.system_element_32 => nrel_main_idtf: [Управление делами Президента Республики Беларусь] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_32 <- sc_node;;
+.system_element_41 => nrel_main_idtf: [Управление делами Президента Республики Беларусь] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_41 <- sc_node;;
 
 lib_component_ui_menu_file_for_finding_connections => nrel_main_idtf: [Компонент библиотеки. Команда пользовательского интерфейса для поиска непосредственных связей между объектами] (* <- lang_ru;; => nrel_format: format_html;; *);;
 lib_component_ui_menu_file_for_finding_connections <- sc_node_struct;;
@@ -7161,6 +7185,9 @@ sc_agent_of_ifType_operator_interpretation <- sc_node_class;;
 
 library_of_external_info_constructions_editors => nrel_main_idtf: [Библиотека редакторов внешних информационных конструкций] (* <- lang_ru;; => nrel_format: format_html;; *);;
 library_of_external_info_constructions_editors <- sc_node;;
+
+.system_element_22 => nrel_main_idtf: [изменение необходимо для оперативного регулирования наиболее важных вопросов] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_22 <- sc_node;;
 
 rrel_explored_relation => nrel_main_idtf: [исследуемое отношение'] (* <- lang_ru;; => nrel_format: format_html;; *);;
 rrel_explored_relation <- sc_node_role_relation;;
@@ -7990,8 +8017,8 @@ action_of_finding_all_initiated_signs <- sc_node_class;;
 formal_theory => nrel_main_idtf: [формальная теория] (* <- lang_ru;; => nrel_format: format_html;; *);;
 formal_theory <- sc_node_class;;
 
-.system_element_49 => nrel_main_idtf: [подготовка законопроекта] (* <- lang_ru;; => nrel_format: format_html;; *);;
-.system_element_49 <- sc_node;;
+.system_element_58 => nrel_main_idtf: [подготовка законопроекта] (* <- lang_ru;; => nrel_format: format_html;; *);;
+.system_element_58 <- sc_node;;
 
 nrel_right_answer => nrel_main_idtf: [правильный ответ*] (* <- lang_ru;; => nrel_format: format_html;; *);;
 nrel_right_answer <- sc_node_norole_relation;;
