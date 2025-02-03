@@ -6,15 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Breaking changes
+
+- All build and run scripts have been removed. This was done due to changes in the build system of the sc-machine. So now this repository is most suitable for developers, not for consumers.
+
 ### Added
 
-- Script `run_sc_machine.sh`
-- Script `build_scp_machine.sh`
 - Install scp-machine
-- Script `install_minimal_platform.sh`
-- Script `build_platform.sh`
+- Script `install_minimal_submodules.sh`
 - Script `update_submodules.sh`
-- Script `build_sc_component_manager.sh`
 - Install sc-component-manager
 
 ### Changed
@@ -25,6 +25,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 
 - Option `--update` in `install_submodules.sh`
+
+### Removed
+
+- Script `run_sc_server.sh`
+- Script `run_sc_web.sh`
+- Script `build_kb.sh`
+- Script `build_sc_machine.sh`
+- Script `install_dependencies.sh`
+- Script `install_platform.sh`
 
 ## [0.9.0-Unlock] - 22.01.2024
 

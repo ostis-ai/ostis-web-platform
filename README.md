@@ -2,7 +2,7 @@
 
 <img src="https://github.com/ostis-ai/ostis-web-platform/actions/workflows/install.yml/badge.svg?branch=develop"> [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
  
-It is the repository of the Platform of the [OSTIS Technology](https://github.com/ostis-ai). Platform OSTIS is intended to be a solid framework to help you deploy existing and create new ostis-systems.
+It is the repository of the Platform of the [OSTIS Technology](https://github.com/ostis-ai). The OSTIS Platform is intended to be a solid framework to help you deploy existing and create new ostis-systems.
 
 OSTIS Platform contains:
 
@@ -39,7 +39,7 @@ To learn more about the platform, check out our [documentation](https://github.c
   # download images from Docker Hub
   docker compose pull
   # build knowledge base
-  docker compose run machine build
+  docker compose run --rm machine build
   # launch web platform stack
   docker compose up
   ```
@@ -59,33 +59,53 @@ To learn more about the platform, check out our [documentation](https://github.c
   ```sh
   git clone https://github.com/ostis-ai/ostis-web-platform --recursive
   cd ostis-web-platform
-  ./scripts/install_submodules.sh # download all submodules without compilation.
+  # download all submodules
+  ./scripts/install_submodules.sh
+  # build sc-machine, scp-machine and sc-component-manager
   docker compose build
   ```
 
    </details>
 
-- Natively (using sc-component-manager)
-
-  ```sh
-  git clone https://github.com/ostis-ai/ostis-web-platform
-  cd ostis-web-platform
-  ./scripts/install_minimal_platform.sh
-  ./scripts/run_sc_machine.sh
-  # and write write the following commands in the terminal:
-  # components init
-  # components install sc_web
-  # components install knowledge_base_ims
-  ```
-
 - Natively
 
-  Note: Currently, only Linux (Ubuntu-20.04, Ubuntu-22.04) and macOS are supported by this installation method. If you're going to use it, it might take a while to download dependencies and compile the components. Use it only if you know what you're doing!
+  Note: Currently, only Linux (Ubuntu-22.04, Ubuntu-24.04) and macOS are supported by this installation method.
 
   ```sh
   git clone https://github.com/ostis-ai/ostis-web-platform --recursive
   cd ostis-web-platform
-  ./scripts/install_platform.sh
+  ./scripts/install_submodules.sh
+
+  # to build sc-machine, see https://ostis-ai.github.io/sc-machine/build/quick_start/#start-develop-sc-machine-with-conan
+  cd sc-machine
+  # make sure, that you have `conan`, updated `cmake` and `ninja`
+  cmake --preset release-conan
+  cmake --build --preset release
+  conan install . --build=missing
+  conan export-pkg .
+  cd ..
+
+  # to build scp-machine, see https://ostis-ai.github.io/scp-machine/build/quick_start/#start-develop-scp-machine-with-conan
+  cd scp-machine
+  conan install . -s build_type=Debug --build=missing
+  cmake --preset debug-conan
+  cmake --build --preset debug
+  cd ..
+
+  # to build sc-component-manager, see https://ostis-ai.github.io/sc-component-manager/build/quick_start/#start-develop-sc-component-manager-with-conan
+  cd sc-component-manager
+  conan install . -s build_type=Debug --build=missing
+  cmake --preset debug-conan
+  cmake --build --preset debug
+  cd ..
+
+  # to build sc-web, see https://github.com/ostis-ai/sc-web/blob/main/README.md
+  cd interface/sc-web
+  ./scripts/install_dependencies.sh
+  npm run build
+  cd ../..
+
+  # after building projects there should be `build/Release` folder in sc-machine and `build/Debug` folders in scp-machine and sc-component-manager
   ```
 
 ## Usage
@@ -94,20 +114,29 @@ To learn more about the platform, check out our [documentation](https://github.c
 
   ```sh
   # build the knowledge base
-  # required before the first startup (or if you've made updates to KB sources)
-  docker compose run machine build
+  # required before the first startup 
+  # (or if you've made updates to knowledge base sources)
+  docker compose run --rm machine build
   # start platform services and run web interface at localhost:8000
   docker compose up
   ```
 
-- Native installation
+- Native
+
+  Run in the first terminal:
 
   ```sh
-  # launch semantic network processing machine
-  ./scripts/run_sc_machine.sh
-  # *in another terminal*
-  # launch semantic interfaces interpreter at localhost:8000
-  ./scripts/run_sc_web.sh
+  # to run sc-machine, see https://ostis-ai.github.io/sc-machine/build/quick_start/#run-sc-machine-in-release
+  ./sc-machine/build/Release/bin/sc-builder -i repo.path -o kb.bin --clear
+  ./sc-machine/build/Release/bin/sc-machine -s kb.bin -c ostis-web-platform.ini \
+    -e "sc-machine/build/Release/lib/extensions;scp-machine/build/Debug/lib/extensions;sc-component-manager/build/Debug/lib/extensions"
+  ```
+
+  Run in the second terminal:
+
+  ```sh
+  cd interface/sc-web
+  source .venv/bin/activate && python3 server/app.py
   ```
 
 ## Documentation
@@ -117,8 +146,7 @@ to provide opportunity to use it in information processing and knowledge generat
 
 You can access the current version of the documentation in [docs/main.pdf](docs/main.pdf) file of this project.
 
-Documentation is written with
-the help of LaTeX tools in SCn-code representation. To build documentation manually, you'll need a LaTeX distribution installed on your computer. Alternatively, we provide a Docker image to build the documentation in case you can't / don't want to install LaTeX on your PC.
+Documentation is written with the help of LaTeX tools in SCn-code representation. To build documentation manually, you'll need a LaTeX distribution installed on your computer. Alternatively, we provide a Docker image to build the documentation in case you can't / don't want to install LaTeX on your PC.
 
 ### Download scn-tex-plugin and documentation for subprojects
 

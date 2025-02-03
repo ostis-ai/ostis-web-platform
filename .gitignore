@@ -12,6 +12,7 @@ build
 .idea
 __pycache__
 .vscode
+.DS_Store
 
 # texstudio
 *.aux
