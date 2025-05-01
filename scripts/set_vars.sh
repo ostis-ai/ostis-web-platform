@@ -29,8 +29,8 @@ export SC_WEB_COMMIT="${SC_WEB_COMMIT:-""}"
 export SC_WEB_PATH="${SC_WEB_PATH:-${PLATFORM_PATH}/interface/sc-web}"
 
 export IMS_KB_REPO="${IMS_KB_REPO:-https://github.com/ostis-ai/ims.ostis.kb.git}"
-export IMS_KB_BRANCH="${IMS_KB_BRANCH:-main}"
-export IMS_KB_COMMIT="${IMS_KB_COMMIT:-""}"
+export IMS_KB_BRANCH="${IMS_KB_BRANCH:-""}"
+export IMS_KB_COMMIT="${IMS_KB_COMMIT:-"0.3.0"}"
 export IMS_KB_PATH="${IMS_KB_PATH:-${PLATFORM_PATH}/kb/ims.ostis.kb}"
 
 if [ -d "${SC_MACHINE_PATH}" ];
